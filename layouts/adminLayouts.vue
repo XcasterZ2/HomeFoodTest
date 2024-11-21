@@ -48,7 +48,7 @@
                                             </RouterLink>
                                         </li>
                                         <li>
-                                            <RouterLink to="/admin" class="">
+                                            <RouterLink to="/admin/restaurants" class="">
                                                 <p class="text-base ">ข้อมูลร้านค้า</p>
                                             </RouterLink>
                                         </li>
@@ -147,7 +147,7 @@
                                     </RouterLink>
                                 </li>
                                 <li>
-                                    <RouterLink to="/admin" class="">
+                                    <RouterLink to="/admin/restaurants" class="">
                                         <p class="text-base ">ข้อมูลร้านค้า</p>
                                     </RouterLink>
                                 </li>

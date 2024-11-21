@@ -24,15 +24,17 @@
 
   <div class="flex justify-center font-prompt">
     <div class="flex flex-col">
-      <input v-model="phoneNumber" type="text" class=" input input-bordered w-[300px] mt-4 bg-zinc-100"
-        placeholder="เบอร์โทรศัพท์" disabled>
-      <input v-model="email" type="text" class=" input input-bordered w-[300px] mt-4 bg-zinc-100" placeholder="อีเมล">
-      <input v-model="fullname" type="text" class=" input input-bordered w-[300px] mt-4 bg-zinc-100"
+      <input v-model="form.phoneNumber" type="text" class=" input input-bordered w-[300px] mt-4 bg-zinc-100"
+        placeholder="เบอร์โทรศัพท์">
+      <input v-model="form.email" type="text" class=" input input-bordered w-[300px] mt-4 bg-zinc-100"
+        placeholder="อีเมล">
+      <input v-model="form.fullname" type="text" class=" input input-bordered w-[300px] mt-4 bg-zinc-100"
         placeholder="ชื่อเต็ม">
-      <input v-model="birthDate" type="date" placeholder="วัน / เดือน / ปีเกิด" class="input input-bordered w-[300px] mt-4 bg-zinc-100">
+      <input v-model="form.birthDate" type="date" placeholder="วัน / เดือน / ปีเกิด"
+        class="input input-bordered w-[300px] mt-4 bg-zinc-100">
 
       <label class="form-control w-full max-w-xs mt-4">
-        <select v-model="gen" class="select select-bordered text-lg bg-zinc-100">
+        <select v-model="form.gen" class="select select-bordered text-lg bg-zinc-100">
           <option disabled selected>เลือกเพศ</option>
           <option>ชาย</option>
           <option>หญิง</option>
@@ -45,7 +47,9 @@
   </div>
 
   <div class="flex justify-center mt-7 font-prompt">
-    <div class="hover:-translate-y-1 transition-all duration-500 group cursor-pointer w-[300px] h-[53px] bg-[#FF6347] rounded-full flex justify-center items-center" @click="handleSubmit">
+    <div
+      class="hover:-translate-y-1 transition-all duration-500 group cursor-pointer w-[300px] h-[53px] bg-[#FF6347] rounded-full flex justify-center items-center"
+      @click="handleSubmit">
       <p class="text-white font-medium">ดำเนินการต่อ</p>
     </div>
   </div>
@@ -67,6 +71,14 @@ const phoneNumber = ref('')
 const birthDate = ref('');
 const gen = ref('')
 
+const form = ref({
+  phoneNumber: '',
+  fullname: '',
+  email: '',
+  birthDate: '',
+  gen: '',
+});
+
 const authStore = useAuthStore()
 
 const fetchUser = async (userId) => {
@@ -75,12 +87,15 @@ const fetchUser = async (userId) => {
       method: 'GET',
     });
     if (!response.ok) throw new Error('ไม่สามารถดึงข้อมูลผู้ใช้ได้');
-    const user = await response.json()
-    email.value = user.email;
-    fullname.value = user.fullname;
-    phoneNumber.value = user.phoneNumber;
-    gen.value = user.gen
-    birthDate.value = user.birthDate
+
+    const user = await response.json();
+    form.value = {
+      phoneNumber: user.phoneNumber || '',
+      fullname: user.fullname || '',
+      email: user.email || '',
+      gen: user.gen || '',
+      birthDate: user.birthDate || '',
+    };
   } catch (err) {
     console.error('เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้:', err);
   }
@@ -89,20 +104,18 @@ const fetchUser = async (userId) => {
 const updateUser = async (userId) => {
   const router = useRouter()
   try {
-    const body = {
-      email: email.value,
-      fullname: fullname.value,
-      phoneNumber: phoneNumber.value,
-      gen: gen.value,
-      birthDate: birthDate.value
-
-    };
     const response = await fetch(`/api/admin/user/${userId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify({
+        phoneNumber: form.value.phoneNumber,
+        fullname: form.value.fullname,
+        email: form.value.email,
+        birthDate: form.value.birthDate ? new Date(form.value.birthDate).toISOString() : null, // แปลงวันที่ให้เป็น ISO String
+        gen: form.value.gen,
+      }),
     });
     if (!response.ok) throw new Error('ไม่สามารถอัปเดตข้อมูลผู้ใช้ได้');
     const updatedUser = await response.json();
