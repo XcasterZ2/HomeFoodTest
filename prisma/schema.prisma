@@ -11,13 +11,13 @@ datasource db {
 
 model User {
   id           Int          @id @default(autoincrement())
-  email        String       @unique
+  email        String?      @unique
   fullname     String?
   role         String       @default("user")
   phoneNumber  String?      @unique
-  googleId     String?
-  facebookId   String?
-  lineId       String?
+  googleId     String?      @unique
+  facebookId   String?      @unique
+  lineId       String?      @unique
   birthDate    DateTime?
   gen          String?
   profileImage String?
