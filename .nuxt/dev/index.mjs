@@ -1,33 +1,33 @@
-import process from 'node:process';globalThis._importMeta_={url:import.meta.url,env:process.env};import { mkdirSync } from 'node:fs';
+import process from 'node:process';globalThis._importMeta_={url:import.meta.url,env:process.env};import { getRequestHeader, splitCookiesString, setResponseStatus, setResponseHeader, send, getRequestHeaders, defineEventHandler, handleCacheHeaders, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getResponseStatus, setResponseHeaders, createError, getRouterParam, getQuery as getQuery$1, readBody, getResponseStatusText } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/h3/dist/index.mjs';
 import { Server } from 'node:http';
+import { mkdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { parentPort, threadId } from 'node:worker_threads';
-import { getRequestHeader, splitCookiesString, setResponseStatus, setResponseHeader, send, getRequestHeaders, defineEventHandler, handleCacheHeaders, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getResponseStatus, setResponseHeaders, createError, getRouterParam, getQuery as getQuery$1, readBody, getResponseStatusText } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/h3/dist/index.mjs';
-import { PrismaClient } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/@prisma/client/default.js';
-import jwt from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/jsonwebtoken/index.js';
-import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import { stringify, uneval } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/devalue/index.js';
-import destr from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/destr/dist/index.mjs';
-import { withQuery, joinURL, withTrailingSlash, parseURL, withoutBase, getQuery, joinRelativeURL } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/ufo/dist/index.mjs';
-import { propsToString, renderSSRHead } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/@unhead/ssr/dist/index.mjs';
-import { createServerHead as createServerHead$1, CapoPlugin } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/unhead/dist/index.mjs';
-import { klona } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/klona/dist/index.mjs';
-import defu, { defuFn } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/defu/dist/defu.mjs';
-import { snakeCase } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/scule/dist/index.mjs';
-import { createHooks } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/hookable/dist/index.mjs';
-import { createFetch as createFetch$1, Headers as Headers$1 } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/ofetch/dist/node.mjs';
-import { createCall, createFetch } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/unenv/runtime/fetch/index.mjs';
+import { PrismaClient } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/@prisma/client/default.js';
+import jwt from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/jsonwebtoken/index.js';
+import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import { stringify, uneval } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/devalue/index.js';
+import destr from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/destr/dist/index.mjs';
+import { withQuery, joinURL, withTrailingSlash, parseURL, withoutBase, getQuery, joinRelativeURL } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/ufo/dist/index.mjs';
+import { propsToString, renderSSRHead } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/@unhead/ssr/dist/index.mjs';
+import { createHooks } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/hookable/dist/index.mjs';
+import { createFetch as createFetch$1, Headers as Headers$1 } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/ofetch/dist/node.mjs';
+import { createCall, createFetch } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/unenv/runtime/fetch/index.mjs';
+import { klona } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/klona/dist/index.mjs';
+import defu, { defuFn } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/defu/dist/defu.mjs';
+import { snakeCase } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/scule/dist/index.mjs';
+import { createStorage, prefixStorage } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/unstorage/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/unstorage/drivers/fs.mjs';
+import { toRouteMatcher, createRouter } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/radix3/dist/index.mjs';
+import { getContext } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/unctx/dist/index.mjs';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { consola } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/consola/dist/index.mjs';
-import { getContext } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/unctx/dist/index.mjs';
-import { captureRawStackTrace, parseRawStackTrace } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/errx/dist/index.js';
-import { isVNode, version, unref } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/vue/index.mjs';
-import { hash } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/ohash/dist/index.mjs';
-import { createStorage, prefixStorage } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/unstorage/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/unstorage/drivers/fs.mjs';
-import { toRouteMatcher, createRouter } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/radix3/dist/index.mjs';
-import { defineHeadPlugin } from 'file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/node_modules/@unhead/shared/dist/index.mjs';
+import { consola } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/consola/dist/index.mjs';
+import { captureRawStackTrace, parseRawStackTrace } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/errx/dist/index.js';
+import { isVNode, version, unref } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/vue/index.mjs';
+import { hash } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/ohash/dist/index.mjs';
+import { createServerHead as createServerHead$1, CapoPlugin } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/unhead/dist/index.mjs';
+import { defineHeadPlugin } from 'file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/node_modules/@unhead/shared/dist/index.mjs';
 
 function hasReqHeader(event, name, includes) {
   const value = getRequestHeader(event, name);
@@ -173,13 +173,13 @@ if (!window.__NUXT_DEVTOOLS_TIME_METRIC__) {
 window.__NUXT_DEVTOOLS_TIME_METRIC__.appInit = Date.now()
 `;
 
-const _woKRQcpGDv = (function(nitro) {
+const _T68cUr4Qld = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script}<\/script>`);
   });
 });
 
-const rootDir = "D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile";
+const rootDir = "/Users/sirawitkumlungsri/Documents/GitHub/home-food";
 
 const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[],"style":[],"script":[],"noscript":[]};
 
@@ -198,7 +198,7 @@ const devReducers = {
   URL: (data) => data instanceof URL ? data.toString() : void 0
 };
 const asyncContext = getContext("nuxt-dev", { asyncContext: true, AsyncLocalStorage });
-const _Taf0hao3X3 = (nitroApp) => {
+const _7WYtWyxkrQ = (nitroApp) => {
   const handler = nitroApp.h3App.handler;
   nitroApp.h3App.handler = (event) => {
     return asyncContext.callAsync({ logs: [], event }, () => handler(event));
@@ -268,40 +268,44 @@ function onConsoleLog(callback) {
 }
 
 const plugins = [
-  _woKRQcpGDv,
-_Taf0hao3X3
+  _T68cUr4Qld,
+_7WYtWyxkrQ
 ];
 
-const _lazy_Kc1evJ = () => Promise.resolve().then(function () { return _id_$1; });
-const _lazy_ScorFG = () => Promise.resolve().then(function () { return users$1; });
-const _lazy_zxIPV5 = () => Promise.resolve().then(function () { return google$1; });
-const _lazy_HcE791 = () => Promise.resolve().then(function () { return line$1; });
-const _lazy_Gu3J47 = () => Promise.resolve().then(function () { return login_post$1; });
-const _lazy_QPgGLU = () => Promise.resolve().then(function () { return register_post$1; });
-const _lazy_XLJiae = () => Promise.resolve().then(function () { return sendOtp_post$1; });
-const _lazy_RJFe0o = () => Promise.resolve().then(function () { return delUser$1; });
-const _lazy_unDSTQ = () => Promise.resolve().then(function () { return register$1; });
-const _lazy_mVKMEJ = () => Promise.resolve().then(function () { return sendOtp$1; });
-const _lazy_TY4Tjg = () => Promise.resolve().then(function () { return verifyOtp$1; });
-const _lazy_d1Wdy8 = () => Promise.resolve().then(function () { return renderer$1; });
+const _lazy_ffJCN6 = () => Promise.resolve().then(function () { return _id_$1; });
+const _lazy_H3fsf9 = () => Promise.resolve().then(function () { return users$1; });
+const _lazy_CzbQU4 = () => Promise.resolve().then(function () { return google$1; });
+const _lazy_szxJtV = () => Promise.resolve().then(function () { return line$1; });
+const _lazy_2uysXE = () => Promise.resolve().then(function () { return login_post$1; });
+const _lazy_9Bzq0d = () => Promise.resolve().then(function () { return register_post$1; });
+const _lazy_mgkgx7 = () => Promise.resolve().then(function () { return sendOtp_post$1; });
+const _lazy_hheMIR = () => Promise.resolve().then(function () { return delUser$1; });
+const _lazy_QcqJee = () => Promise.resolve().then(function () { return register$1; });
+const _lazy_o0bfkd = () => Promise.resolve().then(function () { return sendOtp$1; });
+const _lazy_oKrT1R = () => Promise.resolve().then(function () { return verifyOtp$1; });
+const _lazy_QJaKEt = () => Promise.resolve().then(function () { return restaurant$1; });
+const _lazy_XTTG3b = () => Promise.resolve().then(function () { return restaurant_post$1; });
+const _lazy_EB7j57 = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
-  { route: '/api/admin/user/:id', handler: _lazy_Kc1evJ, lazy: true, middleware: false, method: undefined },
-  { route: '/api/admin/users', handler: _lazy_ScorFG, lazy: true, middleware: false, method: undefined },
-  { route: '/api/auth/callback/google', handler: _lazy_zxIPV5, lazy: true, middleware: false, method: undefined },
-  { route: '/api/auth/callback/line', handler: _lazy_HcE791, lazy: true, middleware: false, method: undefined },
-  { route: '/api/auth/login', handler: _lazy_Gu3J47, lazy: true, middleware: false, method: "post" },
-  { route: '/api/auth/register', handler: _lazy_QPgGLU, lazy: true, middleware: false, method: "post" },
-  { route: '/api/auth/send-otp', handler: _lazy_XLJiae, lazy: true, middleware: false, method: "post" },
-  { route: '/api/delUser', handler: _lazy_RJFe0o, lazy: true, middleware: false, method: undefined },
-  { route: '/api/otp/register', handler: _lazy_unDSTQ, lazy: true, middleware: false, method: undefined },
-  { route: '/api/otp/send-otp', handler: _lazy_mVKMEJ, lazy: true, middleware: false, method: undefined },
-  { route: '/api/otp/verify-otp', handler: _lazy_TY4Tjg, lazy: true, middleware: false, method: undefined },
-  { route: '/__nuxt_error', handler: _lazy_d1Wdy8, lazy: true, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_d1Wdy8, lazy: true, middleware: false, method: undefined }
+  { route: '/api/admin/user/:id', handler: _lazy_ffJCN6, lazy: true, middleware: false, method: undefined },
+  { route: '/api/admin/users', handler: _lazy_H3fsf9, lazy: true, middleware: false, method: undefined },
+  { route: '/api/auth/callback/google', handler: _lazy_CzbQU4, lazy: true, middleware: false, method: undefined },
+  { route: '/api/auth/callback/line', handler: _lazy_szxJtV, lazy: true, middleware: false, method: undefined },
+  { route: '/api/auth/login', handler: _lazy_2uysXE, lazy: true, middleware: false, method: "post" },
+  { route: '/api/auth/register', handler: _lazy_9Bzq0d, lazy: true, middleware: false, method: "post" },
+  { route: '/api/auth/send-otp', handler: _lazy_mgkgx7, lazy: true, middleware: false, method: "post" },
+  { route: '/api/delUser', handler: _lazy_hheMIR, lazy: true, middleware: false, method: undefined },
+  { route: '/api/otp/register', handler: _lazy_QcqJee, lazy: true, middleware: false, method: undefined },
+  { route: '/api/otp/send-otp', handler: _lazy_o0bfkd, lazy: true, middleware: false, method: undefined },
+  { route: '/api/otp/verify-otp', handler: _lazy_oKrT1R, lazy: true, middleware: false, method: undefined },
+  { route: '/api/restaurant', handler: _lazy_QJaKEt, lazy: true, middleware: false, method: undefined },
+  { route: '/api/user/restaurant', handler: _lazy_XTTG3b, lazy: true, middleware: false, method: "post" },
+  { route: '/__nuxt_error', handler: _lazy_EB7j57, lazy: true, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_EB7j57, lazy: true, middleware: false, method: undefined }
 ];
 
-const serverAssets = [{"baseName":"server","dir":"D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/server/assets"}];
+const serverAssets = [{"baseName":"server","dir":"/Users/sirawitkumlungsri/Documents/GitHub/home-food/server/assets"}];
 
 const assets = createStorage();
 
@@ -313,11 +317,11 @@ const storage = createStorage({});
 
 storage.mount('/assets', assets);
 
-storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"D:\\Homefood\\home-food-HO1-T5-user-edit-profile\\home-food-HO1-T5-user-edit-profile","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"D:\\Homefood\\home-food-HO1-T5-user-edit-profile\\home-food-HO1-T5-user-edit-profile\\server","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"D:\\Homefood\\home-food-HO1-T5-user-edit-profile\\home-food-HO1-T5-user-edit-profile\\.nuxt","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"D:\\Homefood\\home-food-HO1-T5-user-edit-profile\\home-food-HO1-T5-user-edit-profile\\.nuxt\\cache","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"D:\\Homefood\\home-food-HO1-T5-user-edit-profile\\home-food-HO1-T5-user-edit-profile\\.data\\kv","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/sirawitkumlungsri/Documents/GitHub/home-food","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/sirawitkumlungsri/Documents/GitHub/home-food/server","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/sirawitkumlungsri/Documents/GitHub/home-food/.nuxt","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/sirawitkumlungsri/Documents/GitHub/home-food/.nuxt/cache","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/Users/sirawitkumlungsri/Documents/GitHub/home-food/.data/kv","ignore":["**/node_modules/**","**/.git/**"]}));
 
 function useStorage(base = "") {
   return base ? prefixStorage(storage, base) : storage;
@@ -786,6 +790,11 @@ new Proxy(/* @__PURE__ */ Object.create(null), {
   }
 });
 
+getContext("nitro-app", {
+  asyncContext: false,
+  AsyncLocalStorage: void 0
+});
+
 const config = useRuntimeConfig();
 const _routeRulesMatcher = toRouteMatcher(
   createRouter({ routes: config.nitro.routeRules })
@@ -1119,12 +1128,12 @@ const errorDev = /*#__PURE__*/Object.freeze({
   template: template$1
 });
 
-const prisma$7 = new PrismaClient();
+const prisma$9 = new PrismaClient();
 const _id_ = defineEventHandler(async (event) => {
   const { id } = event.context.params;
   if (event.req.method === "GET") {
     try {
-      const user = await prisma$7.user.findUnique({
+      const user = await prisma$9.user.findUnique({
         where: {
           id: Number(id)
         }
@@ -1139,13 +1148,13 @@ const _id_ = defineEventHandler(async (event) => {
         message: error.message || "Error fetching user data"
       };
     } finally {
-      await prisma$7.$disconnect();
+      await prisma$9.$disconnect();
     }
   }
   if (event.req.method === "PUT") {
     try {
       const body = await readBody(event);
-      const updatedUser = await prisma$7.user.update({
+      const updatedUser = await prisma$9.user.update({
         where: {
           id: Number(id)
         },
@@ -1158,7 +1167,7 @@ const _id_ = defineEventHandler(async (event) => {
         message: error.message || "Error updating user data"
       };
     } finally {
-      await prisma$7.$disconnect();
+      await prisma$9.$disconnect();
     }
   }
   return {
@@ -1172,14 +1181,14 @@ const _id_$1 = /*#__PURE__*/Object.freeze({
   default: _id_
 });
 
-const prisma$6 = new PrismaClient();
+const prisma$8 = new PrismaClient();
 const users = defineEventHandler(async (event) => {
   const method = event.node.req.method;
   const query = getQuery$1(event);
   try {
     if (method === "GET") {
       if (query.id) {
-        const user = await prisma$6.user.findUnique({
+        const user = await prisma$8.user.findUnique({
           where: { id: Number(query.id) }
         });
         if (!user) {
@@ -1187,7 +1196,7 @@ const users = defineEventHandler(async (event) => {
         }
         return user;
       } else {
-        const users = await prisma$6.user.findMany();
+        const users = await prisma$8.user.findMany();
         return users;
       }
     }
@@ -1196,7 +1205,7 @@ const users = defineEventHandler(async (event) => {
       if (!query.id) {
         return { statusCode: 400, message: "User ID is required" };
       }
-      const updatedUser = await prisma$6.user.update({
+      const updatedUser = await prisma$8.user.update({
         where: { id: Number(query.id) },
         data: body
       });
@@ -1204,7 +1213,7 @@ const users = defineEventHandler(async (event) => {
     }
     if (method === "DELETE") {
       const userId = Number(query.id);
-      await prisma$6.user.delete({
+      await prisma$8.user.delete({
         where: { id: userId }
       });
       setResponseStatus(event, 204);
@@ -1221,7 +1230,7 @@ const users$1 = /*#__PURE__*/Object.freeze({
   default: users
 });
 
-const prisma$5 = new PrismaClient();
+const prisma$7 = new PrismaClient();
 const google = defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const query = getQuery$1(event);
@@ -1258,7 +1267,7 @@ const google = defineEventHandler(async (event) => {
         name: userInfo.name
       });
       try {
-        const existingUser = await prisma$5.user.findFirst({
+        const existingUser = await prisma$7.user.findFirst({
           where: {
             OR: [
               { email: userInfo.email },
@@ -1281,7 +1290,7 @@ const google = defineEventHandler(async (event) => {
           };
           return sendRedirect(event, `/?auth=${encodeURIComponent(JSON.stringify(authData2))}`);
         }
-        const newUser = await prisma$5.user.create({
+        const newUser = await prisma$7.user.create({
           data: {
             email: userInfo.email,
             fullname: userInfo.name,
@@ -1314,7 +1323,7 @@ const google = defineEventHandler(async (event) => {
         };
         return sendRedirect(event, `/login?error=database_error&details=${encodeURIComponent(JSON.stringify(errorDetails))}`);
       } finally {
-        await prisma$5.$disconnect();
+        await prisma$7.$disconnect();
       }
     } catch (e) {
       const error = e;
@@ -1334,7 +1343,7 @@ const google$1 = /*#__PURE__*/Object.freeze({
   default: google
 });
 
-const prisma$4 = new PrismaClient();
+const prisma$6 = new PrismaClient();
 const line = defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const query = getQuery$1(event);
@@ -1368,7 +1377,7 @@ const line = defineEventHandler(async (event) => {
         }
       });
       try {
-        const existingUser = await prisma$4.user.findFirst({
+        const existingUser = await prisma$6.user.findFirst({
           where: {
             lineId: userInfo.userId
           }
@@ -1386,7 +1395,7 @@ const line = defineEventHandler(async (event) => {
           };
           return sendRedirect(event, `/?auth=${encodeURIComponent(JSON.stringify(authData2))}`);
         }
-        const newUser = await prisma$4.user.create({
+        const newUser = await prisma$6.user.create({
           data: {
             email: userInfo.email,
             fullname: userInfo.displayName,
@@ -1427,11 +1436,11 @@ const line$1 = /*#__PURE__*/Object.freeze({
   default: line
 });
 
-const prisma$3 = new PrismaClient();
+const prisma$5 = new PrismaClient();
 const login_post = defineEventHandler(async (event) => {
   const { phoneNumber } = await readBody(event);
   try {
-    const user = await prisma$3.user.findUnique({
+    const user = await prisma$5.user.findUnique({
       where: { phoneNumber }
     });
     if (!user) {
@@ -1469,10 +1478,10 @@ const login_post$1 = /*#__PURE__*/Object.freeze({
   default: login_post
 });
 
-const prisma$2 = new PrismaClient();
+const prisma$4 = new PrismaClient();
 const register_post = defineEventHandler(async (event) => {
   const { email, phoneNumber, fullname, otpToken, otpCode } = await readBody(event);
-  const existingUser = await prisma$2.user.findUnique({
+  const existingUser = await prisma$4.user.findUnique({
     where: { phoneNumber }
   });
   if (existingUser) {
@@ -1505,7 +1514,7 @@ const register_post = defineEventHandler(async (event) => {
     const otpResponse = await response.json();
     console.log("otpResVadi : ", otpResponse);
     if (otpResponse.code === "000" && otpResponse.result.status === true) {
-      const newUser = await prisma$2.user.create({
+      const newUser = await prisma$4.user.create({
         data: {
           email,
           phoneNumber,
@@ -1585,12 +1594,12 @@ const sendOtp_post$1 = /*#__PURE__*/Object.freeze({
   default: sendOtp_post
 });
 
-const prisma$1 = new PrismaClient();
+const prisma$3 = new PrismaClient();
 const delUser = defineEventHandler(async (event) => {
   const { email } = getQuery$1(event);
   if (event.req.method === "DELETE") {
     try {
-      await prisma$1.user.delete({
+      await prisma$3.user.delete({
         where: { email }
       });
       return { message: "User deleted successfully" };
@@ -1602,7 +1611,7 @@ const delUser = defineEventHandler(async (event) => {
   if (event.req.method === "PUT") {
     try {
       const userData = await readBody(event);
-      const updatedUser = await prisma$1.user.update({
+      const updatedUser = await prisma$3.user.update({
         where: { email },
         data: userData
       });
@@ -1613,7 +1622,7 @@ const delUser = defineEventHandler(async (event) => {
     }
   }
   try {
-    const users = await prisma$1.user.findMany();
+    const users = await prisma$3.user.findMany();
     return users;
   } catch (error) {
     console.error(error);
@@ -1626,11 +1635,11 @@ const delUser$1 = /*#__PURE__*/Object.freeze({
   default: delUser
 });
 
-const prisma = new PrismaClient();
+const prisma$2 = new PrismaClient();
 const register = defineEventHandler(async (event) => {
   const { phoneNumber, fullname, email } = await readBody(event);
   try {
-    const existingUser = await prisma.user.findUnique({
+    const existingUser = await prisma$2.user.findUnique({
       where: {
         email
       }
@@ -1638,7 +1647,7 @@ const register = defineEventHandler(async (event) => {
     if (existingUser) {
       return { code: "400", detail: "Email already exists" };
     }
-    const newUser = await prisma.user.create({
+    const newUser = await prisma$2.user.create({
       data: {
         email,
         phoneNumber,
@@ -1718,6 +1727,181 @@ const verifyOtp$1 = /*#__PURE__*/Object.freeze({
   default: verifyOtp
 });
 
+const prisma$1 = new PrismaClient();
+const restaurant = defineEventHandler(async (event) => {
+  const method = event.req.method;
+  if (method === "GET") {
+    const { restaurantId } = getQuery$1(event);
+    try {
+      if (restaurantId) {
+        const restaurant = await prisma$1.restaurant.findUnique({
+          where: { restaurant_Id: Number(restaurantId) }
+        });
+        if (!restaurant) {
+          throw createError({
+            statusCode: 404,
+            statusMessage: "Restaurant not found."
+          });
+        }
+        return restaurant;
+      } else {
+        const restaurants = await prisma$1.restaurant.findMany();
+        return restaurants;
+      }
+    } catch (error) {
+      throw createError({
+        statusCode: 500,
+        statusMessage: "Error fetching restaurants."
+      });
+    }
+  }
+  if (method === "POST") {
+    const body = await readBody(event);
+    const {
+      phoneNumber,
+      email,
+      ownerFullname,
+      name,
+      location,
+      daystartOpen,
+      timestartOpen,
+      dayscloseOpen,
+      timecloseOpen,
+      paymentMetod,
+      status,
+      ownerId
+    } = body;
+    if (!ownerId || !name) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: "\u0E44\u0E21\u0E48\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E44\u0E14\u0E49\u0E01\u0E23\u0E2D\u0E01\u0E44\u0E21\u0E48\u0E04\u0E23\u0E1A"
+      });
+    }
+    try {
+      const newRestaurant = await prisma$1.restaurant.create({
+        data: {
+          name,
+          ownerId,
+          phoneNumber,
+          email,
+          ownerFullname,
+          location,
+          daystartOpen,
+          timestartOpen,
+          dayscloseOpen,
+          timecloseOpen,
+          paymentMetod,
+          status
+        }
+      });
+      return newRestaurant;
+    } catch (error) {
+      throw createError({
+        statusCode: 500,
+        statusMessage: "Error creating restaurant."
+      });
+    }
+  }
+  if (method === "PUT") {
+    const body = await readBody(event);
+    const { restaurantId, name, location, phoneNumber, restaurantImage, paymentMethod, license } = body;
+    if (!restaurantId || !name || !location) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: "Missing required fields: restaurantId, name, or location."
+      });
+    }
+    try {
+      const updatedRestaurant = await prisma$1.restaurant.update({
+        where: { restaurant_Id: Number(restaurantId) },
+        data: {
+          name,
+          location,
+          phoneNumber,
+          restaurantImage,
+          paymentMetod: paymentMethod,
+          License: license
+        }
+      });
+      return updatedRestaurant;
+    } catch (error) {
+      throw createError({
+        statusCode: 500,
+        statusMessage: "Error updating restaurant."
+      });
+    }
+  }
+  if (method === "DELETE") {
+    const { restaurantId } = getQuery$1(event);
+    if (!restaurantId) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: "Missing restaurantId."
+      });
+    }
+    try {
+      const deletedRestaurant = await prisma$1.restaurant.delete({
+        where: { restaurant_Id: Number(restaurantId) }
+      });
+      return { message: "\u0E25\u0E1A\u0E23\u0E49\u0E32\u0E19\u0E04\u0E49\u0E32\u0E40\u0E23\u0E35\u0E22\u0E1A\u0E23\u0E49\u0E2D\u0E22", restaurant: deletedRestaurant };
+    } catch (error) {
+      throw createError({
+        statusCode: 500,
+        statusMessage: "Error deleting restaurant."
+      });
+    }
+  }
+  throw createError({
+    statusCode: 405,
+    statusMessage: `Method ${method} not allowed.`
+  });
+});
+
+const restaurant$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: restaurant
+});
+
+const prisma = new PrismaClient();
+const restaurant_post = defineEventHandler(async (event) => {
+  try {
+    const body = await readBody(event);
+    const newRestaurant = await prisma.restaurant.create({
+      data: {
+        email: body.email,
+        name: body.name,
+        phoneNumber: body.phoneNumber,
+        ownerFullname: body.ownerFullname,
+        location: body.location,
+        paymentMetod: body.paymentMetod,
+        status: body.status,
+        daystartOpen: body.daystartOpen,
+        timestartOpen: body.timestartOpen,
+        dayscloseOpen: body.dayscloseOpen,
+        timecloseOpen: body.timecloseOpen,
+        ownerId: body.ownerId
+      }
+    });
+    return {
+      success: true,
+      message: "\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E23\u0E49\u0E32\u0E19\u0E04\u0E49\u0E32\u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08",
+      restaurant: newRestaurant
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      message: "\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E23\u0E49\u0E32\u0E19\u0E04\u0E49\u0E32\u0E44\u0E21\u0E48\u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08",
+      error: error.message
+    };
+  }
+});
+
+const restaurant_post$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: restaurant_post
+});
+
 const Vue3 = version[0] === "3";
 
 function resolveUnref(r) {
@@ -1795,7 +1979,7 @@ function publicAssetsURL(...path) {
 
 globalThis.__buildAssetsURL = buildAssetsURL;
 globalThis.__publicAssetsURL = publicAssetsURL;
-const getClientManifest = () => import('file://D:/Homefood/home-food-HO1-T5-user-edit-profile/home-food-HO1-T5-user-edit-profile/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
+const getClientManifest = () => import('file:///Users/sirawitkumlungsri/Documents/GitHub/home-food/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
 const getSSRStyles = lazyCachedFunction(() => Promise.resolve().then(function () { return styles$1; }).then((r) => r.default || r));
 const getSPARenderer = lazyCachedFunction(async () => {
   const manifest = await getClientManifest();

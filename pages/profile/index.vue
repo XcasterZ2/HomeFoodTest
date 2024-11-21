@@ -152,14 +152,28 @@
         </div>
       </dialog>
 
-      <div
-        class="flex justify-center mt-1 font-prompt cursor-pointer hover:-translate-y-1 transition-all duration-500 group">
-        <div class="h-[60px] w-[340px] rounded-xl p-1 flex justify-center items-center mt-5"
-          style="background-image: linear-gradient(90deg, #FFB3BA 0%, #FF826C 100%);">
-          <div class="flex gap-3">
-            <Shopping />
-            <p class=" text-[18px] font-medium text-white">ศูนย์ธุรกิจของฉัน</p>
+      <div>
+        <RouterLink to="/businesscenter" v-if="restaurants.length > 0"
+          class="flex justify-center mt-1 font-prompt cursor-pointer hover:-translate-y-1 transition-all duration-500 group">
+          <div class="h-[60px] w-[340px] rounded-xl p-1 flex justify-center items-center mt-5"
+            style="background-image: linear-gradient(90deg, #FFB3BA 0%, #FF826C 100%);">
+            <div class="flex gap-3">
+              <Shopping />
+              <p class=" text-[18px] font-medium text-white">ศูนย์ธุรกิจของฉัน</p>
+            </div>
           </div>
+        </RouterLink>
+        <div v-else>
+          <RouterLink to="/businesscenter/create"
+            class="flex justify-center mt-1 font-prompt cursor-pointer hover:-translate-y-1 transition-all duration-500 group">
+            <div class="h-[60px] w-[340px] rounded-xl p-1 flex justify-center items-center mt-5"
+              style="background-image: linear-gradient(90deg, #FFB3BA 0%, #FF826C 100%);">
+              <div class="flex gap-3">
+                <Shopping />
+                <p class=" text-[18px] font-medium text-white">สร้างธุรกิจของคุณ</p>
+              </div>
+            </div>
+          </RouterLink>
         </div>
       </div>
     </div>
@@ -333,6 +347,7 @@ import userLayoutsNoNav from '~/layouts/userLayoutsNoNav.vue';
 import editProfile from '~/components/admin/icons/editProfile.vue';
 import Logout from '~/components/admin/icons/Logout.vue';
 import Shopping from '~/components/admin/icons/Shopping.vue';
+import RegisShopping from '~/components/user/icons/Profile/RegisShopping.vue';
 
 import Chat from '~/components/user/icons/Profile/Chat.vue';
 import Coupon from '~/components/user/icons/Profile/Coupon.vue';
@@ -348,10 +363,30 @@ const authStore = useAuthStore()
 const email = ref('')
 const fullname = ref('')
 const phoneNumber = ref('')
+const restaurants = ref([])
+const isLoading = ref(false)
 
 const currentLanguage = ref("ภาษาไทย");
 const languages = ["ภาษาไทย", "อังกฤษ"];
 const isOpen = ref(false);
+
+const fetchRestaurant = async () => {
+  isLoading.value = true;
+  try {
+    const response = await fetch('/api/restaurant', {
+      method: 'GET',
+    });
+    if (!response.ok) {
+      throw new Error('Failed to fetch courses');
+    }
+    const data = await response.json();
+    restaurants.value = data.filter(restaurant => restaurant.ownerId === authStore.user.id);
+  } catch (err) {
+    console.error('Error fetching courses:', err);
+  } finally {
+    isLoading.value = false;
+  }
+};
 
 const confirmLogout = () => {
   const modal = document.getElementById('logout_confirm')
@@ -392,7 +427,9 @@ authStore.initializeAuth()
 
 onMounted(async () => {
   await fetchUserProfile()
-  console.log('auth : ', email.value)
+  await fetchRestaurant()
+  console.log('auth : ', authStore.user.id)
+  console.log('restaurant : ', restaurants.value)
 })
 </script>
 

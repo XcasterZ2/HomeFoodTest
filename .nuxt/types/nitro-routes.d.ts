@@ -36,6 +36,12 @@ declare module "nitropack/types" {
     '/api/otp/verify-otp': {
       'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/otp/verify-otp').default>>>>
     }
+    '/api/restaurant': {
+      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/restaurant').default>>>>
+    }
+    '/api/user/restaurant': {
+      'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/user/restaurant.post').default>>>>
+    }
     '/__nuxt_error': {
       'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/nuxt/dist/core/runtime/nitro/renderer').default>>>>
     }
