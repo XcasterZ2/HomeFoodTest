@@ -11,7 +11,9 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@pinia/nuxt',
   ],
-  plugins: ['~/plugins/fontawesome.js' , '~/plugins/datepicker.js'],
+  plugins: ['~/plugins/fontawesome.js' , 
+    '~/plugins/datepicker.js',
+  '~/plugins/facebook-sdk.js'],
   googleFonts: {
     families: {
       Sarabun: [400, 700],
@@ -25,11 +27,14 @@ export default defineNuxtConfig({
     googleClientSecret: process.env.NUXT_GOOGLE_CLIENT_SECRET,
     googleRedirectUri: process.env.NUXT_GOOGLE_REDIRECT_URI,
     lineClientSecret: process.env.NUXT_LINE_CLIENT_SECRET,
+    facebookClientSecret: process.env.NUXT_FACEBOOK_CLIENT_SECRET,
     public: {
       googleClientId: process.env.NUXT_GOOGLE_CLIENT_ID,
       googleRedirectUri: process.env.NUXT_GOOGLE_REDIRECT_URI,
       lineClientId: process.env.NUXT_LINE_CLIENT_ID,
-      lineRedirectUri: process.env.NUXT_LINE_REDIRECT_URI
+      lineRedirectUri: process.env.NUXT_LINE_REDIRECT_URI,
+      facebookAppId: process.env.NUXT_FACEBOOK_APP_ID,
+      facebookRedirectUri: process.env.NUXT_FACEBOOK_REDIRECT_URI,
     }
   }
 })

@@ -73,7 +73,7 @@
         <button class="hover:opacity-80 transition-opacity" @click="handleGoogleLogin">
           <Google />
         </button>
-        <button class="hover:opacity-80 transition-opacity">
+        <button class="hover:opacity-80 transition-opacity" @click="handleFacebookLogin">
           <Facebook />
         </button>
         <button class="hover:opacity-80 transition-opacity" @click="handleLineLogin">
@@ -102,7 +102,7 @@
     </div>
   </div> -->
 </template>
-
+ 
 <script setup>
 import 'intl-tel-input/build/css/intlTelInput.css'
 import intlTelInput from 'intl-tel-input'
@@ -113,9 +113,10 @@ import Facebook from '~/components/user/icons/Facebook.vue'
 import Google from '~/components/user/icons/Google.vue'
 import Email from '~/components/user/icons/Email.vue'
 import User from '~/components/user/icons/User.vue'
-import { googleLogin } from '@/services/googleAuth'
-import { lineLogin } from '@/services/lineAuth'
- 
+import { googleLogin } from '~/services/googleAuth'
+import { lineLogin } from '~/services/lineAuth'
+import { facebookLogin } from '~/services/facebookAuth'
+
 const email = ref('');
 const phoneNumber = ref('');
 const fullname = ref('');
@@ -265,6 +266,23 @@ const handleLineLogin = async () => {
     }
   } catch (error) {
     console.error('Error initiating Line login:', error);
+  }
+};
+
+const handleFacebookLogin = async () => {
+  try {
+    // เข้าถึงค่าการตั้งค่าจาก RuntimeConfig
+    const config = useRuntimeConfig();
+    console.log('Runtime config:', config.public);
+
+    // สมมติว่าคุณมีฟังก์ชัน `facebookLogin` ที่เตรียม URL การยืนยันตัวตนไว้
+    const authUrl = await facebookLogin();
+    if (authUrl) {
+      console.log('Facebook Auth URL:', authUrl);
+      window.location.href = authUrl;
+    }
+  } catch (error) {
+    console.error('Error initiating Facebook login:', error);
   }
 };
 </script>

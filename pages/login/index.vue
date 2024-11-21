@@ -4,10 +4,11 @@ import 'intl-tel-input/build/css/intlTelInput.css'
 import intlTelInput from 'intl-tel-input'
 import Line from '~/components/user/icons/Line.vue'
 import { useAuthStore } from '~/stores/auth'
-import { googleLogin } from '@/services/googleAuth'
-import { lineLogin } from '@/services/lineAuth'
+import { googleLogin } from '~/services/googleAuth'
+import { lineLogin } from '~/services/lineAuth'
+import { facebookLogin } from '~/services/facebookAuth'
 
-
+ 
 const authStore = useAuthStore()
 const otpSent = ref(false);
 const otpCode = ref('');
@@ -163,6 +164,23 @@ const handleLineLogin = async () => {
   }
 };
 
+
+const handleFacebookLogin = async () => {
+  try {
+    // เข้าถึงค่าการตั้งค่าจาก RuntimeConfig
+    const config = useRuntimeConfig();
+    console.log('Runtime config:', config.public);
+
+    // สมมติว่าคุณมีฟังก์ชัน `facebookLogin` ที่เตรียม URL การยืนยันตัวตนไว้
+    const authUrl = await facebookLogin();
+    if (authUrl) {
+      console.log('Facebook Auth URL:', authUrl);
+      window.location.href = authUrl;
+    }
+  } catch (error) {
+    console.error('Error initiating Facebook login:', error);
+  }
+};
 </script>
 
 <template>
@@ -241,7 +259,7 @@ const handleLineLogin = async () => {
               fill="#1976D2" />
           </svg>
         </button>
-        <button class="hover:opacity-80 transition-opacity" @click="goToGoogle">
+        <button class="hover:opacity-80 transition-opacity" @click="handleFacebookLogin">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#D6D6D6" />
             <path fill-rule="evenodd" clip-rule="evenodd"
