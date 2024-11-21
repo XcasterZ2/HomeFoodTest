@@ -211,12 +211,10 @@ import { ref, onMounted, onBeforeUnmount } from 'vue';
 .carousel-inner {
     display: flex;
     width: 400%;
-    /* Total width based on the number of slides */
 }
 
 .promotion-container {
     width: 100%;
-    /* Each slide takes full width */
 }
 
 .dot {

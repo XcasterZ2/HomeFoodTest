@@ -4,7 +4,7 @@
       <Promotion v-if="isDesktop" />
       <PromotionSlide v-else />
     </div>
-    <div class="mt-5 ">
+    <div class="mt-5 flex justify-center">
       <Search />
     </div>
 

@@ -14,20 +14,23 @@
     </div>
   </div>
 
-  <div>
+  <div class="flex justify-center">
     <Search />
   </div>
 
-  <div class="relative font-prompt">
-    <button @click="isOpen = !isOpen" class="select select-bordered h-14 w-full flex items-center justify-between p-4">
-      <div class="flex items-center gap-5">
-        <iconSaleInput />
-        <div>
-          <span v-if="!selectedItem">เลือกประเภทสินค้า</span>
-          <span v-else>{{ selectedItem }}</span>
+  <div class="relative font-prompt mt-10 p-4">
+    <div class="flex justify-center">
+      <button @click="isOpen = !isOpen"
+        class="select select-bordered h-14 w-full flex items-center justify-between p-4">
+        <div class="flex items-center gap-5">
+          <iconSaleInput />
+          <div>
+            <span v-if="!selectedItem">เลือกประเภทสินค้า</span>
+            <span v-else>{{ selectedItem }}</span>
+          </div>
         </div>
-      </div>
-    </button>
+      </button>
+    </div>
 
     <div v-if="isOpen === true" class="top-full left-0 right-0 bg-white shadow-md mt-2 rounded-md">
       <ul class="p-2">

@@ -15,7 +15,9 @@
       </div>
     </div>
 
-    <Search />
+    <div class="flex justify-center">
+      <Search />
+    </div>
 
     <RecommendedShops />
   </userLayoutsNoNav>

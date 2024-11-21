@@ -42,42 +42,45 @@ onMounted(async () => {
             <h2 class="text-xl mx-16 font-bold">ศนย์ธุรกิจของฉัน</h2>
         </div>
     </div>
-    <Search />
+    <div class="flex justify-center">
+        <Search />
+    </div>
     <div v-if="isLoading" class="text-center mt-5 font-prompt">
         <span class="loading loading-spinner loading-xl text-orange-500"></span>
         <h2 class="mt-2 mx-2 text-base">Loading...</h2>
     </div>
-    <div class="p-4 font-prompt">
-        <div class="w-full grid grid-cols-2 gap-y-3 gap-3">
-            <div v-for="restaurant in restaurants" :key="restaurant"
-                class="bg-white w-full h-[215px] rounded-2xl shadow-md">
-                <div class="flex flex-col h-full p-2">
-                    <div class="flex justify-center items-start">
-                        <img src="/restuarant/9c80947e0408d3d81f78f309e848d61e.png" alt="pic-restuarant"
-                            class="h-[100px] object-cover rounded-2xl">
+    <div class="sm:max-w-6xl sm:mx-auto sm:mt-7 w-full grid sm:grid-cols-3 grid-cols-2 gap-y-3 gap-3 mt-5 p-4">
+        <RouterLink v-for="restaurant in restaurants" :key="restaurant.id"
+            :to="`/businesscenter/restaurant/detail/${restaurant.restaurant_Id}`"
+            class="bg-white w-full h-[215px] rounded-2xl shadow-md">
+            <div class="flex flex-col h-full p-2">
+                <div class="flex justify-center items-start">
+                    <img src="/restuarant/9c80947e0408d3d81f78f309e848d61e.png" alt="pic-restuarant"
+                        class="h-[100px] object-cover rounded-2xl">
+                </div>
+                <div class="mt-2">
+                    <p class="font-medium">{{ restaurant.name }}</p>
+                </div>
+                <div class="mt-2 flex gap-2">
+                    <div class="mt-1">
+                        <Star />
                     </div>
-                    <div class="mt-2">
-                        <p class="font-medium">{{ restaurant.name }}</p>
-                    </div>
-                    <div class="mt-2 flex gap-2">
-                        <div class="mt-1">
-                            <Star />
-                        </div>
-                        <p>4.9</p>
-                    </div>
-                    <div class="mt-2 flex justify-between">
-                        <p class=" text-[#FF6347] font-bold">สถานะร้าน</p>
-                        <input type="checkbox" class="toggle peer" checked="checked" />
-                    </div>
+                    <p>4.9</p>
+                </div>
+                <div class="mt-2 flex justify-between">
+                    <p class=" text-[#FF6347] font-bold">สถานะร้าน</p>
+                    <input type="checkbox" class="toggle peer" checked="checked" />
                 </div>
             </div>
-        </div>
+        </RouterLink>
     </div>
 </template>
-<style setup>
+
+<style scoped>
 .font-prompt {
     font-family: 'Prompt', sans-serif;
 }
+
 .toggle:checked {
     background-color: #34D399;
 }

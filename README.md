@@ -1,10 +1,10 @@
-# Nuxt Minimal Starter
+# HomeFood Delivery Web-App
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-## Setup
+## เริ่มต้น
 
-Make sure to install dependencies:
+ติดตั้ง dependencies ต่างๆ:
 
 ```bash
 # npm
@@ -14,23 +14,10 @@ npm install
 
 ## Development Server
 
-Start the development server on `http://localhost:3000`:
+เซิฟเวอร์รันที่ on `http://localhost:3000`:
 
 ```bash
 # npm
 npm run dev
 
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-```
-
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
