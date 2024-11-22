@@ -14,7 +14,7 @@
     <div class="grid sm:grid-cols-4 grid-cols-2 gap-y-4">
 
       <div
-        class="bg-gradient-to-t from-[#FF826C] to-[#FFCC70] sm:w-[220px] w-[160px] sm:h-[150px] h-[110px] rounded-2xl">
+        class=" cursor-pointer bg-gradient-to-t from-[#FF826C] to-[#FFCC70] sm:w-[220px] w-[160px] sm:h-[150px] h-[110px] rounded-2xl hover:-translate-y-1 transition-all duration-500 group">
         <div class="flex justify-center items-center h-full">
           <div class="flex flex-col">
             <div class="flex justify-center items-center gap-2">
@@ -30,7 +30,7 @@
       </div>
 
       <div
-        class="bg-gradient-to-t from-[#FF826C4D] to-[#FFCFC64D] sm:w-[220px] w-[160px] sm:h-[150px] h-[110px] rounded-2xl">
+        class="cursor-pointer bg-gradient-to-t from-[#FF826C4D] to-[#FFCFC64D] sm:w-[220px] w-[160px] sm:h-[150px] h-[110px] rounded-2xl hover:-translate-y-1 transition-all duration-500 group">
         <div class="flex justify-center items-center h-full">
           <div class="flex flex-col">
             <div class="flex justify-center items-center gap-2">
@@ -46,7 +46,7 @@
       </div>
 
       <div
-        class="bg-gradient-to-t from-[#FF826C4D] to-[#FFCFC64D] sm:w-[220px] w-[160px] sm:h-[150px] h-[110px] rounded-2xl">
+        class="cursor-pointer bg-gradient-to-t from-[#FF826C4D] to-[#FFCFC64D] sm:w-[220px] w-[160px] sm:h-[150px] h-[110px] rounded-2xl hover:-translate-y-1 transition-all duration-500 group">
         <div class="flex justify-center items-center h-full">
           <div class="flex flex-col">
             <div class="flex justify-center items-center gap-2">
@@ -62,7 +62,7 @@
       </div>
 
       <div
-        class="bg-gradient-to-t from-[#FF826C4D] to-[#FFCFC64D] sm:w-[220px] w-[160px] sm:h-[150px] h-[110px] rounded-2xl">
+        class="cursor-pointer bg-gradient-to-t from-[#FF826C4D] to-[#FFCFC64D] sm:w-[220px] w-[160px] sm:h-[150px] h-[110px] rounded-2xl hover:-translate-y-1 transition-all duration-500 group">
         <div class="flex justify-center items-center h-full">
           <div class="flex flex-col">
             <div class="flex justify-center gap-2">

@@ -3,6 +3,7 @@ import { useRoute } from 'vue-router';
 import { useAuthStore } from '~/stores/auth';
 import Menu from '~/components/user/icons/restaurant/Menu.vue';
 import userLayoutsNoNav from '~/layouts/userLayoutsNoNav.vue';
+import NoteWhite from '~/components/user/icons/restaurant/NoteWhite.vue';
 
 import Notifications from '~/components/user/icons/restaurant/Notifications.vue';
 import Message from '~/components/user/icons/restaurant/Message.vue';
@@ -71,25 +72,26 @@ onMounted(async () => {
         </RouterLink>
 
         <div class="flex-1 mt-2">
-          <h2 class="text-[22px] mx-14 font-bold">ร้านค้าของคุณ</h2>
+          <h2 class="sm:text-[30px] text-[20px] mx-14 font-bold">ร้านค้าของคุณ</h2>
         </div>
 
-        <div @click="openModal" class=" shadow-md rounded-full w-[42px] h-[42px] flex justify-center items-center">
+        <div @click="openModal"
+          class=" shadow-md rounded-full w-[42px] h-[42px] flex justify-center items-center cursor-pointer">
           <Menu />
         </div>
       </div>
 
-      <div class="p-5 font-prompt">
+      <div class=" font-prompt">
         <div class=" w-full flex sm:justify-center">
 
-          <div class="flex gap-7">
+          <div class="flex gap-7 p-2">
             <div class="avatar">
               <div class="w-24 rounded-full">
                 <img src="/regisRestairant.png" />
               </div>
             </div>
 
-            <div class="w-[140px] flex items-center">
+            <div class="w-[125px] flex items-center">
               <p class="font-semibold text-[18px] text-gradient">
                 {{ restaurants[0]?.name || 'ไม่พบข้อมูลร้านอาหาร' }}
               </p>
@@ -110,10 +112,11 @@ onMounted(async () => {
         </div>
 
         <div class="sm:flex sm:justify-center">
-          <Search class="mt-5" />
+          <Search class="mt-5 ml-2" />
         </div>
       </div>
-      <div class="p-4 font-prompt ">
+
+      <div class="p-4 font-prompt mt-5">
         <div class="sm:flex sm:justify-center">
           <div class="bg-while h-[150px] sm:w-[400px] w-full rounded-xl shadow-xl">
             <div class="p-4 flex">
@@ -131,7 +134,10 @@ onMounted(async () => {
                   </div>
 
                   <div class="flex-1 flex justify-end">
-                    <editPage />
+                    <div
+                      class="flex justify-center items-center cursor-pointer sm:hover:bg-slate-100 rounded-full w-6 h-6 sm:w-10 sm:h-10">
+                      <editPage />
+                    </div>
                   </div>
                 </div>
 
@@ -171,7 +177,7 @@ onMounted(async () => {
     <div v-if="isModalOpen" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-end font-prompt"
       @click.self="closeModal">
       <div
-        class="bg-white rounded-2xl h-[80%] w-full max-w-md p-6 relative transform transition-all duration-300 ease-in-out"
+        class="bg-white rounded-2xl h-[80%] w-full max-w-md p-6 relative transform overflow-x-hidden transition-all duration-300 ease-in-out"
         :class="isModalOpen ? 'scale-100 opacity-100' : 'scale-90 opacity-0'">
         <div class="flex justify-between items-center mb-6">
           <div class="flex justify-center w-full">
@@ -187,6 +193,29 @@ onMounted(async () => {
         </div>
 
         <ul class="menu rounded-box w-full bg-white p-0">
+          <li>
+            <RouterLink to="/businesscenter/restaurant/setting" class="flex">
+              <svg class="w-[22px] h-[22px]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M23.8852 2.5C19.2685 2.49997 15.6504 2.49995 12.8274 2.87949C9.93794 3.26797 7.65789 4.07865 5.86827 5.86827C4.07865 7.65789 3.26797 9.93794 2.87949 12.8274C2.49995 15.6504 2.49997 19.2685 2.5 23.8852V24.1148C2.49997 28.7315 2.49995 32.3496 2.87949 35.1726C3.26797 38.0621 4.07865 40.3421 5.86827 42.1317C7.65789 43.9213 9.93794 44.732 12.8274 45.1205C15.6504 45.5 19.2685 45.5 23.8853 45.5H24.1147C28.7315 45.5 32.3496 45.5 35.1726 45.1205C38.0621 44.732 40.3421 43.9213 42.1317 42.1317C43.9213 40.3421 44.732 38.0621 45.1205 35.1726C45.5 32.3496 45.5 28.7315 45.5 24.1147V21C45.5 20.1716 44.8284 19.5 44 19.5C43.1716 19.5 42.5 20.1716 42.5 21V24C42.5 28.7565 42.4968 32.1729 42.1473 34.7728C41.8035 37.3297 41.1497 38.8711 40.0104 40.0104C38.8711 41.1497 37.3297 41.8035 34.7728 42.1473C32.1729 42.4968 28.7565 42.5 24 42.5C19.2436 42.5 15.8271 42.4968 13.2272 42.1473C10.6703 41.8035 9.12891 41.1497 7.98959 40.0104C6.85028 38.8711 6.1965 37.3297 5.85274 34.7728C5.50319 32.1729 5.5 28.7565 5.5 24C5.5 19.2436 5.50319 15.8271 5.85274 13.2272C6.1965 10.6703 6.85028 9.12891 7.98959 7.98959C9.12891 6.85028 10.6703 6.1965 13.2272 5.85274C15.8271 5.50319 19.2436 5.5 24 5.5H27C27.8284 5.5 28.5 4.82843 28.5 4C28.5 3.17157 27.8284 2.5 27 2.5H23.8852Z"
+                  fill="#0D1217" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M38 2.5C33.8579 2.5 30.5 5.85787 30.5 10C30.5 14.1421 33.8579 17.5 38 17.5C42.1421 17.5 45.5 14.1421 45.5 10C45.5 5.85787 42.1421 2.5 38 2.5ZM33.5 10C33.5 7.51472 35.5147 5.5 38 5.5C40.4853 5.5 42.5 7.51472 42.5 10C42.5 12.4853 40.4853 14.5 38 14.5C35.5147 14.5 33.5 12.4853 33.5 10Z"
+                  fill="#0D1217" />
+                <path
+                  d="M12.5 28C12.5 27.1716 13.1716 26.5 14 26.5H32C32.8284 26.5 33.5 27.1716 33.5 28C33.5 28.8284 32.8284 29.5 32 29.5H14C13.1716 29.5 12.5 28.8284 12.5 28Z"
+                  fill="#0D1217" />
+                <path
+                  d="M14 33.5C13.1716 33.5 12.5 34.1716 12.5 35C12.5 35.8284 13.1716 36.5 14 36.5H26C26.8284 36.5 27.5 35.8284 27.5 35C27.5 34.1716 26.8284 33.5 26 33.5H14Z"
+                  fill="#0D1217" />
+              </svg>
+
+              <p class="text-base">เพิ่มข้อมูลภายในร้าน</p>
+            </RouterLink>
+          </li>
+
+          <div class="divider"></div>
+
           <li>
             <details open>
               <summary>
@@ -236,5 +265,17 @@ onMounted(async () => {
 
 .toggle:checked {
   background-color: #34D399;
+}
+
+div::-webkit-scrollbar {
+  display: none;
+}
+
+/* ปิดการเลื่อน (ป้องกันการ scroll) */
+div {
+  -ms-overflow-style: none;
+  /* สำหรับ Internet Explorer */
+  scrollbar-width: none;
+  /* สำหรับ Firefox */
 }
 </style>

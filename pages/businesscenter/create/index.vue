@@ -1,7 +1,7 @@
 <script setup>
 </script>
 <template>
-    <div class="p-4 flex font-prompt mx-auto max-w-7xl mt-6">
+    <div class="p-4 flex font-prompt mx-auto max-w-7xl mt-6 sm:max-w-3xl sm:mx-auto">
         <RouterLink to="/profile"
             class="mt-1 flex-2 w-[42px] h-[42px] bg-white shadow-md rounded-full flex justify-center items-center">
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -14,15 +14,15 @@
             <h2 class="text-2xl mx-5 font-bold">สร้างศูนย์ธุรกิจของคุณ</h2>
         </div>
     </div>
-    <div class=" p-6 font-prompt">
-        <div class="bg-white shadow-lg rounded-xl w-full h-[75px] flex">
-            <div>
-                <img src="/public/regisRestairant.png" alt="pic-RegisRestaurant" class="w-[90px] h-full rounded-l-xl">
+    <div class=" p-6 font-prompt sm:max-w-xl sm:mx-auto">
+        <div class="bg-white shadow-lg rounded-xl w-full sm:h-[120px] h-[75px] flex">
+            <div class="w-full">
+                <img src="/public/regisRestairant.png" alt="pic-RegisRestaurant" class="sm:w-[130px]  w-[90px] h-full rounded-l-xl">
             </div>
-            <div class="flex justify-center items-center w-[180px]">
+            <div class="flex justify-center items-center w-full">
                 <p class="font-medium">ธุรกิจขายอาหาร</p>
             </div>
-            <div class="flex justify-center items-center">
+            <div class="flex justify-end w-[80%] items-center mr-4">
                 <RouterLink to="/businesscenter/create/restaurants"
                     class="w-[26px] h-[26px] sm:w-[45px] sm:h-[45px] bg-[#FF96843D] rounded-full flex justify-center items-center">
                     <svg class="" width="6" height="12" viewBox="0 0 6 12" fill="none"
@@ -34,14 +34,14 @@
                 </RouterLink>
             </div>
         </div>
-        <div class="bg-white shadow-lg rounded-xl w-full h-[75px] flex mt-3">
-            <div>
-                <img src="/public/regisShop.png" alt="pic-RegisRestaurant" class="w-[90px] h-full rounded-l-xl">
+        <div class="bg-white shadow-lg rounded-xl w-full sm:h-[120px] h-[75px] flex mt-3">
+            <div class="w-full">
+                <img src="/public/regisShop.png" alt="pic-RegisRestaurant" class="sm:w-[130px] w-[90px] h-full rounded-l-xl">
             </div>
-            <div class="flex justify-center items-center w-[180px]">
+            <div class="flex justify-center items-center w-full">
                 <p class="font-medium">ธุรกิจขายของ</p>
             </div>
-            <div class="flex justify-center items-center">
+            <div class="flex justify-end w-[80%] items-center mr-4">
                 <button
                     class="w-[26px] h-[26px] sm:w-[45px] sm:h-[45px] bg-[#FF96843D] rounded-full flex justify-center items-center">
                     <svg class="" width="6" height="12" viewBox="0 0 6 12" fill="none"
