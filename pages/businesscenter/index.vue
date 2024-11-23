@@ -49,7 +49,7 @@ onMounted(async () => {
         </div>
         <div v-if="isLoading" class="text-center mt-5 font-prompt">
             <span class="loading loading-spinner loading-xl text-orange-500"></span>
-            <h2 class="mt-2 mx-2 text-base">Loading...</h2>
+            <h2 class="mt-2 mx-2 text-base font-semibold">Loading...</h2>
         </div>
         <div
             class="sm:max-w-3xl sm:mx-auto sm:mt-7 w-full grid sm:grid-cols-3 grid-cols-2 gap-y-3 gap-3 mt-5 p-4 font-prompt">

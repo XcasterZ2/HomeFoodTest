@@ -1,7 +1,7 @@
 <template>
   <div v-if="!isLoading" class="flex justify-center items-center w-full h-dvh">
     <span class="loading loading-spinner loading-xl text-orange-500"></span>
-    <h2 class="mt-2 mx-2 text-base font-medium">Loading...</h2>
+    <h2 class="mt-2 mx-2 text-base font-semibold">Loading...</h2>
   </div>
   <div v-else class="">
     <div class="p-4 flex font-prompt mx-auto sm:max-w-4xl max-w-7xl mt-6 ">
@@ -25,7 +25,8 @@
         <div class="sm:h-[110px] sm:w-[500px] h-[75px] w-[350px] bg-white p-1 flex">
           <div class="avatar">
             <div class="sm:w-[100px] sm:h-[100px] w-[80px] h-[80px] rounded-full">
-              <img src="/public/photo-user.png" alt="logo-user" />
+              <img alt="Profile" class="w-full h-full object-cover"
+                    :src="authStore.user?.role === 'admin' ? '/adminpic.png' : '/photo-user.png'">
             </div>
           </div>
 
@@ -139,6 +140,15 @@
 
     <div class="flex justify-center mt-1 font-prompt">
       <div class="sm:h-[60px] sm:w-[450px] h-[60px] w-[340px] p-1 flex flex-col  items-start mt-5">
+
+        <RouterLink to="/admin" v-if="authStore.user.role === 'admin'" class="flex mt-5 w-full">
+          <div class="flex-1 flex gap-3">
+            <p class=" text-[16px] font-bold text-red-500">ทางไปหน้าแอดมิน</p>
+          </div>
+          <div class="flex-1 flex justify-end">
+            <Right />
+          </div>
+        </RouterLink>
 
         <div class="flex mt-5 w-full">
           <div class="flex-1 flex gap-3">
@@ -313,8 +323,8 @@ const restaurantsOwner = ref(false)
 const restaurantsOnOwner = ref(false)
 const isLoading = ref(false)
 
-const currentLanguage = ref("ภาษาไทย");
-const languages = ["ภาษาไทย", "อังกฤษ"];
+const currentLanguage = ref("ไทย");
+const languages = ["ไทย", "อังกฤษ"];
 const isOpen = ref(false);
 
 const fetchRestaurant = async () => {

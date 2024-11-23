@@ -112,7 +112,7 @@ onMounted(async () => {
         </div>
 
         <div class="sm:flex sm:justify-center">
-          <Search class="mt-5 ml-2" />
+          <Search class="mt-5 ml-5 sm:ml-2" />
         </div>
       </div>
 

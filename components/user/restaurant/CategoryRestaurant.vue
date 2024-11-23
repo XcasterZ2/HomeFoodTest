@@ -1,8 +1,8 @@
 <template>
-  <div class="grid grid-cols-3">
-    <div class="flex justify-center">
+  <div class="grid grid-cols-3 gap-2">
+    <div class="flex">
       <div
-        class="sm:w-[200px] sm:h-[150px] w-[105px] h-[100px] rounded-2xl hover:-translate-y-1 transition-all duration-500 group cursor-pointer"
+        class="sm:w-[200px] sm:h-[150px] w-full h-[100px] rounded-2xl hover:-translate-y-1 transition-all duration-500 group cursor-pointer"
         :style="{ background: 'linear-gradient(to bottom, #FFEFED, #FF826C)' }">
         <div class="flex flex-col gap-2 h-full w-full">
           <div class="flex justify-center items-center h-full">
@@ -21,7 +21,7 @@
     </div>
 
     <div class="flex justify-center">
-      <div class="sm:w-[200px] sm:h-[150px] w-[105px] h-[100px] rounded-2xl hover:-translate-y-1 transition-all duration-500 group cursor-pointer"
+      <div class="sm:w-[200px] sm:h-[150px] w-full h-[100px] rounded-2xl hover:-translate-y-1 transition-all duration-500 group cursor-pointer"
         :style="{ background: 'linear-gradient(to bottom, #FFEFED, #FF826C)' }">
         <div class="flex flex-col gap-2 h-full w-full">
           <div class="flex justify-center items-center h-full">
@@ -41,7 +41,7 @@
 
     <div class="flex justify-center">
       <div
-        class="sm:w-[200px] sm:h-[150px] w-[105px] h-[100px] rounded-2xl flex flex-col justify-center items-center hover:-translate-y-1 transition-all duration-500 group cursor-pointer"
+        class="sm:w-[200px] sm:h-[150px] w-full h-[100px] rounded-2xl flex flex-col justify-center items-center hover:-translate-y-1 transition-all duration-500 group cursor-pointer"
         :style="{ background: 'linear-gradient(to bottom, #FFEFED, #FF826C)' }">
         <div class="flex flex-col mt-2 gap-2 h-full w-full">
           <div class="flex justify-center items-center h-full">

@@ -24,7 +24,7 @@ import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 
         <MagnifyingGlassIcon class="w-6 h-6 text-gray-500 -my-10 mx-3" />
 
-        <div class="flex justify-end mx-5 mt-4">
+        <div class="flex justify-end sm:mx-5 mx-8 mt-4">
             <svg class="w-6 h-6 text-gray-500  cursor-pointer" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd"
