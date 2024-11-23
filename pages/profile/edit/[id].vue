@@ -1,6 +1,6 @@
 <template>
   <div class="p-4 flex font-prompt mx-auto max-w-7xl mt-6">
-    <RouterLink to="/"
+    <RouterLink to="/profile"
       class="flex-2 w-[42px] h-[42px] bg-white shadow-md rounded-full flex justify-center items-center">
       <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -94,7 +94,7 @@ const fetchUser = async (userId) => {
       fullname: user.fullname || '',
       email: user.email || '',
       gen: user.gen || '',
-      birthDate: user.birthDate || '',
+      birthDate: user.birthDate ? new Date(user.birthDate).toISOString().substring(0, 10) : '', // แปลงวันที่เป็น YYYY-MM-DD
     };
   } catch (err) {
     console.error('เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้:', err);
@@ -150,10 +150,6 @@ const handleSubmit = async () => {
   const userId = authStore.user.id;
   await updateUser(userId);
 };
-
-watch(gen, (newValue, oldValue) => {
-  console.log('gen changed from', oldValue, 'to', newValue);
-});
 
 onMounted(async () => {
   const userId = authStore.user.id

@@ -6,7 +6,7 @@
 
     <slot />
 
-    <Menu class="fixed bottom-5 left-0 right-0 z-50 sm:hidden" />
+    <Menu class="fixed bottom-5 left-3 right-0 z-50 sm:hidden" />
     <MenuDesktop class="hidden sm:block fixed bottom-[40%] left-0 z-50" />
   </div>
 </template>

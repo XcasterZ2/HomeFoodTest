@@ -15,7 +15,7 @@
   </div>
 
   <userLayouts class="font-prompt">
-    <div class="">
+    <div class="flex justify-center">
       <Search />
     </div>
     <div>

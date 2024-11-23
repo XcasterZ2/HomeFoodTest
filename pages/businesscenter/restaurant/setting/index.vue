@@ -1,0 +1,147 @@
+<template>
+  <userLayoutsNoNav>
+    <div class="p-4 flex font-prompt mx-auto max-w-7xl mt-6">
+      <RouterLink :to="`/businesscenter/restaurant/detail/${authStore.user.id}`"
+        class="flex-2 w-[42px] h-[42px] bg-white shadow-md rounded-full flex justify-center items-center">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M11.4078 5.92548C11.7251 6.24278 11.7251 6.75722 11.4078 7.07452L6.2948 12.1875H21.6666C22.1153 12.1875 22.4791 12.5513 22.4791 13C22.4791 13.4487 22.1153 13.8125 21.6666 13.8125H6.2948L11.4078 18.9255C11.7251 19.2428 11.7251 19.7572 11.4078 20.0745C11.0905 20.3918 10.576 20.3918 10.2587 20.0745L3.75873 13.5745C3.44143 13.2572 3.44143 12.7428 3.75873 12.4255L10.2587 5.92548C10.576 5.60817 11.0905 5.60817 11.4078 5.92548Z"
+            fill="#0D1217" />
+        </svg>
+      </RouterLink>
+
+      <div class="flex-1 mt-2">
+        <h2 class="text-2xl mx-10 font-bold">เพิ่มข้อมูลภายในร้าน</h2>
+      </div>
+    </div>
+
+    <div class="p-5 font-prompt">
+
+      <div class="flex w-full h-[60px] rounded-xl border-[1px]">
+        <div class="flex-1 flex gap-5 p-4">
+          <Note class="ml-3"/>
+          <p class=" text-[18px] font-semibold text-black">ชื่อเมนู</p>
+        </div>
+        <div class="flex-1/2 flex justify-end items-center mr-5">
+          <Right />
+        </div>
+      </div>
+
+      <div class="mt-3 flex w-full h-[60px] rounded-xl border-[1px]">
+        <div class="flex-1  flex gap-5 p-4">
+          <Money class="ml-3"/>
+          <p class=" text-[18px] font-semibold text-black">ราคาแต่ละเมนู</p>
+        </div>
+        <div class="flex-1/2 flex justify-end items-center mr-5">
+          <Right />
+        </div>
+      </div>
+
+      <div class="mt-3 flex w-full h-[60px] rounded-xl border-[1px]">
+        <div class="flex-1 flex gap-5 p-4">
+          <Message class="ml-3"/>
+          <p class=" text-[18px] font-semibold text-black">คำอธิบายเมนู</p>
+        </div>
+        <div class="flex-1/2 flex justify-end items-center mr-5">
+          <Right />
+        </div>
+      </div>
+
+      <div class="mt-3 flex w-full h-[60px] rounded-xl border-[1px]">
+        <div class="flex-1 flex gap-5 p-4">
+          <picImg class="ml-3"/>
+          <p class=" text-[18px] font-semibold text-black">รูปภาพอาหาร</p>
+        </div>
+        <div class="flex-1/2 flex justify-end items-center mr-5">
+          <Right />
+        </div>
+      </div>
+
+      <div class="mt-3 flex w-full h-[60px] rounded-xl border-[1px]">
+        <div class="flex-1 flex gap-5 p-4">
+          <Note2 class="ml-3"/>
+          <p class=" text-[18px] font-semibold text-black">หมวดหมู่เมนู</p>
+        </div>
+        <div class="flex-1/2 flex justify-end items-center mr-5">
+          <Right />
+        </div>
+      </div>
+
+      <div class="mt-3 flex w-full h-[60px] rounded-xl border-[1px]">
+        <div class="flex-1 flex gap-5 p-4">
+          <Transport class="ml-3"/>
+          <p class=" text-[18px] font-semibold text-black">กำหนดราคาจัดส่ง</p>
+        </div>
+        <div class="flex-1/2 flex justify-end items-center mr-5">
+          <Right />
+        </div>
+      </div>
+
+      <div class="mt-3 flex w-full h-[60px] rounded-xl border-[1px]">
+        <div class="flex-1 flex gap-5 p-4">
+          <Payment class="ml-3"/>
+          <p class=" text-[18px] font-semibold text-black">ช่องทางการชำระเงิน</p>
+        </div>
+        <div class="flex-1/2 flex justify-end items-center mr-5">
+          <Right />
+        </div>
+      </div>
+
+      <div class="mt-3 flex w-full h-[60px] rounded-xl border-[1px]">
+        <div class="flex-1 flex gap-5 p-4">
+          <List class="ml-3"/>
+          <p class=" text-[18px] font-semibold text-black">ตรวจสอบข้อมูล</p>
+        </div>
+        <div class="flex-1/2 flex justify-end items-center mr-5">
+          <Right />
+        </div>
+      </div>
+
+      <div class="mt-3 flex w-full h-[60px] rounded-xl border-[1px]">
+        <div class="flex-1 flex gap-5 p-4">
+          <Promotion class="ml-3"/>
+          <p class=" text-[18px] font-semibold text-black">จัดการโปรโมชั่น</p>
+        </div>
+        <div class="flex-1/2 flex justify-end items-center mr-5">
+          <Right />
+        </div>
+      </div>
+
+      <div class="mt-3 flex w-full h-[60px] rounded-xl border-[1px]">
+        <div class="flex-1 flex gap-5 p-4">
+          <editShopping class="ml-3"/>
+          <p class=" text-[18px] font-semibold text-black">การจัดการคำสั่งซื้อ</p>
+        </div>
+        <div class="flex-1/2 flex justify-end items-center mr-5">
+          <Right />
+        </div>
+      </div>
+
+    </div>
+  </userLayoutsNoNav>
+</template>
+
+<script setup>
+import userLayoutsNoNav from '~/layouts/userLayoutsNoNav.vue';
+import { useAuthStore } from '~/stores/auth';
+
+const authStore = useAuthStore()
+
+import editShopping from '~/components/user/icons/restaurant/setting/editShopping.vue';
+import List from '~/components/user/icons/restaurant/setting/List.vue';
+import Message from '~/components/user/icons/restaurant/setting/Message.vue';
+import Money from '~/components/user/icons/restaurant/setting/Money.vue';
+import Note from '~/components/user/icons/restaurant/setting/Note.vue';
+import Note2 from '~/components/user/icons/restaurant/setting/Note2.vue';
+import Payment from '~/components/user/icons/restaurant/setting/Payment.vue';
+import picImg from '~/components/user/icons/restaurant/setting/Picimg.vue';
+import Promotion from '~/components/user/icons/restaurant/setting/Promotion.vue';
+import Right from '~/components/user/icons/Profile/Right.vue';
+import Transport from '~/components/user/icons/restaurant/setting/Transport.vue';
+</script>
+
+<style scoped>
+.font-prompt {
+  font-family: 'Prompt', sans-serif;
+}
+</style>

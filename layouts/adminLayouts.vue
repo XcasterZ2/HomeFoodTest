@@ -89,14 +89,14 @@
                 </div>
 
                 <div class="flex items-center space-x-4 ">
-                    <RouterLink to="/" class="btn btn-secondary btn-sm hidden sm:block">
-                        <p class="text-white font-light mt-2">ไปหน้ายูสเซอร์</p>
+                    <RouterLink to="/" class="btn btn-secondary btn-sm">
+                        <p class="text-white font-light mt-1">ไปหน้ายูสเซอร์</p>
                     </RouterLink>
                     <div class="dropdown dropdown-end">
                         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar online">
                             <div class="w-10 rounded-full">
-                                <img alt="Tailwind CSS Navbar component"
-                                    src="https://img5.pic.in.th/file/secure-sv1/software-engineerc1438b6fade78e82.png" />
+                                <img alt="Profile" class="w-full h-full object-cover"
+                                    :src="authStore.user?.role === 'admin' ? '/adminpic.png' : '/photo-user.png'">
                             </div>
                         </div>
                         <ul tabindex="0"

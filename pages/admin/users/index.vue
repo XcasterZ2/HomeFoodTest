@@ -37,13 +37,15 @@
                 <p class="text-center">{{ user.id }}</p>
               </td>
               <td>
-                <p class="text-center">{{ user.email }}</p>
+                <p v-if="user.email" class="text-center">{{ user.email }}</p>
+                <p v-else class="text-center text-red-500">ยังไม่ได้กรอกอีเมล</p>
               </td>
               <td>
                 <p class="text-center">{{ user.fullname }}</p>
               </td>
               <td>
-                <p class="text-center">{{ user.phoneNumber }}</p>
+                <p v-if="user.phoneNumber" class="text-center">{{ user.phoneNumber }}</p>
+                <p v-else class="text-center text-red-500">ยังไม่ได้ยืนยันเบอร์โทรศัพท์</p>
               </td>
               <td>
                 <p class="text-center">{{ user.role }}</p>

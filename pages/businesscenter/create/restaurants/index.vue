@@ -45,7 +45,6 @@ const submitForm = async () => {
         icon: 'success',
         confirmButtonText: 'ตกลง',
       });
-      // หลังจากผู้ใช้กด "ตกลง" ให้เปลี่ยนหน้าไปที่ /profile
       router.push('/profile');
     } else {
       console.error('Error adding restaurant:', result);
@@ -71,7 +70,7 @@ watch(timecloseOpen, (newValue) => {
 })
 </script>
 <template>
-  <div class="p-4 flex font-prompt mx-auto max-w-7xl mt-6">
+  <div class="p-4 flex font-prompt mx-auto max-w-7xl sm:max-w-3xl mt-6">
     <RouterLink to="/businesscenter/create"
       class="mt-1 flex-2 w-[42px] h-[42px] bg-white shadow-md rounded-full flex justify-center items-center">
       <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -131,10 +130,10 @@ watch(timecloseOpen, (newValue) => {
       <!-- วันเวลาปิดร้าน -->
       <div class="flex gap-3">
         <div class="flex-1">
-          <p>วันปิดร้าน</p>
+          <p>ถึงวัน</p>
           <label class="form-control w-full max-w-xs">
             <select v-model="daycloseOpen" class="select select-bordered bg-zinc-100">
-              <option disabled selected>เลือกวันเปิดร้าน</option>
+              <option disabled selected>เลือกวันปิดร้าน</option>
               <option>วันอาทิตย์</option>
               <option>วันจันทร์</option>
               <option>วันอังคาร</option>
