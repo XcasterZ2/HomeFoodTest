@@ -76,13 +76,13 @@
         </div>
       </div>
 
-      <RouterLink to="/recommendedshops" class="p-3 flex-1 flex font-prompt justify-end mt-1 sm:mt-2">
-        <h1 class="font-bold sm:mt-0 sm:text-xl text-[14px] text-[#FF6347]">ดูทั้งหมด</h1>
+      <div  class="p-3 flex-1 flex font-prompt justify-end mt-1 sm:mt-2">
+        <RouterLink to="/recommendedshops" class="font-bold sm:mt-0 sm:text-xl text-[14px] text-[#FF6347]">ดูทั้งหมด</RouterLink>
         <svg class="sm:w-[28px] sm:h-[28px] w-[18px] h-[18px] text-[#FF6347]" xmlns="http://www.w3.org/2000/svg"
           fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
         </svg>
-      </RouterLink>
+      </div>
     </div>
     <RecommendedShops />
 
@@ -113,13 +113,13 @@
         </div>
       </div>
 
-      <RouterLink to="/productsale" class="p-3 flex-1 flex font-prompt justify-end mt-1">
-        <h1 class="font-bold sm:mt-0 sm:text-xl text-[14px] text-[#FF6347]">ดูทั้งหมด</h1>
+      <div class="p-3 flex-1 flex font-prompt justify-end mt-1">
+        <RouterLink to="/productsale" class="font-bold sm:mt-0 sm:text-xl text-[14px] text-[#FF6347]">ดูทั้งหมด</RouterLink>
         <svg class="sm:w-[28px] sm:h-[28px] w-[18px] h-[18px] text-[#FF6347]" xmlns="http://www.w3.org/2000/svg"
           fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
         </svg>
-      </RouterLink>
+      </div>
     </div>
     <ProductSale />
 

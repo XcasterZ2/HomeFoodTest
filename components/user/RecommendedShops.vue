@@ -4,6 +4,7 @@ import { useAuthStore } from '~/stores/auth';
 const authStore = useAuthStore()
 const restaurants = ref([])
 const isLoading = ref(false)
+const router = useRouter()
 
 const shops = [
     { src: "/user/shops/desserts.jpeg", name: "ร้านขนมหวานใจ", rate: 4.9, distance: 1.2 },
@@ -33,6 +34,11 @@ const fetchRestaurant = async () => {
 };
 
 
+const navigateToRestaurant = (id) => {
+    router.push(`/restaurants/${id}`);
+};
+
+
 onMounted(async () => {
     await fetchRestaurant()
     console.log('res : ', restaurants.value)
@@ -42,8 +48,8 @@ onMounted(async () => {
 <template>
     <div class="grid sm:grid-cols-5 grid-cols-2 gap-4 p-4 mt-1 font-prompt">
 
-        <div v-for="shop in restaurants" :key="shop.name"
-            class="sm:w-[220px] sm:h-[260px] w-[160px] h-[205px] bg-white rounded-lg shadow-lg overflow-hidden relative">
+        <div v-for="shop in restaurants" :key="shop.name" @click="navigateToRestaurant(shop.restaurant_Id)"
+            class="sm:w-[220px] sm:h-[260px] w-[160px] h-[205px] bg-white rounded-lg shadow-lg overflow-hidden relative cursor-pointer">
             <div
                 class="w-[26px] h-[26px] bg-white rounded-full absolute right-5 top-5 flex justify-center items-center">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
