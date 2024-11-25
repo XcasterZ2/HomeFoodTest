@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
     });
 
     const data = await response.json();
-    console.log('dataAPIotp: ' , data)
+    // console.log('dataAPIotp: ' , data)
     return data;
   } catch (error) {
     console.error('Error sending OTP:', error);

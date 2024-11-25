@@ -25,6 +25,8 @@ model User {
   updatedAt    DateTime     @updatedAt
   pinNumber    Int?
   restaurant   restaurant[]
+
+  reviews      Review[]  
 }
 
 model restaurant {
@@ -43,5 +45,41 @@ model restaurant {
   timecloseOpen   String?
   timestartOpen   String?
   email           String?
+  
   User            User    @relation(fields: [ownerId], references: [id])
+  menus           Menu[]
+  averageRating   Float?  
+}
+
+model Review {
+  id            Int        @id @default(autoincrement())
+  rating        Float
+  comment       String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  userId        Int
+  menuId        Int 
+  user          User       @relation(fields: [userId], references: [id])
+  menu          Menu       @relation(fields: [menuId], references: [id])
+
+  @@index([userId])
+  @@index([menuId]) 
+}
+
+model Menu {
+  id            Int        @id @default(autoincrement())
+  name          String
+  description   String?   //คำอธิบาย
+  price         Float
+  image         String?
+  category      String?   //หมวดหมู่
+  isAvailable   Boolean    @default(true)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  restaurantId  Int
+  restaurant    restaurant @relation(fields: [restaurantId], references: [restaurant_Id])
+  reviews       Review[]   // เพิ่ม relation กับ Review
+  averageRating Float?     // เพิ่มฟิลด์สำหรับเก็บค่าเฉลี่ย rating ของเมนูนี้
+
+  @@index([restaurantId])
 }

@@ -86,7 +86,7 @@
       </RouterLink>
     </div>
     <div v-else class="flex justify-center mt-5 hover:-translate-y-1 transition-all duration-300 group">
-      <RouterLink to="/login">
+      <RouterLink to="/profile">
         <div
           class="w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center hover:bg-[linear-gradient(121.94deg,_#FF6347_0%,_#FF826C_100%)] transition-all duration-300 group hover:-translate-y-1">
           <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">

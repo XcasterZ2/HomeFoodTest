@@ -23,6 +23,11 @@ const fetchRestaurant = async () => {
         isLoading.value = false;
     }
 };
+
+const setRestaurantId = (id) => {
+    localStorage.setItem('restaurantId', id);
+};
+
 onMounted(async () => {
     await fetchRestaurant()
     console.log('res : ', restaurants.value)
@@ -54,8 +59,9 @@ onMounted(async () => {
         <div
             class="sm:max-w-3xl sm:mx-auto sm:mt-7 w-full grid sm:grid-cols-3 grid-cols-2 gap-y-3 gap-3 mt-5 p-4 font-prompt">
             <RouterLink v-for="restaurant in restaurants" :key="restaurant.id"
-                :to="`/businesscenter/restaurant/detail/${restaurant.restaurant_Id}`"
-                class="bg-white w-full h-[215px] rounded-2xl shadow-md">
+                to="/businesscenter/restaurant/detail"
+                class="bg-white w-full h-[215px] rounded-2xl shadow-md"
+                @click="setRestaurantId(restaurant.restaurant_Id)">
                 <div class="flex flex-col h-full p-2">
                     <div class="flex justify-center items-start">
                         <img src="/restuarant/9c80947e0408d3d81f78f309e848d61e.png" alt="pic-restuarant"

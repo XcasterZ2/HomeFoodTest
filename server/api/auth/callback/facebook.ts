@@ -1,12 +1,11 @@
 import { PrismaClient } from '@prisma/client'
 
-// Define interfaces
 interface FacebookTokenResponse {
   access_token: string;
   expires_in: number;
   token_type: string;
 }
- 
+
 interface FacebookUserInfo {
   id: string;
   name: string;
@@ -15,7 +14,7 @@ interface FacebookUserInfo {
     data: {
       url: string;
     };
-  }; 
+  };
 }
 
 interface FacebookAuthError {
@@ -29,17 +28,17 @@ const prisma = new PrismaClient()
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const query = getQuery(event);
-  
+
   console.log('=== Facebook Callback Started ===');
   console.log('Configuration check:', {
     clientIdPresent: !!config.public.facebookAppId,
     clientSecretPresent: !!config.facebookClientSecret,
     redirectUriPresent: !!config.public.facebookRedirectUri
   });
-    
+
   if (query.code) {
     try {
-      // Exchange code for token
+
       const tokenResponse = await $fetch<FacebookTokenResponse>('https://graph.facebook.com/v18.0/oauth/access_token', {
         params: {
           client_id: config.public.facebookAppId,
@@ -65,7 +64,6 @@ export default defineEventHandler(async (event) => {
       });
 
       try {
-        // Check for existing user
         const existingUser = await prisma.user.findFirst({
           where: {
             OR: [
@@ -121,7 +119,7 @@ export default defineEventHandler(async (event) => {
 
       } catch (dbError) {
         console.error('Database error:', dbError);
-        
+
         const errorDetails = {
           operation: 'user_operation',
           table: 'users',
@@ -141,7 +139,7 @@ export default defineEventHandler(async (event) => {
         status: error.status,
         data: error.data
       });
-      
+
       return sendRedirect(event, '/login?error=auth_failed');
     }
   }

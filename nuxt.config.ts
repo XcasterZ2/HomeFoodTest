@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   ],
   plugins: ['~/plugins/fontawesome.js' , 
     '~/plugins/datepicker.js',
-  '~/plugins/facebook-sdk.js'],
+  '~/plugins/facebook-sdk.js',],
   googleFonts: {
     families: {
       Sarabun: [400, 700],

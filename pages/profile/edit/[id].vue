@@ -68,7 +68,7 @@ import Swal from 'sweetalert2';
 const email = ref('')
 const fullname = ref('')
 const phoneNumber = ref('')
-const birthDate = ref('');
+const birthDate = ref('')
 const gen = ref('')
 
 const form = ref({
@@ -160,5 +160,17 @@ onMounted(async () => {
 <style scoped>
 .font-prompt {
   font-family: 'Prompt', sans-serif;
+}
+
+.swal2-popup {
+  font-family: 'Prompt', sans-serif !important;
+}
+
+.swal2-title,
+.swal2-text,
+.swal2-confirm,
+.swal2-cancel,
+.swal2-content {
+  font-family: 'Prompt', sans-serif !important;
 }
 </style>

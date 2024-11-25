@@ -26,7 +26,7 @@
           <User />
           <input v-model="fullname" type="text"
             class="w-full bg-transparent border-none outline-none font-normal text-[16px] leading-[24.19px]"
-            placeholder="ชื่อเต็ม">
+            placeholder="ชื่อ - นามสกุล">
         </div>
 
         <div class="w-[288px] h-[24px] gap-[12px] flex justify-center">

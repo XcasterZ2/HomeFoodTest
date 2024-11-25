@@ -1,7 +1,7 @@
 <template>
   <userLayoutsNoNav>
     <div class="p-4 flex font-prompt mx-auto max-w-7xl mt-6">
-      <RouterLink :to="`/businesscenter/restaurant/detail/${authStore.user.id}`"
+      <RouterLink to="/businesscenter/restaurant/detail"
         class="flex-2 w-[42px] h-[42px] bg-white shadow-md rounded-full flex justify-center items-center">
         <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd"
@@ -17,55 +17,16 @@
 
     <div class="p-5 font-prompt">
 
-      <div class="flex w-full h-[60px] rounded-xl border-[1px]">
+      <RouterLink to="/businesscenter/restaurant/setting/menu/create"
+        class="flex w-full h-[60px] rounded-xl border-[1px]">
         <div class="flex-1 flex gap-5 p-4">
           <Note class="ml-3"/>
-          <p class=" text-[18px] font-semibold text-black">ชื่อเมนู</p>
+          <p class=" text-[18px] font-semibold text-black">เพิ่มเมนูภายในร้าน</p>
         </div>
         <div class="flex-1/2 flex justify-end items-center mr-5">
           <Right />
         </div>
-      </div>
-
-      <div class="mt-3 flex w-full h-[60px] rounded-xl border-[1px]">
-        <div class="flex-1  flex gap-5 p-4">
-          <Money class="ml-3"/>
-          <p class=" text-[18px] font-semibold text-black">ราคาแต่ละเมนู</p>
-        </div>
-        <div class="flex-1/2 flex justify-end items-center mr-5">
-          <Right />
-        </div>
-      </div>
-
-      <div class="mt-3 flex w-full h-[60px] rounded-xl border-[1px]">
-        <div class="flex-1 flex gap-5 p-4">
-          <Message class="ml-3"/>
-          <p class=" text-[18px] font-semibold text-black">คำอธิบายเมนู</p>
-        </div>
-        <div class="flex-1/2 flex justify-end items-center mr-5">
-          <Right />
-        </div>
-      </div>
-
-      <div class="mt-3 flex w-full h-[60px] rounded-xl border-[1px]">
-        <div class="flex-1 flex gap-5 p-4">
-          <picImg class="ml-3"/>
-          <p class=" text-[18px] font-semibold text-black">รูปภาพอาหาร</p>
-        </div>
-        <div class="flex-1/2 flex justify-end items-center mr-5">
-          <Right />
-        </div>
-      </div>
-
-      <div class="mt-3 flex w-full h-[60px] rounded-xl border-[1px]">
-        <div class="flex-1 flex gap-5 p-4">
-          <Note2 class="ml-3"/>
-          <p class=" text-[18px] font-semibold text-black">หมวดหมู่เมนู</p>
-        </div>
-        <div class="flex-1/2 flex justify-end items-center mr-5">
-          <Right />
-        </div>
-      </div>
+      </RouterLink>
 
       <div class="mt-3 flex w-full h-[60px] rounded-xl border-[1px]">
         <div class="flex-1 flex gap-5 p-4">
