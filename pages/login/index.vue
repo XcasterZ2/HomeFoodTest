@@ -8,7 +8,6 @@ import { googleLogin } from '~/services/googleAuth'
 import { lineLogin } from '~/services/lineAuth'
 import { facebookLogin } from '~/services/facebookAuth'
 
- 
 const authStore = useAuthStore()
 const otpSent = ref(false);
 const otpCode = ref('');

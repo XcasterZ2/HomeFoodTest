@@ -37,6 +37,11 @@
                                 <p class="text-center">{{ restaurant.restaurant_Id }}</p>
                             </td>
                             <td>
+                                <div class="flex justify-center">
+                                    <img src="/restuarant/9c80947e0408d3d81f78f309e848d61e.png" alt="restaurant" class="w-24 h-24 rounded-md">
+                                </div>
+                            </td>
+                            <td>
                                 <p class="text-center">{{ restaurant.name }}</p>
                             </td>
                             <td>
@@ -73,6 +78,7 @@ import Swal from 'sweetalert2'
 const isLoading = ref(true);
 const restaurants = ref([])
 const router = useRouter()
+
 const fetchRestaurant = async () => {
     isLoading.value = true;
     try {
@@ -90,6 +96,7 @@ const fetchRestaurant = async () => {
         isLoading.value = false;
     }
 };
+
 const deleteRestaurant = async (id) => {
     try {
         const { isConfirmed } = await Swal.fire({

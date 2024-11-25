@@ -62,6 +62,7 @@ export const useAuthStore = defineStore('auth', () => {
     if (typeof window !== 'undefined') {
       localStorage.removeItem('user');
       localStorage.removeItem('token');
+      localStorage.removeItem('restaurantId');
     }
 
     router.push('/');

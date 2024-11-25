@@ -20,7 +20,10 @@ const authStore = useAuthStore()
 const route = useRoute();
 const restaurantId = route.params.id;
 const restaurants = ref([])
+const restaurants2 = ref([])
 const isLoading = ref(false)
+
+const restaurant_Id = localStorage.getItem('restaurantId');
 
 const isModalOpen = ref(false)
 
@@ -50,11 +53,41 @@ const fetchRestaurant = async () => {
   }
 };
 
+const fetchRestaurant2 = async () => {
+  isLoading.value = true;
+  try {
+    const restaurantId = localStorage.getItem('restaurantId');
+    if (!restaurantId) {
+      throw new Error('No restaurant ID found in localStorage');
+    }
+
+    const response = await fetch(`/api/restaurant?restaurantId=${restaurantId}`, {
+      method: 'GET',
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch restaurant');
+    }
+
+    const data = await response.json();
+    if (data) {
+      restaurants2.value = [data];
+    } else {
+      throw new Error('Restaurant not found');
+    }
+  } catch (err) {
+    console.error('Error fetching restaurant:', err);
+  } finally {
+    isLoading.value = false;
+  }
+};
+
+
 onMounted(async () => {
   await fetchRestaurant()
-  updateDate();
-  console.log('Restaurant ID:', restaurantId);
-  console.log('Restaurant Data :', restaurants.value[0].name);
+  await fetchRestaurant2()
+  console.log('Restaurant ID get:', restaurant_Id);
+  console.log('Restaurant2:', restaurants2.value);
 });
 </script>
 
@@ -81,7 +114,7 @@ onMounted(async () => {
         </div>
       </div>
 
-      <div class=" font-prompt">
+      <div v-for="restaurant in restaurants2" :key="restaurant.name" class=" font-prompt">
         <div class=" w-full flex sm:justify-center">
 
           <div class="flex gap-7 p-2">
@@ -93,7 +126,7 @@ onMounted(async () => {
 
             <div class="w-[125px] flex items-center">
               <p class="font-semibold text-[18px] text-gradient">
-                {{ restaurants[0]?.name || 'ไม่พบข้อมูลร้านอาหาร' }}
+                {{ restaurant.name || 'ไม่พบข้อมูลร้านอาหาร' }}
               </p>
             </div>
           </div>
@@ -116,7 +149,7 @@ onMounted(async () => {
         </div>
       </div>
 
-      <div class="p-4 font-prompt mt-5">
+      <div v-for="restaurant in restaurants2" :key="restaurant.name" class="p-4 font-prompt mt-5">
         <div class="sm:flex sm:justify-center">
           <div class="bg-while h-[150px] sm:w-[400px] w-full rounded-xl shadow-xl">
             <div class="p-4 flex">
@@ -129,7 +162,7 @@ onMounted(async () => {
                 <div class="flex w-full  h-7">
                   <div class=" flex-1 w-full">
                     <div class="w-[200px] flex justify-start">
-                      <h2 class=" font-medium text-[16px]">เพจ{{ restaurants[0]?.name || 'ไม่พบข้อมูลร้านอาหาร' }}</h2>
+                      <h2 class=" font-medium text-[16px]">เพจ{{ restaurant.name || 'ไม่พบข้อมูลร้านอาหาร' }}</h2>
                     </div>
                   </div>
 
@@ -194,7 +227,8 @@ onMounted(async () => {
 
         <ul class="menu rounded-box w-full bg-white p-0">
           <li>
-            <RouterLink to="/businesscenter/restaurant/setting" class="flex">
+            <RouterLink to="/businesscenter/restaurant/setting"
+              class="flex">
               <svg class="w-[22px] h-[22px]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M23.8852 2.5C19.2685 2.49997 15.6504 2.49995 12.8274 2.87949C9.93794 3.26797 7.65789 4.07865 5.86827 5.86827C4.07865 7.65789 3.26797 9.93794 2.87949 12.8274C2.49995 15.6504 2.49997 19.2685 2.5 23.8852V24.1148C2.49997 28.7315 2.49995 32.3496 2.87949 35.1726C3.26797 38.0621 4.07865 40.3421 5.86827 42.1317C7.65789 43.9213 9.93794 44.732 12.8274 45.1205C15.6504 45.5 19.2685 45.5 23.8853 45.5H24.1147C28.7315 45.5 32.3496 45.5 35.1726 45.1205C38.0621 44.732 40.3421 43.9213 42.1317 42.1317C43.9213 40.3421 44.732 38.0621 45.1205 35.1726C45.5 32.3496 45.5 28.7315 45.5 24.1147V21C45.5 20.1716 44.8284 19.5 44 19.5C43.1716 19.5 42.5 20.1716 42.5 21V24C42.5 28.7565 42.4968 32.1729 42.1473 34.7728C41.8035 37.3297 41.1497 38.8711 40.0104 40.0104C38.8711 41.1497 37.3297 41.8035 34.7728 42.1473C32.1729 42.4968 28.7565 42.5 24 42.5C19.2436 42.5 15.8271 42.4968 13.2272 42.1473C10.6703 41.8035 9.12891 41.1497 7.98959 40.0104C6.85028 38.8711 6.1965 37.3297 5.85274 34.7728C5.50319 32.1729 5.5 28.7565 5.5 24C5.5 19.2436 5.50319 15.8271 5.85274 13.2272C6.1965 10.6703 6.85028 9.12891 7.98959 7.98959C9.12891 6.85028 10.6703 6.1965 13.2272 5.85274C15.8271 5.50319 19.2436 5.5 24 5.5H27C27.8284 5.5 28.5 4.82843 28.5 4C28.5 3.17157 27.8284 2.5 27 2.5H23.8852Z"
@@ -211,6 +245,28 @@ onMounted(async () => {
               </svg>
 
               <p class="text-base">เพิ่มข้อมูลภายในร้าน</p>
+            </RouterLink>
+          </li>
+
+          <li>
+            <RouterLink to="/businesscenter/restaurant/menu"
+              class="flex">
+              <svg class="w-[22px] h-[22px]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M23.8852 2.5C19.2685 2.49997 15.6504 2.49995 12.8274 2.87949C9.93794 3.26797 7.65789 4.07865 5.86827 5.86827C4.07865 7.65789 3.26797 9.93794 2.87949 12.8274C2.49995 15.6504 2.49997 19.2685 2.5 23.8852V24.1148C2.49997 28.7315 2.49995 32.3496 2.87949 35.1726C3.26797 38.0621 4.07865 40.3421 5.86827 42.1317C7.65789 43.9213 9.93794 44.732 12.8274 45.1205C15.6504 45.5 19.2685 45.5 23.8853 45.5H24.1147C28.7315 45.5 32.3496 45.5 35.1726 45.1205C38.0621 44.732 40.3421 43.9213 42.1317 42.1317C43.9213 40.3421 44.732 38.0621 45.1205 35.1726C45.5 32.3496 45.5 28.7315 45.5 24.1147V21C45.5 20.1716 44.8284 19.5 44 19.5C43.1716 19.5 42.5 20.1716 42.5 21V24C42.5 28.7565 42.4968 32.1729 42.1473 34.7728C41.8035 37.3297 41.1497 38.8711 40.0104 40.0104C38.8711 41.1497 37.3297 41.8035 34.7728 42.1473C32.1729 42.4968 28.7565 42.5 24 42.5C19.2436 42.5 15.8271 42.4968 13.2272 42.1473C10.6703 41.8035 9.12891 41.1497 7.98959 40.0104C6.85028 38.8711 6.1965 37.3297 5.85274 34.7728C5.50319 32.1729 5.5 28.7565 5.5 24C5.5 19.2436 5.50319 15.8271 5.85274 13.2272C6.1965 10.6703 6.85028 9.12891 7.98959 7.98959C9.12891 6.85028 10.6703 6.1965 13.2272 5.85274C15.8271 5.50319 19.2436 5.5 24 5.5H27C27.8284 5.5 28.5 4.82843 28.5 4C28.5 3.17157 27.8284 2.5 27 2.5H23.8852Z"
+                  fill="#0D1217" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M38 2.5C33.8579 2.5 30.5 5.85787 30.5 10C30.5 14.1421 33.8579 17.5 38 17.5C42.1421 17.5 45.5 14.1421 45.5 10C45.5 5.85787 42.1421 2.5 38 2.5ZM33.5 10C33.5 7.51472 35.5147 5.5 38 5.5C40.4853 5.5 42.5 7.51472 42.5 10C42.5 12.4853 40.4853 14.5 38 14.5C35.5147 14.5 33.5 12.4853 33.5 10Z"
+                  fill="#0D1217" />
+                <path
+                  d="M12.5 28C12.5 27.1716 13.1716 26.5 14 26.5H32C32.8284 26.5 33.5 27.1716 33.5 28C33.5 28.8284 32.8284 29.5 32 29.5H14C13.1716 29.5 12.5 28.8284 12.5 28Z"
+                  fill="#0D1217" />
+                <path
+                  d="M14 33.5C13.1716 33.5 12.5 34.1716 12.5 35C12.5 35.8284 13.1716 36.5 14 36.5H26C26.8284 36.5 27.5 35.8284 27.5 35C27.5 34.1716 26.8284 33.5 26 33.5H14Z"
+                  fill="#0D1217" />
+              </svg>
+
+              <p class="text-base">เมนูอาหารในร้านค้าทั้งหมด</p>
             </RouterLink>
           </li>
 

@@ -42,7 +42,6 @@ export default defineEventHandler(async (event) => {
     
   if (query.code) {
     try {
-      // สร้าง form data
       const formData = new URLSearchParams({
         code: query.code.toString(),
         client_id: config.public.googleClientId,
@@ -75,7 +74,6 @@ export default defineEventHandler(async (event) => {
       });
 
       try {
-        // ตรวจสอบว่ามีผู้ใช้อยู่แล้วหรือไม่
         const existingUser = await prisma.user.findFirst({
           where: {
             OR: [
@@ -105,7 +103,6 @@ export default defineEventHandler(async (event) => {
           return sendRedirect(event, `/?auth=${encodeURIComponent(JSON.stringify(authData))}`);
         }
 
-        // สร้างผู้ใช้ใหม่
         const newUser = await prisma.user.create({
           data: {
             email: userInfo.email,

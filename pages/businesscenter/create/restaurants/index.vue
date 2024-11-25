@@ -93,15 +93,41 @@ watch(timecloseOpen, (newValue) => {
   <div class="flex justify-center font-prompt">
     <div class="flex flex-col">
       <div class="flex font-prompt flex-col">
-        <input v-model="phoneNumber" type="text" class=" input input-bordered w-[300px] mt-5 bg-zinc-100"
-          placeholder="เบอร์โทรศัพท์">
-        <input v-model="email" type="text" class=" input input-bordered w-[300px] mt-5 bg-zinc-100" placeholder="อีเมล">
-        <input v-model="fullname" type="text" class=" input input-bordered w-[300px] mt-5 bg-zinc-100"
-          placeholder="ชื่อเจ้าของร้าน">
-        <input v-model="name" type="text" class=" input input-bordered w-[300px] mt-5 bg-zinc-100"
-          placeholder="ชื่อร้านอาหาร">
-        <input v-model="location" type="text" class=" input input-bordered w-[300px] mt-5 bg-zinc-100"
-          placeholder="ที่อยู่">
+
+        <label class="form-control w-full mt-2">
+          <div class="label">
+            <span class="label-text">เบอร์โทรศัพท์</span>
+          </div>
+          <input v-model="phoneNumber" type="text" placeholder="เบอร์โทรศัพท์" class="input input-bordered w-[300px] bg-zinc-100" />
+        </label>
+
+        <label class="form-control w-full mt-2">
+          <div class="label">
+            <span class="label-text">อีเมล</span>
+          </div>
+          <input v-model="email"  type="text" placeholder="อีเมล" class="input input-bordered w-[300px] bg-zinc-100" />
+        </label>
+
+        <label class="form-control w-full mt-2">
+          <div class="label">
+            <span class="label-text">ชื่อเจ้าของร้าน</span>
+          </div>
+          <input v-model="fullname" type="text" placeholder="ชื่อเจ้าของร้าน" class="input input-bordered w-[300px] bg-zinc-100" />
+        </label>
+
+        <label class="form-control w-full mt-2">
+          <div class="label">
+            <span class="label-text">ชื่อร้านอาหาร</span>
+          </div>
+          <input v-model="name" type="text" placeholder="ชื่อร้านอาหาร" class="input input-bordered w-[300px] bg-zinc-100" />
+        </label>
+
+        <label class="form-control w-full mt-2">
+          <div class="label">
+            <span class="label-text">ที่อยู่</span>
+          </div>
+          <input v-model="location" type="text" placeholder="ที่อยู่" class="input input-bordered w-[300px] bg-zinc-100" />
+        </label>
         <div class="divider"></div>
       </div>
       <!-- วันเวลาเปิดร้าน -->

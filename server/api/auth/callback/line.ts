@@ -33,7 +33,6 @@ export default defineEventHandler(async (event) => {
   
   if (query.code) {
     try {
-      // ตรวจสอบค่า config ที่จำเป็น
       if (!config.public.lineClientId || !config.public.lineRedirectUri || !config.lineClientSecret) {
         console.error('Missing LINE configuration:', {
           clientId: config.public.lineClientId,
@@ -69,7 +68,6 @@ export default defineEventHandler(async (event) => {
       });
 
       try {
-        // ตรวจสอบผู้ใช้ที่มีอยู่
         const existingUser = await prisma.user.findFirst({
           where: {
             lineId: userInfo.userId
@@ -77,7 +75,6 @@ export default defineEventHandler(async (event) => {
         });
 
         if (existingUser) {
-          // สร้าง auth data สำหรับ existing user
           const authData = {
             user: {
               id: existingUser.id.toString(),
@@ -92,7 +89,6 @@ export default defineEventHandler(async (event) => {
           return sendRedirect(event, `/?auth=${encodeURIComponent(JSON.stringify(authData))}`);
         }
 
-        // สร้างผู้ใช้ใหม่
         const newUser = await prisma.user.create({
           data: {
             email: userInfo.email,
@@ -106,7 +102,6 @@ export default defineEventHandler(async (event) => {
           }
         });
 
-        // สร้าง auth data สำหรับ new user
         const authData = {
           user: {
             id: newUser.id.toString(),

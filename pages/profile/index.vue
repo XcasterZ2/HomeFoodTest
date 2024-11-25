@@ -73,6 +73,7 @@
           </div>
         </div>
       </div>
+
       <dialog id="logout_confirm" class="modal -mx-2 font-prompt">
         <div class="modal-box">
           <div class="flex justify-center">
@@ -212,6 +213,7 @@
             <Right />
           </div>
         </div>
+
 
         <div class="flex mt-6 w-full">
           <div class="flex-1 flex gap-3">
