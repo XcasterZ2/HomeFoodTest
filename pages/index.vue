@@ -76,8 +76,9 @@
         </div>
       </div>
 
-      <div  class="p-3 flex-1 flex font-prompt justify-end mt-1 sm:mt-2">
-        <RouterLink to="/recommendedshops" class="font-bold sm:mt-0 sm:text-xl text-[14px] text-[#FF6347]">ดูทั้งหมด</RouterLink>
+      <div class="p-3 flex-1 flex font-prompt justify-end mt-1 sm:mt-2">
+        <RouterLink to="/recommendedshops" class="font-bold sm:mt-0 sm:text-xl text-[14px] text-[#FF6347]">ดูทั้งหมด
+        </RouterLink>
         <svg class="sm:w-[28px] sm:h-[28px] w-[18px] h-[18px] text-[#FF6347]" xmlns="http://www.w3.org/2000/svg"
           fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
@@ -114,7 +115,8 @@
       </div>
 
       <div class="p-3 flex-1 flex font-prompt justify-end mt-1">
-        <RouterLink to="/productsale" class="font-bold sm:mt-0 sm:text-xl text-[14px] text-[#FF6347]">ดูทั้งหมด</RouterLink>
+        <RouterLink to="/productsale" class="font-bold sm:mt-0 sm:text-xl text-[14px] text-[#FF6347]">ดูทั้งหมด
+        </RouterLink>
         <svg class="sm:w-[28px] sm:h-[28px] w-[18px] h-[18px] text-[#FF6347]" xmlns="http://www.w3.org/2000/svg"
           fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
@@ -124,7 +126,25 @@
     <ProductSale />
 
     <DiscountCoupon />
-    
+
+    <div class="flex items-center space-x-2 cursor-pointer" @click="handleLikeClick">
+      <div class="relative w-6 h-6 transition duration-300">
+        <input type="checkbox" class="absolute w-full h-full opacity-0 z-20 cursor-pointer" id="Give-It-An-Id"
+          v-model="checked" />
+        <div class="flex justify-center items-center w-full h-full">
+          <svg viewBox="0 0 24 24" class="absolute fill-pink-500" :class="{ 'hidden': checked }">
+            <path
+              d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z" />
+          </svg>
+          <svg v-show="checked" viewBox="0 0 24 24" class="absolute fill-pink-500">
+            <path
+              d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z" />
+          </svg>
+        </div>
+      </div>
+      <div class="text-pink-500 text-sm">{{ likes }}</div>
+    </div>
+
   </userLayouts>
 </template>
 
@@ -144,6 +164,19 @@ const isDesktop = ref(false)
 const authStore = useAuthStore()
 const route = useRoute()
 
+const checked = ref(false);
+const likes = ref(0);
+
+const handleLikeClick = () => {
+    if (checked.value) {
+        likes.value--;
+    } else {
+        likes.value++;
+    }
+    checked.value = !checked.value;
+};
+
+
 function handleResize() {
   isDesktop.value = window.innerWidth >= 640
 }
@@ -151,21 +184,21 @@ function handleResize() {
 onMounted(() => {
   handleResize()
   window.addEventListener('resize', handleResize)
-  
+
   const authParam = route.query.auth
   if (authParam) {
     try {
       const authData = JSON.parse(decodeURIComponent(authParam))
       authStore.login(authData)
-      
+
       const newURL = window.location.pathname
       window.history.replaceState({}, document.title, newURL)
     } catch (error) {
       console.error('Error processing auth data:', error)
     }
   }
-  
-  console.log('user : ' , authStore.user)
+
+  console.log('user : ', authStore.user)
 })
 
 onUnmounted(() => {
@@ -175,6 +208,6 @@ onUnmounted(() => {
 
 <style scoped>
 .font-prompt {
-    font-family: 'Prompt', sans-serif;
+  font-family: 'Prompt', sans-serif;
 }
 </style>

@@ -15,7 +15,7 @@ const foodCategorires = [
     { src: '/foodCategory/food9.png', name: 'ติ่มซำ', path: '/orderfood/category/dim-sum' },
     { src: '/foodCategory/food10.png', name: 'ปิ้งย่าง', path: '/orderfood/category/grilled' },
     { src: '/foodCategory/food11.png', name: 'สเต็ก', path: '/orderfood/category/steak' },
-    { src: '/foodCategory/food12.png', name: 'ตามสั่ง', path: '/orderfood/category/custom' },
+    { src: '/foodCategory/food12.png', name: 'ตามสั่ง', path: '/orderfood/category/tamsang' },
     { src: '/foodCategory/food13.png', name: 'ชาบู-สุกี้', path: '/orderfood/category/shabu' },
     { src: '/foodCategory/food14.png', name: 'อาหารรทะเล', path: '/orderfood/category/seafood' },
     { src: '/foodCategory/food15.png', name: 'ข้าวแกง', path: '/orderfood/category/curry-rice' },

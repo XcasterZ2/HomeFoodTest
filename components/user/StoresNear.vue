@@ -5,6 +5,8 @@ const activeSection = ref('open')
 const restaurants = ref([])
 const isLoading = ref(true)
 
+const router = useRouter()
+
 const shopnear = [
     { src: '/user/shops/near/shop1.png', name: 'ครัวกะเพรา', rate: 4.9, distance: 320, shopcost: 10 },
     { src: '/user/shops/near/shop2.jpeg', name: 'ร้านเบอร์เกอร์', rate: 4.9, distance: 500, shopcost: 20 },
@@ -33,6 +35,10 @@ const fetchRestaurant = async () => {
 const setActiveSection = (section) => {
     activeSection.value = section
 }
+
+const navigateToRestaurant = (id) => {
+    router.push(`/restaurants/${id}`);
+};
 
 onMounted(async () => {
     await fetchRestaurant()
@@ -131,7 +137,7 @@ onMounted(async () => {
                     </div>
                 </div>
             </div> -->
-            <div v-else v-for="shop in restaurants" :key="shop.name">
+            <div v-else v-for="shop in restaurants" :key="shop.name" @click="navigateToRestaurant(shop.restaurant_Id)">
                 <div class="w-full sm:h-[140px] h-[70px] mt-2 flex">
                     <div>
                         <img :src="shop.src || '/user/shops/shop3.png'" :alt="shop.name"

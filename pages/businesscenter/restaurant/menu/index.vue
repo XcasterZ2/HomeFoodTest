@@ -14,10 +14,16 @@
     </div>
   </div>
 
-  <div class="p-5 font-prompt">
-    <div class="grid grid-cols-2 gap-4">
-      <div v-for="menu in menus" :key="menu.name" class=" shadow-md mb-5 p-4 rounded-2xl">
-        <img src="/restuarant/menu.png" alt="logo-Menu" class=" rounded-xl w-44 h-40">
+  <div class="p-5 font-prompt sm:max-w-5xl sm:mx-auto">
+    <div class="grid sm:grid-cols-4 grid-cols-2 gap-4">
+      <div v-for="menu in menus" :key="menu.name" class="shadow-md mb-5 p-4 rounded-2xl">
+        <div v-if="menu.image && JSON.parse(menu.image).length > 0">
+          <img :src="JSON.parse(menu.image)[0]" alt="logo-Menu" class="rounded-xl sm:w-full sm:h-44 w-36 h-30">
+        </div>
+        <div v-else>
+          <img src="/public/restuarant/menu.png" alt="default-Menu" class="rounded-xl sm:w-full sm:h-44 w-36 h-30">
+        </div>
+
         <div class="mt-2">{{ menu.name }}</div>
 
         <div class="bg-[#FF9684] mt-2 w-[65px]  bg-opacity-30 h-[20px] flex rounded-full justify-center items-center">
@@ -68,6 +74,7 @@ const fetchMenu = async () => {
 
 onMounted(async () => {
   await fetchMenu()
+  console.log('menuImg : ', menus.image)
 })
 </script>
 
