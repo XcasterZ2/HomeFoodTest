@@ -110,5 +110,6 @@ const handleDeleteMenu = async (menuId) => {
 // โหลดข้อมูลเมื่อเริ่มต้น
 onMounted(() => {
   loadMenus()
+  console.log('menu : ' , menus.value)
 })
 </script>
