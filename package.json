@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "nuxt dev --host 0.0.0.0 --port 40000",
+    "dev": "nuxt dev",
     "build": "nuxt build && prisma generate",
     "generate": "nuxt generate",
     "preview": "nuxt preview",

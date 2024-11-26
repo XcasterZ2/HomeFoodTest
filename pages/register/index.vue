@@ -58,7 +58,7 @@
     </div>
 
     <div class="absolute top-[488px] w-[288px] flex flex-col gap-[32px]  h-[181px] ">
-      <button @click="registerUser"
+      <button @click="handleRegister"
         class="w-[288px] h-[58px] rounded-[28px] flex items-center bg-[#FF6347] justify-center gap-[14px] font-prompt text-white font-semibold text-[18px] leading-[27.22px]">
         ลงทะเบียน
       </button>
