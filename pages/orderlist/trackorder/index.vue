@@ -1,5 +1,157 @@
+<script setup>
+import Map from '~/components/user/icons/Map.vue';
+import coupon from '~/components/user/icons/coupon.vue';
+import Money from '~/components/user/icons/restaurant/setting/Money.vue';
+const orders = [
+    { value: "ซื้ออาหาร", number: '0023900', price: '198.50', oldprice: '89' },
+]
+
+const images = [
+    'https://s3-alpha-sig.figma.com/img/e5e9/4c2b/8d45787e1249989e6b26cef4d7e894d0?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=dz5AjBkRbB35Xv1YeX3dzUr9as45UMEvI9Jxha9qJmfA1TDkGrDpjLsrgzXVHUU5U1mcbTcdvB8~T800jjI9aYyRP5ifR5PrIy791ECQmOwxUj4Lc8D308cFA0El-uej3yhwIlWLjGcaVQSv5jH3hI2dLeNb7tcChicvPH0qTtZ5b805-7p-utYt9RkrwrMjWI876FOgJ2TMdfUbB8DdIvz~mYi0uK4Oc1aCVLJlDse7y3rX2aHTBu006c5qPlnuPdMXAAZm9s4kXtEYVOR7LWFl3sBFqiCq1B~V93zIxCN9EjY9MwnzepPuimNwCnIID3pC6ikLFpNNDh-NoTpAIA__',
+];
+</script>
+
 <template>
-    <div class="flex flex-col items-center justify-center h-screen w-full ">
+    <div class="sm:max-w-5xl sm:mx-auto">
+        <div class="p-4 flex font-prompt mt-6">
+            <RouterLink to="/"
+                class="flex-2 w-[42px] h-[42px] bg-white shadow-md rounded-full flex justify-center items-center">
+                <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M11.4078 5.92548C11.7251 6.24278 11.7251 6.75722 11.4078 7.07452L6.2948 12.1875H21.6666C22.1153 12.1875 22.4791 12.5513 22.4791 13C22.4791 13.4487 22.1153 13.8125 21.6666 13.8125H6.2948L11.4078 18.9255C11.7251 19.2428 11.7251 19.7572 11.4078 20.0745C11.0905 20.3918 10.576 20.3918 10.2587 20.0745L3.75873 13.5745C3.44143 13.2572 3.44143 12.7428 3.75873 12.4255L10.2587 5.92548C10.576 5.60817 11.0905 5.60817 11.4078 5.92548Z"
+                        fill="#0D1217" />
+                </svg>
+            </RouterLink>
+
+            <div class="flex-1 mt-3">
+                <h2 class="text-2xl mx-20 font-semibold">SP</h2>
+            </div>
+        </div>
+
+        <div class="p-5 font-prompt">
+            <div v-for="order in orders">
+                <div class="flex justify-between">
+                    <p class="text-lg">สรุปการสั่งซื้อ</p>
+                    <div class="rounded-full border-[1px] justify-center items-center flex w-20 h-9">
+                        <p class="text-sm" :class="{
+                            'text-[#FF6347]': order.value === 'ซื้ออาหาร',
+                            'text-[#13C296]': order.value === 'ซื้อของ'
+                        }">
+                            {{ order.value }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-5 bg-white shadow-lg rounded-lg p-2">
+                    <div class="flex gap-2">
+                        <img :src="images[0]" alt="" class="w-24 h-24 rounded-lg">
+                        <div class="flex flex-col">
+                            <p>เบอร์เกอร์หมู</p>
+                            <div class="flex gap-3">
+                                <p class="mt-2 line-through text-[#989DA3] text-lg">฿{{ order.oldprice }}.00</p>
+                                <p class="mt-2 text-[#FF6347] font-semibold text-lg">฿{{ order.price }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-2 w-full bg-[#E9EAEB] h-[2px]"></div>
+
+                    <div class="flex justify-between mt-2">
+                        <p>เพิ่มชีส</p>
+                        <p class="text-[#FF6347] ">฿15.50</p>
+                    </div>
+
+                    <div class="flex justify-between mt-2">
+                        <p>เพิ่มเนื้อ ( 1 ชิ้น )</p>
+                        <p class="text-[#FF6347] ">฿25.00</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-2 shadow-lg rounded-lg p-2 mt-5">
+                    <img :src="images[0]" alt="" class="w-24 h-24 rounded-lg">
+                    <div class="flex flex-col">
+                        <p>เบอร์เกอร์หมู</p>
+                        <div class="flex gap-3">
+                            <p class="mt-2 line-through text-[#989DA3] text-lg">฿{{ order.oldprice }}.00</p>
+                            <p class="mt-2 text-[#FF6347] font-semibold text-lg">฿{{ order.price }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-2 shadow-lg rounded-lg p-2 mt-5">
+                    <img :src="images[0]" alt="" class="w-24 h-24 rounded-lg">
+                    <div class="flex flex-col">
+                        <p>เบอร์เกอร์หมู</p>
+                        <div class="flex gap-3">
+                            <p class="mt-2 line-through text-[#989DA3] text-lg">฿{{ order.oldprice }}.00</p>
+                            <p class="mt-2 text-[#FF6347] font-semibold text-lg">฿{{ order.price }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-2 border-[1px] rounded-xl p-4 mt-5">
+                    <div>
+                        <div class="flex gap-2">
+                            <Map />
+                            <p>ส่งถึง</p>
+                            <p>-></p>
+                            <p>บ้าน</p>
+                        </div>
+                        <div class="mt-2">
+                            <p class="font-semibold">89/1 ถนนสุเทพ, บ้านสุขสบาย...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-2 border-[1px] rounded-xl p-4 mt-5">
+                    <div>
+                        <div class="flex gap-2">
+                            <Money />
+                            <p>วิธีการชำระเงิน</p>
+                        </div>
+                        <div class="mt-2">
+                            <p class="font-semibold">เงินสด</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-2 border-[1px] rounded-xl p-4 mt-5">
+                    <div>
+                        <div class="flex gap-2">
+                            <coupon />
+                            <p>โปรโมชั่น</p>
+                        </div>
+                        <div class="mt-2">
+                            <p class="font-semibold">89/1 ถนนสุเทพ, บ้านสุขสบาย...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5 p-2">
+                    <div class="flex justify-between">
+                        <p>ยอดรวมย่อย</p>
+                        <p class=" font-semibold">฿250.50</p>
+                    </div>
+                    <div class="flex justify-between">
+                        <p>ค่าจัดส่ง</p>
+                        <p class=" font-semibold">ฟรี</p>
+                    </div>
+                    <div class="flex justify-between">
+                        <p>การลดราคา</p>
+                        <p class=" font-semibold">- ฿52.00</p>
+                    </div>
+
+                    <div class="mt-2 w-full bg-[#000000] h-[1px]"></div>
+
+                    <div class="mt-2 flex justify-between">
+                        <p>ทั้งหมด</p>
+                        <p class=" font-semibold">฿198.50</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="flex flex-col items-center justify-center h-screen w-full ">
         <div class="absolute top-[75px] flex items-center justify-between w-[288px] h-[42px]">
             <RouterLink to="/orderlist"
                 class="flex items-center justify-center  w-[42px] h-[42px] radius-[22px] gap-[10px] shadow-[0px_4px_12px_0px_#0D0A2C0F]">
@@ -257,13 +409,14 @@
                 <span class="font-prompt text-[18px] leading-[27.22px] font-semibold text-white">ติดตามคำสั่งซื้อ</span>
             </RouterLink>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <style scoped>
 .font-prompt {
     font-family: 'Prompt';
 }
+
 .bg-gradient-custom {
     background: linear-gradient(121.94deg, #FF6347 0%, #FF826C 100%);
 }
@@ -274,5 +427,4 @@
     background-clip: text;
     color: transparent;
 }
-
 </style>
