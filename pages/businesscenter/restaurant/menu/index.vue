@@ -34,19 +34,27 @@
         <div class="flex justify-end mt-2">
           <h2 class="text-[#FF6347] font-bold text-xl">฿{{ menu.price }}</h2>
         </div>
+
+        <div class="flex gap-2 justify-center items-center mt-2">
+          <div @click="deleteMenu(menu.id)" class="bg-gray-200 w-16 h-10 rounded-lg flex justify-center items-center cursor-pointer">
+            <p class="">ลบ</p>
+          </div>
+          <div class="bg-[#FF6347] w-16 h-10 rounded-lg flex justify-center items-center cursor-pointer">
+            <p class="text-white">แก้ไข</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import Swal from 'sweetalert2';
+
 import Fire from '~/components/user/icons/restaurant/menu/Fire.vue';
 const route = useRoute()
 const showForm = ref(false)
 const menus = ref([])
-
-
-
 
 const fetchMenu = async () => {
   const restaurantssId = localStorage.getItem('restaurantId');
@@ -72,6 +80,53 @@ const fetchMenu = async () => {
   }
 }
 
+const deleteMenu = async (menuId) => {
+  try {
+    // แสดงข้อความยืนยัน
+    const result = await Swal.fire({
+      title: 'คุณแน่ใจหรือไม่?',
+      text: 'เมนูนี้จะถูกลบและไม่สามารถกู้คืนได้!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'ลบ',
+      cancelButtonText: 'ยกเลิก',
+      customClass: {
+        container: 'font-prompt',
+      }
+    });
+
+    if (result.isConfirmed) {
+      // หากผู้ใช้ยืนยัน ให้ส่งคำขอไปยัง API
+      const response = await $fetch(`/api/menus/${menuId}`, {
+        method: 'DELETE',
+      });
+
+      console.log(response);
+      menus.value = menus.value.filter(menu => menu.id !== menuId);
+
+      // แจ้งเตือนเมื่อการลบสำเร็จ
+      Swal.fire({
+        title: 'ลบสำเร็จ!',
+        text: 'เมนูถูกลบออกเรียบร้อยแล้ว',
+        icon: 'success',
+        confirmButtonText: 'ตกลง',
+      });
+    }
+  } catch (error) {
+    console.error('Delete failed:', error);
+
+    // แจ้งเตือนเมื่อเกิดข้อผิดพลาด
+    Swal.fire({
+      title: 'เกิดข้อผิดพลาด!',
+      text: 'ไม่สามารถลบเมนูได้ กรุณาลองใหม่อีกครั้ง',
+      icon: 'error',
+      confirmButtonText: 'ตกลง',
+    });
+  }
+};
+
 onMounted(async () => {
   await fetchMenu()
   console.log('menuImg : ', menus.image)
@@ -81,5 +136,17 @@ onMounted(async () => {
 <style scoped>
 .font-prompt {
   font-family: 'Prompt', sans-serif;
+}
+
+.swal2-title {
+  font-family: 'Prompt', sans-serif !important;
+}
+
+.swal2-text {
+  font-family: 'Prompt', sans-serif !important;
+}
+
+.swal2-confirm, .swal2-cancel {
+  font-family: 'Prompt', sans-serif !important;
 }
 </style>

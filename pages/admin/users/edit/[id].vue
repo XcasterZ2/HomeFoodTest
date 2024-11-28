@@ -57,6 +57,8 @@ import Swal from 'sweetalert2';
 
 const loading = ref(true);
 
+const route = useRoute()
+
 const form = ref({
   email: '',
   fullname: '',
@@ -135,16 +137,21 @@ const updateUser = async (userId) => {
 }
 
 const handleSubmit = async () => {
-  const userId = authStore.user.id;
+  const userId = route.params.id
   await updateUser(userId);
 };
+
+definePageMeta({
+  middleware: 'auth',
+});
 
 watch(gen, (newValue, oldValue) => {
   console.log('gen changed from', oldValue, 'to', newValue);
 });
 
 onMounted(async () => {
-  const userId = authStore.user.id
+  const userId = route.params.id
+  console.log('id : ' ,  userId)
   await fetchUser(userId);
 })
 </script>

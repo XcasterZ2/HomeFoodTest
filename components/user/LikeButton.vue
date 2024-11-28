@@ -31,7 +31,7 @@ const handleLikeClick = () => {
                     </svg>
                 </div>
             </div>
-            <div class="text-pink-500 text-sm">{{ likes }}</div>
+            <!-- <div class="text-pink-500 text-sm">{{ likes }}</div> -->
         </div>
     </div>
 </template>

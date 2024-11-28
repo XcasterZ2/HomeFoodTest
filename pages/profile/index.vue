@@ -26,7 +26,7 @@
           <div class="avatar">
             <div class="sm:w-[100px] sm:h-[100px] w-[80px] h-[80px] rounded-full">
               <img alt="Profile" class="w-full h-full object-cover"
-                    :src="authStore.user?.role === 'admin' ? '/adminpic.png' : '/photo-user.png'">
+                :src="authStore.user?.role === 'admin' ? '/adminpic.png' : '/photo-user.png'">
             </div>
           </div>
 
@@ -40,7 +40,9 @@
                   d="M9.65792 7.52892L9.39225 7.79309C9.39225 7.79309 8.76074 8.42101 7.03698 6.70705C5.31323 4.99308 5.94474 4.36516 5.94474 4.36516L6.11205 4.1988C6.52421 3.78898 6.56306 3.13102 6.20347 2.65069L5.4679 1.66812C5.02283 1.07361 4.16281 0.995075 3.65268 1.50231L2.73707 2.41271C2.48413 2.66422 2.31463 2.99025 2.33518 3.35193C2.38777 4.27722 2.80641 6.26804 5.14246 8.59082C7.61974 11.054 9.94415 11.1519 10.8947 11.0633C11.1953 11.0353 11.4568 10.8822 11.6675 10.6727L12.4961 9.84872C13.0555 9.29255 12.8978 8.33904 12.1821 7.94998L11.0676 7.34415C10.5977 7.08869 10.0252 7.16374 9.65792 7.52892Z"
                   fill="#BABDC1" />
               </svg>
-              <p class="sm:text-[15px] text-[12px]">{{ phoneNumber }}</p>
+              <p class="sm:text-[15px] text-[12px]" :class="{ 'text-red-400': !phoneNumber }">
+                {{ phoneNumber || 'คุณยังไม่ได้ยืนยันเบอร์' }}
+              </p>
             </div>
 
             <div class="flex gap-2 mt-2">
@@ -113,7 +115,8 @@
         <div v-show="restaurantsOnOwner">
           <RouterLink to="/businesscenter/create"
             class="flex justify-center font-prompt cursor-pointer hover:-translate-y-1 transition-all duration-500 group">
-            <div class="sm:h-[60px] sm:w-[450px] h-[60px] w-[340px] rounded-xl p-1 flex justify-center items-center mt-5"
+            <div
+              class="sm:h-[60px] sm:w-[450px] h-[60px] w-[340px] rounded-xl p-1 flex justify-center items-center mt-5"
               style="background-image: linear-gradient(90deg, #FFB3BA 0%, #FF826C 100%);">
               <div class="flex gap-3">
                 <Shopping />
@@ -340,9 +343,9 @@ const fetchRestaurant = async () => {
     }
     const data = await response.json();
     restaurants.value = data.filter(restaurant => restaurant.ownerId === authStore.user.id);
-    if(restaurants.value.length > 0) {
+    if (restaurants.value.length > 0) {
       restaurantsOwner.value = true
-    }else{
+    } else {
       restaurantsOnOwner.value = true
     }
 
