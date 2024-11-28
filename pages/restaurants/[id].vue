@@ -41,7 +41,7 @@
                   </div>
                 </div>
 
-                <div class="mt-3 flex">
+                <div class="mt-3 sm:mt-5 flex sm:justify-between">
                   <div class="w-[100px]">
                     <p class="mt-1 font-semibold text-[#989DA3] text-[14px]">1.2 km</p>
                   </div>
@@ -53,7 +53,7 @@
                   </div>
                 </div>
 
-                <div class="flex gap-2 mt-3">
+                <div class="flex gap-2 mt-5 sm:mt-8">
                   <coupon />
                   <h2 class="text-[#FF826C] font-medium">ร้านนี้ใช้คูปองส่วนลดได้</h2>
                 </div>
@@ -66,7 +66,7 @@
             <div class="rounded-xl p-1">
               <h2 class="text-[20px] font-semibold sm:mt-5">เมนูแนะนำ</h2>
               <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <div v-for="menu in menus" :key="menu.id" class="shadow-md mb-5 p-4 rounded-2xl">
+                <div v-for="menu in menus" :key="menu.id" class="shadow-md mb-5 p-4 rounded-2xl cursor-pointer" @click="navigateToMenu(menu.id)" >
                   <div v-if="menu.image && JSON.parse(menu.image).length > 0">
                     <img :src="JSON.parse(menu.image)[0]" alt="logo-Menu"
                       class="rounded-xl sm:w-full sm:h-44 w-36 h-30">
@@ -120,8 +120,11 @@ const restaurants = ref([])
 const restaurantsId = ref(null)
 const isLoading = ref(false)
 const menus = ref([])
+const router = useRouter()
 
-
+const navigateToMenu = (id) => {
+    router.push(`/menu/detail/${id}`);
+};
 
 const fetchRestaurant = async () => {
   isLoading.value = false;

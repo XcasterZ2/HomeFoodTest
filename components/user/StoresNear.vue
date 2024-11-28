@@ -137,9 +137,10 @@ onMounted(async () => {
                     </div>
                 </div>
             </div> -->
-            <div v-else v-for="shop in restaurants" :key="shop.name" @click="navigateToRestaurant(shop.restaurant_Id)">
-                <div class="w-full sm:h-[140px] h-[70px] mt-2 flex">
-                    <div>
+            <div v-else v-for="shop in restaurants" :key="shop.name" class=" cursor-pointer"
+                @click="navigateToRestaurant(shop.restaurant_Id)">
+                <div class="w-full sm:h-[140px] h-[70px] mt-5 flex shadow-md rounded-md">
+                    <div class="p-1">
                         <img :src="shop.src || '/user/shops/shop3.png'" :alt="shop.name"
                             class="sm:w-[134px] sm:h-[134px] w-[60px] h-[60px] object-cover rounded-md">
                     </div>
@@ -162,7 +163,7 @@ onMounted(async () => {
                             </div>
                         </div>
 
-                        <div class="flex-1 flex item w-full justify-center sm:justify-end  sm:mx-10">
+                        <div class="flex-1 flex item w-full justify-end mx-2">
                             <div
                                 class="sm:w-[100px] sm:h-8 w-[66px] h-6 rounded-2xl bg-red-200 flex justify-center items-center mt-3">
                                 <svg class="" width="20" height="20" viewBox="0 0 20 20" fill="none"

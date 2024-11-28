@@ -1,4 +1,5 @@
 <script setup>
+import userLayoutsNoNav from '~/layouts/userLayoutsNoNav.vue';
 import Search from '~/components/user/Search.vue';
 import { RouterLink } from 'vue-router';
 import { ref, computed } from 'vue';
@@ -37,88 +38,101 @@ const filteredOrders = computed(() => {
 </script>
 
 <template>
-    <div class="sm:max-w-5xl sm:mx-auto">
-        <div class="p-4 flex font-prompt mt-6">
-            <RouterLink to="/"
-                class="flex-2 w-[42px] h-[42px] bg-white shadow-md rounded-full flex justify-center items-center">
-                <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M11.4078 5.92548C11.7251 6.24278 11.7251 6.75722 11.4078 7.07452L6.2948 12.1875H21.6666C22.1153 12.1875 22.4791 12.5513 22.4791 13C22.4791 13.4487 22.1153 13.8125 21.6666 13.8125H6.2948L11.4078 18.9255C11.7251 19.2428 11.7251 19.7572 11.4078 20.0745C11.0905 20.3918 10.576 20.3918 10.2587 20.0745L3.75873 13.5745C3.44143 13.2572 3.44143 12.7428 3.75873 12.4255L10.2587 5.92548C10.576 5.60817 11.0905 5.60817 11.4078 5.92548Z"
-                        fill="#0D1217" />
-                </svg>
-            </RouterLink>
-
-            <div class="flex-1 mt-3">
-                <h2 class="text-2xl mx-20 font-semibold">การสั่งซื้อ</h2>
-            </div>
-        </div>
-
-        <div class="ml-2 sm:flex sm:justify-center">
-            <Search />
-        </div>
-
-        <div class=" mt-10 overflow-x-auto scrollbar-hide sm:flex sm:justify-center">
-            <div class="flex items-center gap-[8px] px-4 min-w-max">
-                <button v-for="(item, index) in categories" :key="index" @click="toggleCategory(item)" :class="[
-                    'flex items-center justify-center px-4 h-[40px] rounded-[8px] whitespace-nowrap transition-colors font-prompt text-[14px] gap-1',
-                    selectedCategory === item
-                        ? 'bg-gradient-custom text-white'
-                        : 'hover:bg-gray-100 text-[#0D1217]'
-                ]">
-                    <svg v-if="selectedCategory === item" width="11" height="10" viewBox="0 0 11 10" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
+    <userLayoutsNoNav>
+        <div class="sm:max-w-5xl sm:mx-auto">
+            <div class="p-4 flex font-prompt mt-6">
+                <RouterLink to="/"
+                    class="flex-2 w-[42px] h-[42px] bg-white shadow-md rounded-full flex justify-center items-center">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M10.4107 0.779186C10.6707 1.00619 10.6975 1.40102 10.4705 1.66104L3.92289 9.16104C3.8042 9.297 3.63254 9.37501 3.45206 9.37501C3.27159 9.37501 3.09993 9.297 2.98124 9.16104L0.362194 6.16104C0.135185 5.90102 0.161952 5.50619 0.421981 5.27919C0.682009 5.05218 1.07683 5.07894 1.30384 5.33897L3.45206 7.79967L9.52886 0.838973C9.75587 0.578944 10.1507 0.552177 10.4107 0.779186Z"
-                            fill="white" />
+                            d="M11.4078 5.92548C11.7251 6.24278 11.7251 6.75722 11.4078 7.07452L6.2948 12.1875H21.6666C22.1153 12.1875 22.4791 12.5513 22.4791 13C22.4791 13.4487 22.1153 13.8125 21.6666 13.8125H6.2948L11.4078 18.9255C11.7251 19.2428 11.7251 19.7572 11.4078 20.0745C11.0905 20.3918 10.576 20.3918 10.2587 20.0745L3.75873 13.5745C3.44143 13.2572 3.44143 12.7428 3.75873 12.4255L10.2587 5.92548C10.576 5.60817 11.0905 5.60817 11.4078 5.92548Z"
+                            fill="#0D1217" />
                     </svg>
-                    {{ item }}
-                </button>
-            </div>
-        </div>
+                </RouterLink>
 
-        <div class="p-5 font-prompt sm:max-w-3xl gap-4 mx-auto sm:grid sm:grid-cols-2">
-            <div v-for="order in filteredOrders" :key="order.number"
-                class="w-full flex rounded-2xl h-[120px] shadow-md mt-4">
-                <div class="p-2 flex gap-1">
-                    <img :src="images[0]" alt="" class="rounded-md">
+                <div class="flex-1 mt-3">
+                    <h2 class="text-2xl mx-20 font-semibold">การสั่งซื้อ</h2>
                 </div>
-                <div class="mt-2">
-                    <div class="flex">
-                        <p class="text-[14px]">รหัสคำสั่งซื้อ : </p>
-                        <p class="ml-3 text-[14px]">SP {{ order.number }}</p>
-                    </div>
-                    <div class="mt-2 flex justify-between w-[200px] sm:w-[230px]">
-                        <div class="mt-2">
-                            <p class="text-[#FF6347] font-semibold text-xl">฿{{ order.price }}</p>
-                        </div>
-                        <div class="rounded-full border-[1px] justify-center items-center flex w-16">
-                            <p class="text-sm" :class="{
-                                'text-[#FF6347]': order.value === 'ซื้ออาหาร',
-                                'text-[#13C296]': order.value === 'ซื้อของ'
-                            }">
-                                {{ order.value }}
-                            </p>
-                        </div>
+            </div>
+
+            <div class="ml-2 sm:flex sm:justify-center">
+                <Search />
+            </div>
+
+            <div class=" mt-10 overflow-x-auto scrollbar-hide sm:flex sm:justify-center">
+                <div class="flex items-center gap-[8px] px-4 min-w-max">
+                    <button v-for="(item, index) in categories" :key="index" @click="toggleCategory(item)" :class="[
+                        'flex items-center justify-center px-4 h-[40px] rounded-[8px] whitespace-nowrap transition-colors font-prompt text-[14px] gap-1',
+                        selectedCategory === item
+                            ? 'bg-gradient-custom text-white'
+                            : 'hover:bg-gray-100 text-[#0D1217]'
+                    ]">
+                        <svg v-if="selectedCategory === item" width="11" height="10" viewBox="0 0 11 10" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M10.4107 0.779186C10.6707 1.00619 10.6975 1.40102 10.4705 1.66104L3.92289 9.16104C3.8042 9.297 3.63254 9.37501 3.45206 9.37501C3.27159 9.37501 3.09993 9.297 2.98124 9.16104L0.362194 6.16104C0.135185 5.90102 0.161952 5.50619 0.421981 5.27919C0.682009 5.05218 1.07683 5.07894 1.30384 5.33897L3.45206 7.79967L9.52886 0.838973C9.75587 0.578944 10.1507 0.552177 10.4107 0.779186Z"
+                                fill="white" />
+                        </svg>
+                        {{ item }}
+                    </button>
+                </div>
+            </div>
+
+            <div class="p-5 font-prompt sm:max-w-3xl gap-4 mx-auto sm:grid sm:grid-cols-2">
+                <div v-for="order in filteredOrders" :key="order.number"
+                    class="w-full flex rounded-2xl h-[120px] shadow-md mt-4">
+                    <div class="p-2 flex gap-1">
+                        <img :src="images[0]" alt="" class="rounded-md">
                     </div>
                     <div class="mt-2">
-                        <div class="rating">
-                            <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
-                            <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]"
-                                checked="checked" />
-                            <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
-                            <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
-                            <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
+                        <div class="flex">
+                            <p class="text-[14px]">รหัสคำสั่งซื้อ : </p>
+                            <p class="ml-3 text-[14px]">SP {{ order.number }}</p>
+                        </div>
+                        <div class="mt-2 flex justify-between w-[200px] sm:w-[230px]">
+                            <div class="mt-2">
+                                <p class="text-[#FF6347] font-semibold text-xl">฿{{ order.price }}</p>
+                            </div>
+                            <div class="rounded-full border-[1px] justify-center items-center flex w-16">
+                                <p class="text-sm" :class="{
+                                    'text-[#FF6347]': order.value === 'ซื้ออาหาร',
+                                    'text-[#13C296]': order.value === 'ซื้อของ'
+                                }">
+                                    {{ order.value }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <div class="rating">
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]"
+                                    checked="checked" />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </userLayoutsNoNav>
 </template>
 
 <style scoped>
 .font-prompt {
     font-family: 'Prompt';
+}
+
+.bg-gradient-custom {
+    background: linear-gradient(121.94deg, #FF6347 0%, #FF826C 100%);
+}
+
+.text-gradient-custom {
+    background: linear-gradient(121.94deg, #FF6347 0%, #FF826C 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .scrollbar-hide::-webkit-scrollbar {

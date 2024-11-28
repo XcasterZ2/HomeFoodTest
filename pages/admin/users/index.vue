@@ -90,7 +90,7 @@ const fetchUser = async () => {
     loading.value = false
   } catch (err) {
     console.error('แสดงข้อมูลผู้ใช้ไม่สำเร็จ:', err);
-    
+
   }
 };
 
@@ -105,10 +105,7 @@ const deleteUser = async (email) => {
     confirmButtonText: 'ลบ',
     cancelButtonText: 'ยกเลิก',
     customClass: {
-      title: 'font-prompt',
-      content: 'font-prompt',
-      confirmButton: 'font-prompt',
-      cancelButton: 'font-prompt',
+      container: 'font-prompt',
     }
   });
 
@@ -123,6 +120,9 @@ const deleteUser = async (email) => {
         title: 'ลบสำเร็จ!',
         text: 'ผู้ใช้ได้ถูกลบเรียบร้อยแล้ว',
         icon: 'success',
+        customClass: {
+          container: 'font-prompt',
+        }
       });
     } catch (err) {
       console.error('Error deleting user:', err);
@@ -130,6 +130,9 @@ const deleteUser = async (email) => {
         title: 'เกิดข้อผิดพลาด!',
         text: 'ไม่สามารถลบผู้ใช้ได้',
         icon: 'error',
+        customClass: {
+          container: 'font-prompt',
+        }
       });
     }
   }
@@ -138,6 +141,10 @@ const deleteUser = async (email) => {
 const editUser = (id) => {
   router.push(`/admin/users/edit/${id}`);
 };
+
+definePageMeta({
+  middleware: 'auth',
+});
 
 onMounted(async () => {
   await fetchUser()

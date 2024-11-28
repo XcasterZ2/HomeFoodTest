@@ -145,8 +145,8 @@ onMounted(() => {
         <!-- Navigation Dots -->
         <div class="flex justify-center space-x-2 mt-4">
             <button v-for="(_, index) in promotions" :key="index" @click="currentIndex = index"
-                class="w-2 h-2 rounded-full transition-colors duration-200 bg-slate-500"
-                :class="index === currentIndex ? 'bg-primary-600' : 'bg-gray-300'"></button>
+                class="w-2 h-2 rounded-full transition-colors duration-200 bg-slate-600"
+                :class="index === currentIndex ? 'bg-primary-600' : 'bg-slate-300'"></button>
         </div>
     </div>
 </template>

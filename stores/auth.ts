@@ -70,7 +70,6 @@ export const useAuthStore = defineStore('auth', () => {
 
   const isAdmin = computed(() => user.value?.role === 'admin');
 
-  // Ensure the code runs on the client side after the component is mounted
   onMounted(() => {
     initializeAuth();
   });

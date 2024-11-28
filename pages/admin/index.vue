@@ -70,6 +70,10 @@ const fetchRestaurant = async () => {
     }
 };
 
+definePageMeta({
+  middleware: 'auth',
+});
+
 onMounted(async () => {
   await fetchUser()
   await fetchRestaurant()

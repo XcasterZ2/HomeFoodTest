@@ -27,7 +27,7 @@ authStore.initializeAuth()
         </RouterLink>
 
 
-        <button
+        <RouterLink to="/orderlist"
             class="w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center hover:bg-[linear-gradient(121.94deg,_#FF6347_0%,_#FF826C_100%)] transition-all duration-300 group hover:-translate-y-1">
             <svg class="w-6 h-6 group-hover:hidden" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -45,7 +45,7 @@ authStore.initializeAuth()
                     fill="white" />
             </svg>
 
-        </button>
+        </RouterLink>
 
         <button
             class="w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center hover:bg-[linear-gradient(121.94deg,_#FF6347_0%,_#FF826C_100%)] transition-all duration-300 group hover:-translate-y-1">

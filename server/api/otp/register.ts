@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
     });
 
     if (existingUser) {
-      return { code: '400', detail: 'Email already exists' };
+      return { code: '400', detail: 'มีอีเมลอยู่แล้ว' };
     }
 
     const newUser = await prisma.user.create({
@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
 
     return newUser;
   } catch (error) {
-    console.error('Error registering user:', error);
-    return { code: '500', detail: 'Internal Server Error' };
+    console.error('เกิดข้อผิดพลาดในการลงทะเบียนผู้ใช้:', error);
+    return { code: '500', detail: 'ข้อผิดพลาดเซิร์ฟเวอร์ภายใน' };
   }
 });

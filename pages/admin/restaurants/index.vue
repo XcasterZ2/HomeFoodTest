@@ -17,6 +17,9 @@
                                 <p class="text-center">ลำดับ</p>
                             </th>
                             <th>
+                                <p class="text-center">รูปร้าน</p>
+                            </th>
+                            <th>
                                 <p class="text-center">ชื่อร้าน</p>
                             </th>
                             <th>
@@ -38,7 +41,8 @@
                             </td>
                             <td>
                                 <div class="flex justify-center">
-                                    <img src="/restuarant/9c80947e0408d3d81f78f309e848d61e.png" alt="restaurant" class="w-24 h-24 rounded-md">
+                                    <img src="/restuarant/9c80947e0408d3d81f78f309e848d61e.png" alt="restaurant"
+                                        class="w-24 h-24 rounded-md">
                                 </div>
                             </td>
                             <td>
@@ -109,11 +113,7 @@ const deleteRestaurant = async (id) => {
             confirmButtonText: 'ลบ',
             cancelButtonText: 'ยกเลิก',
             customClass: {
-                title: 'font-prompt',
-                content: 'font-prompt',
-                confirmButton: 'font-prompt',
-                cancelButton: 'font-prompt',
-                text: 'font-prompt',
+                container: 'font-prompt',
             }
         });
         if (isConfirmed) {
@@ -132,9 +132,15 @@ const deleteRestaurant = async (id) => {
         Swal.fire('ลบไม่สำเร็จ!', 'เกิดข้อผิดพลาด', 'error');
     }
 };
+
 const editUser = (id) => {
     router.push(`/admin/restaurants/edit/${id}`);
 };
+
+definePageMeta({
+    middleware: 'auth',
+});
+
 onMounted(async () => {
     await fetchRestaurant()
     console.log('user: ', restaurants.value)
