@@ -38,50 +38,56 @@
     <div v-if="activeTab === 'businessCard' || activeTab === 'all'" class="p-3 font-prompt">
       <p class="text-[18px]">นามบัตรของฉัน</p>
 
-      <div v-if="!isLoading" class="flex justify-center items-center w-full mt-5">
+      <div v-if="isLoading" class="flex justify-center items-center w-full mt-5">
         <span class="loading loading-spinner loading-xl text-orange-500"></span>
         <h2 class="mt-2 mx-2 text-base font-light">Loading...</h2>
       </div>
-      <div v-else v-for="restaurant in restaurants" :key="restaurant.name"
-        class="mt-2 bg-[#FFEFED] p-2 rounded-lg h-[180px] shadow-md">
-        <div class="flex gap-5">
-          <profilePage />
-          <div class="flex flex-col">
-            <p class="text-[16px]">{{ restaurant.name }}</p>
-            <p class="text-[14px] text-[#6D6C69]">ตำแหน่ง เจ้าของร้าน</p>
-          </div>
+      <div v-else>
+        <div v-if="restaurants.length === 0" class="flex justify-center items-center w-full mt-5">
+          <h2 class="text-base font-light text-gray-500">ไม่มีนามบัตร</h2>
         </div>
-
-        <div class="border-[1px] border-[#BABDC1] mt-4"></div>
-
-        <div class="flex">
-          <div>
-            <div class="mt-2 flex gap-3">
-              <Call />
-              <p class="text-[14px]">{{ restaurant.phoneNumber }}</p>
-            </div>
-
-            <div class="mt-2 flex gap-3">
-              <MessageWhite />
-              <p class="text-[14px]">{{ restaurant.email }}</p>
-            </div>
-
-            <div class="mt-2 flex gap-3">
-              <MapWhite />
-              <p class="text-[14px]">{{ restaurant.location }}</p>
+        <div v-else v-for="restaurant in restaurants" :key="restaurant.name"
+          class="mt-2 bg-[#FFEFED] p-2 rounded-lg h-[180px] shadow-md">
+          <div class="flex gap-5">
+            <profilePage />
+            <div class="flex flex-col">
+              <p class="text-[16px]">{{ restaurant.name }}</p>
+              <p class="text-[14px] text-[#6D6C69]">ตำแหน่ง เจ้าของร้าน</p>
             </div>
           </div>
 
-          <div class="flex justify-end w-full items-end">
-            <div class="avatar">
-              <div class="w-20 rounded-full">
-                <img src="/photo-user.png" alt="">
+          <div class="border-[1px] border-[#BABDC1] mt-4"></div>
+
+          <div class="flex">
+            <div>
+              <div class="mt-2 flex gap-3">
+                <Call />
+                <p class="text-[14px]">{{ restaurant.phoneNumber }}</p>
+              </div>
+
+              <div class="mt-2 flex gap-3">
+                <MessageWhite />
+                <p class="text-[14px]">{{ restaurant.email }}</p>
+              </div>
+
+              <div class="mt-2 flex gap-3">
+                <MapWhite />
+                <p class="text-[14px]">{{ restaurant.location }}</p>
+              </div>
+            </div>
+
+            <div class="flex justify-end w-full items-end">
+              <div class="avatar">
+                <div class="w-20 rounded-full">
+                  <img src="/photo-user.png" alt="">
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
 
     <!-- Tickets/Coupons Section -->
     <div v-if="activeTab === 'tickets' || activeTab === 'all'" class="p-3 font-prompt">

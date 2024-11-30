@@ -1,14 +1,15 @@
 <template>
-            <div class="flex flex-col items-center justify-center h-screen w-full ">
-                <div class="absolute top-[78px] flex items-center justify-between w-[288px] h-[42px]">
-                <button
-                    class="flex items-center justify-center  w-[42px] h-[42px] radius-[22px] gap-[10px] shadow-[0px_4px_12px_0px_#0D0A2C0F]">
+    <userLayoutsNoNav>
+        <div class="flex flex-col items-center justify-center h-screen w-full max-w-4xl mx-auto">
+            <div class="absolute top-[78px] flex items-center justify-between w-[288px] h-[42px]">
+                <RouterLink to="/"
+                    class="flex items-center justify-center  w-[42px] h-[42px] rounded-full gap-[10px] shadow-[0px_4px_12px_0px_#0D0A2C0F]">
                     <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M11.408 5.92548C11.7253 6.24278 11.7253 6.75722 11.408 7.07452L6.29504 12.1875H21.6668C22.1156 12.1875 22.4793 12.5513 22.4793 13C22.4793 13.4487 22.1156 13.8125 21.6668 13.8125H6.29504L11.408 18.9255C11.7253 19.2428 11.7253 19.7572 11.408 20.0745C11.0907 20.3918 10.5763 20.3918 10.259 20.0745L3.75897 13.5745C3.44167 13.2572 3.44167 12.7428 3.75897 12.4255L10.259 5.92548C10.5763 5.60817 11.0907 5.60817 11.408 5.92548Z"
                             fill="#0D1217" />
                     </svg>
-                </button> 
+                </RouterLink>
                 <div
                     class="flex items-center justify-center w-[125px] h-[33px] text-[22px] leading-[33.26px] font-prompt text-[#0D1217]">
                     การแจ้งเตือน
@@ -26,13 +27,9 @@
                                 fill="#BABDC1" />
                         </svg>
                     </div>
-                    <input 
-                        type="text"
-                        v-model="searchQuery"
-                        @input="handleSearch"
+                    <input type="text" v-model="searchQuery" @input="handleSearch"
                         class="flex items-center justify-center bg-[#1F2A370D] h-[24px] w-[185px] opacity-30 font-prompt text-[16px] leading-[24.19px] text-[#0D1217]"
-                        placeholder="ค้นหา..."
-                    >
+                        placeholder="ค้นหา...">
 
                     <div class="flex items-center justify-center w-[24px] h-[24px] rounded-[5px]">
                         <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,7 +58,8 @@
                     วันนี้
                 </span>
                 <button class=" flex justify-between w-[288px] h-[72px] gap-[16px]">
-                    <div class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#FFF9E6] aspect-square">
+                    <div
+                        class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#FFF9E6] aspect-square">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
                                 d="M8.32926 3.33301H11.6709C14.8214 3.33301 16.3967 3.33301 17.3754 4.30932C18.0493 4.98153 18.2592 5.93584 18.3246 7.4909C18.3376 7.79929 18.344 7.95349 18.2865 8.05636C18.2289 8.15924 17.999 8.28762 17.5392 8.54439C17.0285 8.82955 16.6834 9.3744 16.6834 9.99967C16.6834 10.6249 17.0285 11.1698 17.5392 11.455C17.999 11.7117 18.2289 11.8401 18.2865 11.943C18.344 12.0459 18.3376 12.2001 18.3246 12.5084C18.2592 14.0635 18.0493 15.0178 17.3754 15.69C16.3967 16.6663 14.8214 16.6663 11.6709 16.6663H8.32926C5.17874 16.6663 3.60347 16.6663 2.62473 15.69C1.95084 15.0178 1.74094 14.0635 1.67556 12.5084C1.6626 12.2001 1.65611 12.0459 1.7137 11.943C1.77129 11.8401 2.00119 11.7117 2.46098 11.455C2.97163 11.1698 3.31681 10.6249 3.31681 9.99967C3.31681 9.3744 2.97163 8.82955 2.46098 8.54439C2.00119 8.28762 1.77129 8.15924 1.7137 8.05636C1.65611 7.95349 1.6626 7.79929 1.67556 7.4909C1.74094 5.93584 1.95084 4.98153 2.62473 4.30932C3.60347 3.33301 5.17874 3.33301 8.32926 3.33301ZM12.9566 7.05773C13.2013 7.30181 13.2013 7.69754 12.9566 7.94162L7.94415 12.9416C7.69947 13.1857 7.30275 13.1857 7.05807 12.9416C6.81338 12.6975 6.81338 12.3018 7.05807 12.0577L12.0705 7.05773C12.3152 6.81365 12.7119 6.81365 12.9566 7.05773ZM12.0959 12.9163C12.5572 12.9163 12.9313 12.5432 12.9313 12.083C12.9313 11.6228 12.5572 11.2497 12.0959 11.2497C11.6345 11.2497 11.2605 11.6228 11.2605 12.083C11.2605 12.5432 11.6345 12.9163 12.0959 12.9163ZM7.91882 8.74967C8.3802 8.74967 8.75423 8.37658 8.75423 7.91634C8.75423 7.4561 8.3802 7.08301 7.91882 7.08301C7.45743 7.08301 7.08341 7.4561 7.08341 7.91634C7.08341 8.37658 7.45743 8.74967 7.91882 8.74967Z"
@@ -69,19 +67,23 @@
                         </svg>
                     </div>
                     <div class="flex flex-col w-[288px] h-[72px]">
-                        <div class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
+                        <div
+                            class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
                             รับโค๊ดส่วนลด 20%
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
                             รับโค้ดส่วนลดจากการแบ่งปันกับเพื่อน
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
                             12.20 10/05/2024
                         </div>
                     </div>
                 </button>
                 <button class=" flex justify-between w-[288px] h-[72px] gap-[16px]">
-                    <div class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#FFF9E6] aspect-square">
+                    <div
+                        class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#FFF9E6] aspect-square">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
                                 d="M8.32926 3.33301H11.6709C14.8214 3.33301 16.3967 3.33301 17.3754 4.30932C18.0493 4.98153 18.2592 5.93584 18.3246 7.4909C18.3376 7.79929 18.344 7.95349 18.2865 8.05636C18.2289 8.15924 17.999 8.28762 17.5392 8.54439C17.0285 8.82955 16.6834 9.3744 16.6834 9.99967C16.6834 10.6249 17.0285 11.1698 17.5392 11.455C17.999 11.7117 18.2289 11.8401 18.2865 11.943C18.344 12.0459 18.3376 12.2001 18.3246 12.5084C18.2592 14.0635 18.0493 15.0178 17.3754 15.69C16.3967 16.6663 14.8214 16.6663 11.6709 16.6663H8.32926C5.17874 16.6663 3.60347 16.6663 2.62473 15.69C1.95084 15.0178 1.74094 14.0635 1.67556 12.5084C1.6626 12.2001 1.65611 12.0459 1.7137 11.943C1.77129 11.8401 2.00119 11.7117 2.46098 11.455C2.97163 11.1698 3.31681 10.6249 3.31681 9.99967C3.31681 9.3744 2.97163 8.82955 2.46098 8.54439C2.00119 8.28762 1.77129 8.15924 1.7137 8.05636C1.65611 7.95349 1.6626 7.79929 1.67556 7.4909C1.74094 5.93584 1.95084 4.98153 2.62473 4.30932C3.60347 3.33301 5.17874 3.33301 8.32926 3.33301ZM12.9566 7.05773C13.2013 7.30181 13.2013 7.69754 12.9566 7.94162L7.94415 12.9416C7.69947 13.1857 7.30275 13.1857 7.05807 12.9416C6.81338 12.6975 6.81338 12.3018 7.05807 12.0577L12.0705 7.05773C12.3152 6.81365 12.7119 6.81365 12.9566 7.05773ZM12.0959 12.9163C12.5572 12.9163 12.9313 12.5432 12.9313 12.083C12.9313 11.6228 12.5572 11.2497 12.0959 11.2497C11.6345 11.2497 11.2605 11.6228 11.2605 12.083C11.2605 12.5432 11.6345 12.9163 12.0959 12.9163ZM7.91882 8.74967C8.3802 8.74967 8.75423 8.37658 8.75423 7.91634C8.75423 7.4561 8.3802 7.08301 7.91882 7.08301C7.45743 7.08301 7.08341 7.4561 7.08341 7.91634C7.08341 8.37658 7.45743 8.74967 7.91882 8.74967Z"
@@ -89,19 +91,23 @@
                         </svg>
                     </div>
                     <div class="flex flex-col w-[288px] h-[72px]">
-                        <div class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
+                        <div
+                            class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
                             รับโค๊ดส่วนลด 10%
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
                             โค้ดส่วนลดวันหยุด
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
                             11.10 10/05/2024
                         </div>
                     </div>
                 </button>
                 <button class=" flex justify-between w-[288px] h-[72px] gap-[16px]">
-                    <div class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#E7F9F5] aspect-square">
+                    <div
+                        class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#E7F9F5] aspect-square">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
                                 d="M18.3334 10.0003C18.3334 14.6027 14.6025 18.3337 10.0001 18.3337C5.39771 18.3337 1.66675 14.6027 1.66675 10.0003C1.66675 5.39795 5.39771 1.66699 10.0001 1.66699C14.6025 1.66699 18.3334 5.39795 18.3334 10.0003ZM13.3587 7.47505C13.6028 7.71913 13.6028 8.11486 13.3587 8.35893L9.19202 12.5256C8.94795 12.7697 8.55222 12.7697 8.30814 12.5256L6.64147 10.8589C6.3974 10.6149 6.3974 10.2191 6.64147 9.97505C6.88555 9.73097 7.28128 9.73097 7.52536 9.97505L8.75008 11.1998L10.6124 9.33741L12.4748 7.47505C12.7189 7.23097 13.1146 7.23097 13.3587 7.47505Z"
@@ -109,19 +115,23 @@
                         </svg>
                     </div>
                     <div class="flex flex-col w-[288px] h-[72px]">
-                        <div class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
+                        <div
+                            class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
                             ได้รับคำสั่งซื้อแล้ว
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
                             คำสั่งซื้อ #SP 0023900 ได้รับการจัดส่ง...
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
                             10:15 10/05/2024
                         </div>
                     </div>
                 </button>
                 <button class=" flex justify-between w-[288px] h-[72px] gap-[16px]">
-                    <div class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#E7F9F5] aspect-square">
+                    <div
+                        class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#E7F9F5] aspect-square">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M11.5537 4.81979C11.2923 4.79276 10.954 4.79199 10.44 4.79199H10.0001C9.65492 4.79199 9.37509 4.51217 9.37509 4.16699C9.37509 3.82182 9.65492 3.54199 10.0001 3.54199H10.4707H10.4707C10.9457 3.54198 11.349 3.54196 11.6822 3.57642C12.0371 3.61311 12.365 3.69278 12.6748 3.88425C12.9846 4.07573 13.2026 4.33341 13.3941 4.63439C13.5629 4.89976 13.7322 5.23391 13.928 5.62533L14.8903 5.62533C15.1268 5.62531 15.344 5.62529 15.525 5.64155C15.7205 5.65912 15.9337 5.69947 16.14 5.81732C16.3663 5.94656 16.5539 6.1341 16.6831 6.3604C16.8009 6.56673 16.8413 6.7799 16.8589 6.97547C16.8751 7.15643 16.8751 7.3736 16.8751 7.61011V7.61014V7.63426L16.8752 7.68804C16.8757 7.90451 16.8762 8.13628 16.8059 8.35625C16.7589 8.50359 16.6887 8.64251 16.598 8.76779C16.4625 8.95482 16.2756 9.09186 16.101 9.21985L16.0577 9.25168L15.8264 9.42207L16.2323 10.2339C17.7698 10.4298 18.9584 11.7429 18.9584 13.3337C18.9584 15.0596 17.5593 16.4587 15.8334 16.4587C14.3216 16.4587 13.0605 15.3851 12.7709 13.9587H8.47925C8.18971 15.3851 6.92861 16.4587 5.41676 16.4587C3.90228 16.4587 2.63943 15.3813 2.35277 13.9512C1.65318 13.8804 1.10167 13.3189 1.04626 12.6147C1.04168 12.5566 1.04172 12.4937 1.04175 12.433L1.04176 12.417L1.04176 12.3853C1.04174 12.106 1.04173 11.9285 1.05396 11.7731C1.20673 9.83202 2.74845 8.29029 4.68953 8.13753C4.84493 8.1253 5.02247 8.12531 5.30167 8.12533L5.33343 8.12533L5.87676 8.12533H5.87676C6.62549 8.1253 7.24984 8.12528 7.74549 8.19192C8.26866 8.26226 8.74099 8.41698 9.12055 8.79654C9.5001 9.1761 9.65483 9.64843 9.72517 10.1716C9.79181 10.6672 9.79179 11.2916 9.79176 12.0403L9.79176 12.7087H12.7709C12.9978 11.5911 13.821 10.6901 14.894 10.3523L12.8624 6.28912C12.6325 5.82938 12.4805 5.52716 12.3395 5.30543C12.2061 5.09591 12.1106 5.00501 12.0177 4.94757C11.9247 4.89012 11.8007 4.84533 11.5537 4.81979Z"
@@ -129,19 +139,23 @@
                         </svg>
                     </div>
                     <div class="flex flex-col w-[288px] h-[72px]">
-                        <div class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
+                        <div
+                            class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
                             สั่งซื้อทางนี้
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
                             พนักงานส่งของของคุณกำลังเดินทางไป...
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
                             10:10 10/05/2024
                         </div>
                     </div>
                 </button>
                 <button class=" flex justify-between w-[288px] h-[72px] gap-[16px]">
-                    <div class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#E7F9F5] aspect-square">
+                    <div
+                        class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#E7F9F5] aspect-square">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M3.14818 3.04602C2.99731 3.34677 2.92311 3.71777 2.77471 4.45976L2.27645 6.9511C1.96095 8.52857 3.1675 10.0003 4.77621 10.0003C6.0859 10.0003 7.18251 9.00791 7.31283 7.70472L7.37034 7.12962C7.23443 8.67016 8.44869 10.0003 9.99975 10.0003C11.5614 10.0003 12.7816 8.652 12.6262 7.09813L12.687 7.70472C12.8173 9.00791 13.914 10.0003 15.2236 10.0003C16.8323 10.0003 18.0389 8.52857 17.7234 6.9511L17.2251 4.45976C17.0767 3.71778 17.0025 3.34677 16.8517 3.04602C16.5338 2.41232 15.9618 1.94339 15.278 1.75595C14.9535 1.66699 14.5752 1.66699 13.8185 1.66699H12.0831H6.18134C5.42466 1.66699 5.04631 1.66699 4.72182 1.75595C4.03808 1.94339 3.46607 2.41232 3.14818 3.04602Z"
@@ -152,19 +166,23 @@
                         </svg>
                     </div>
                     <div class="flex flex-col w-[288px] h-[72px]">
-                        <div class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
+                        <div
+                            class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
                             คำสั่งซื้อของคุณได้รับการยืนยัน
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
                             หมายเลขคำสั่งซื้อของคุณ #SP 0023900...
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
                             09:59 10/05/2024
                         </div>
                     </div>
                 </button>
                 <button class=" flex justify-between w-[288px] h-[72px] gap-[16px]">
-                    <div class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#E7F9F5] aspect-square">
+                    <div
+                        class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#E7F9F5] aspect-square">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M3.14818 3.04602C2.99731 3.34677 2.92311 3.71777 2.77471 4.45976L2.27645 6.9511C1.96095 8.52857 3.1675 10.0003 4.77621 10.0003C6.0859 10.0003 7.18251 9.00791 7.31283 7.70472L7.37034 7.12962C7.23443 8.67016 8.44869 10.0003 9.99975 10.0003C11.5614 10.0003 12.7816 8.652 12.6262 7.09813L12.687 7.70472C12.8173 9.00791 13.914 10.0003 15.2236 10.0003C16.8323 10.0003 18.0389 8.52857 17.7234 6.9511L17.2251 4.45976C17.0767 3.71778 17.0025 3.34677 16.8517 3.04602C16.5338 2.41232 15.9618 1.94339 15.278 1.75595C14.9535 1.66699 14.5752 1.66699 13.8185 1.66699H12.0831H6.18134C5.42466 1.66699 5.04631 1.66699 4.72182 1.75595C4.03808 1.94339 3.46607 2.41232 3.14818 3.04602Z"
@@ -175,13 +193,16 @@
                         </svg>
                     </div>
                     <div class="flex flex-col w-[288px] h-[72px]">
-                        <div class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
+                        <div
+                            class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
                             สั่งซื้อสำเร็จแล้ว
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
                             คำสั่งซื้อ #SP 0023900 ได้รับการดำเนินกา...
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
                             09:56 10/05/2024
                         </div>
                     </div>
@@ -190,7 +211,8 @@
                     เมื่อวาน
                 </span>
                 <button class=" flex justify-between w-[288px] h-[72px] gap-[16px]">
-                    <div class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#FFEFED] aspect-square">
+                    <div
+                        class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#FFEFED] aspect-square">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
                                 d="M18.3334 10.0003C18.3334 14.6027 14.6025 18.3337 10.0001 18.3337C5.39771 18.3337 1.66675 14.6027 1.66675 10.0003C1.66675 5.39795 5.39771 1.66699 10.0001 1.66699C14.6025 1.66699 18.3334 5.39795 18.3334 10.0003ZM7.47477 7.47503C7.71885 7.23096 8.11458 7.23096 8.35865 7.47503L10.0001 9.11643L11.6414 7.47505C11.8855 7.23097 12.2812 7.23097 12.5253 7.47505C12.7694 7.71913 12.7694 8.11486 12.5253 8.35893L10.8839 10.0003L12.5253 11.6417C12.7694 11.8858 12.7694 12.2815 12.5253 12.5256C12.2812 12.7696 11.8855 12.7696 11.6414 12.5256L10.0001 10.8842L8.35867 12.5256C8.11459 12.7697 7.71887 12.7697 7.47479 12.5256C7.23071 12.2815 7.23071 11.8858 7.47479 11.6417L9.11617 10.0003L7.47477 8.35892C7.23069 8.11484 7.23069 7.71911 7.47477 7.47503Z"
@@ -198,19 +220,23 @@
                         </svg>
                     </div>
                     <div class="flex flex-col w-[288px] h-[72px]">
-                        <div class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
+                        <div
+                            class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
                             ยกเลิกคำสั่งซื้อ
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
                             คำสั่งซื้อ #SP 0023450 ถูกยกเลิกแล้ว
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
                             22:40 09/05/2024
                         </div>
                     </div>
                 </button>
                 <button class=" flex justify-between w-[288px] h-[72px] gap-[16px]">
-                    <div class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#E7F9F5] aspect-square">
+                    <div
+                        class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#E7F9F5] aspect-square">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
                                 d="M18.3334 10.0003C18.3334 14.6027 14.6025 18.3337 10.0001 18.3337C5.39771 18.3337 1.66675 14.6027 1.66675 10.0003C1.66675 5.39795 5.39771 1.66699 10.0001 1.66699C14.6025 1.66699 18.3334 5.39795 18.3334 10.0003ZM12.5001 7.50033C12.5001 8.88104 11.3808 10.0003 10.0001 10.0003C8.61937 10.0003 7.50008 8.88104 7.50008 7.50033C7.50008 6.11961 8.61937 5.00033 10.0001 5.00033C11.3808 5.00033 12.5001 6.11961 12.5001 7.50033ZM10.0001 17.0837C11.4868 17.0837 12.8665 16.6256 14.0058 15.843C14.5091 15.4973 14.7241 14.8389 14.4316 14.303C13.825 13.1922 12.5753 12.5003 10 12.5003C7.42482 12.5003 6.17505 13.1922 5.56853 14.303C5.27595 14.8388 5.491 15.4973 5.99421 15.8429C7.13357 16.6256 8.51333 17.0837 10.0001 17.0837Z"
@@ -218,19 +244,23 @@
                         </svg>
                     </div>
                     <div class="flex flex-col w-[288px] h-[72px]">
-                        <div class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
+                        <div
+                            class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
                             การตั้งค่าบัญชีสำเร็จแล้ว
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
                             ขอแสดงความยินดี! การตั้งค่าบัญชีของคุณ...
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
                             20:15 09/05/2024
                         </div>
                     </div>
                 </button>
                 <button class=" flex justify-between w-[288px] h-[72px] gap-[16px]">
-                    <div class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#E7F9F5] aspect-square">
+                    <div
+                        class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#E7F9F5] aspect-square">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M11.6667 3.33301H8.33341C5.19072 3.33301 3.61937 3.33301 2.64306 4.30932C1.94011 5.01227 1.74329 6.02369 1.68818 7.70801H18.312C18.2569 6.02369 18.0601 5.01227 17.3571 4.30932C16.3808 3.33301 14.8094 3.33301 11.6667 3.33301Z"
@@ -247,19 +277,23 @@
                         </svg>
                     </div>
                     <div class="flex flex-col w-[288px] h-[72px]">
-                        <div class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
+                        <div
+                            class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
                             เชื่อมต่อบัตรเครดิต
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
                             ขอแสดงความยินดี! ได้เพิ่มบัตรเครดิตของคุณ
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
                             20:20 09/05/2024
                         </div>
                     </div>
                 </button>
                 <button class=" flex justify-between w-[288px] h-[72px] gap-[16px]">
-                    <div class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#FFF9E6] aspect-square">
+                    <div
+                        class="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#FFF9E6] aspect-square">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
                                 d="M8.32926 3.33301H11.6709C14.8214 3.33301 16.3967 3.33301 17.3754 4.30932C18.0493 4.98153 18.2592 5.93584 18.3246 7.4909C18.3376 7.79929 18.344 7.95349 18.2865 8.05636C18.2289 8.15924 17.999 8.28762 17.5392 8.54439C17.0285 8.82955 16.6834 9.3744 16.6834 9.99967C16.6834 10.6249 17.0285 11.1698 17.5392 11.455C17.999 11.7117 18.2289 11.8401 18.2865 11.943C18.344 12.0459 18.3376 12.2001 18.3246 12.5084C18.2592 14.0635 18.0493 15.0178 17.3754 15.69C16.3967 16.6663 14.8214 16.6663 11.6709 16.6663H8.32926C5.17874 16.6663 3.60347 16.6663 2.62473 15.69C1.95084 15.0178 1.74094 14.0635 1.67556 12.5084C1.6626 12.2001 1.65611 12.0459 1.7137 11.943C1.77129 11.8401 2.00119 11.7117 2.46098 11.455C2.97163 11.1698 3.31681 10.6249 3.31681 9.99967C3.31681 9.3744 2.97163 8.82955 2.46098 8.54439C2.00119 8.28762 1.77129 8.15924 1.7137 8.05636C1.65611 7.95349 1.6626 7.79929 1.67556 7.4909C1.74094 5.93584 1.95084 4.98153 2.62473 4.30932C3.60347 3.33301 5.17874 3.33301 8.32926 3.33301ZM12.9566 7.05773C13.2013 7.30181 13.2013 7.69754 12.9566 7.94162L7.94415 12.9416C7.69947 13.1857 7.30275 13.1857 7.05807 12.9416C6.81338 12.6975 6.81338 12.3018 7.05807 12.0577L12.0705 7.05773C12.3152 6.81365 12.7119 6.81365 12.9566 7.05773ZM12.0959 12.9163C12.5572 12.9163 12.9313 12.5432 12.9313 12.083C12.9313 11.6228 12.5572 11.2497 12.0959 11.2497C11.6345 11.2497 11.2605 11.6228 11.2605 12.083C11.2605 12.5432 11.6345 12.9163 12.0959 12.9163ZM7.91882 8.74967C8.3802 8.74967 8.75423 8.37658 8.75423 7.91634C8.75423 7.4561 8.3802 7.08301 7.91882 7.08301C7.45743 7.08301 7.08341 7.4561 7.08341 7.91634C7.08341 8.37658 7.45743 8.74967 7.91882 8.74967Z"
@@ -267,13 +301,16 @@
                         </svg>
                     </div>
                     <div class="flex flex-col w-[288px] h-[72px]">
-                        <div class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
+                        <div
+                            class="font-prompt text-[16px] leading-[24.19px] text-[#0D1217] w-[232px] h-[24px] text-left">
                             รับโค้ดส่วนลด 5%
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#0D1217] w-[232px] h-[18px] text-left">
                             โค้ดส่วนลดสำหรับผู้ใช้ใหม่
                         </div>
-                        <div class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
+                        <div
+                            class="font-prompt text-[12px] leading-[18.14px] text-[#4C555F] w-[232px] h-[18px] text-right">
                             11:10 10/05/2024
                         </div>
                     </div>
@@ -283,18 +320,20 @@
             </div>
             <Menu class="fixed bottom-5 left-0 right-0 z-50" />
         </div>
+    </userLayoutsNoNav>
 </template>
 
 <script setup>
 import Menu from '~/components/user/Menu';
 import { ref } from 'vue';
+import userLayoutsNoNav from '~/layouts/userLayoutsNoNav.vue';
 
 const searchQuery = ref('');
 
 const handleSearch = () => {
-  // ตรวจสอบค่าที่ผู้ใช้พิมพ์
-  console.log('Searching for:', searchQuery.value);
-  // TODO: เพิ่มตรรกะการค้นหาตามที่ต้องการ
+    // ตรวจสอบค่าที่ผู้ใช้พิมพ์
+    console.log('Searching for:', searchQuery.value);
+    // TODO: เพิ่มตรรกะการค้นหาตามที่ต้องการ
 };
 </script>
 
@@ -302,6 +341,7 @@ const handleSearch = () => {
 .font-prompt {
     font-family: 'Prompt';
 }
+
 .bg-gradient-custom {
     background: linear-gradient(121.94deg, #FF6347 0%, #FF826C 100%);
 }
@@ -312,5 +352,4 @@ const handleSearch = () => {
     background-clip: text;
     color: transparent;
 }
-
 </style>
