@@ -14,7 +14,11 @@
     </div>
   </div>
 
-  <div class="p-5 font-prompt sm:max-w-4xl sm:mx-auto">
+  <div v-if="!isLoading" class="flex justify-center items-center w-full">
+    <span class="loading loading-spinner loading-xl text-orange-500"></span>
+    <h2 class="mt-2 mx-2 text-base font-semibold">Loading...</h2>
+  </div>
+  <div v-else class="p-5 font-prompt sm:max-w-4xl sm:mx-auto">
     <div class="grid sm:grid-cols-4 grid-cols-2 gap-4">
       <div v-for="menu in menus" :key="menu.name" class=" shadow-md mb-5 p-4 rounded-2xl">
         <div v-if="menu.image && JSON.parse(menu.image).length > 0">
@@ -40,15 +44,19 @@
 
 <script setup>
 
+const isLoading = ref(false)
+
 const menus = ref([])
 const fetchMenu = async () => {
   try {
     const response = await fetch('/api/menu', {
       method: 'GET',
-    });
-    if (!response.ok) throw new Error('แสดงข้อมูลเมนูไม่สำเร็จ');
-    const data = await response.json();
-    menus.value = data.filter(menu => menu.category === 'กาแฟ');
+    })
+    if (!response.ok) throw new Error('แสดงข้อมูลเมนูไม่สำเร็จ')
+    const data = await response.json()
+    menus.value = data.filter(menu => menu.category === 'กาแฟ')
+
+    isLoading.value = true
   } catch (err) {
     console.error('แสดงข้อมูลเมนูไม่สำเร็จ:', err);
   }

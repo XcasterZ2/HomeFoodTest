@@ -46,8 +46,7 @@ onMounted(async () => {
 </script>
 
 <template>
-    <div class="grid sm:grid-cols-3 md:grid-cols-5 grid-cols-2 gap-4 p-4 mt-1 font-prompt">
-
+    <div class="grid sm:grid-cols-3 md:grid-cols-5 md:gap-y-3 grid-cols-2 gap-4 p-4 mt-1 font-prompt">
         <div v-for="shop in restaurants" :key="shop.name" @click="navigateToRestaurant(shop.restaurant_Id)"
             class="sm:w-[220px] sm:h-[260px] w-[160px] h-[205px] bg-white rounded-lg shadow-lg overflow-hidden relative cursor-pointer">
             <div class="w-[26px] h-[26px] bg-white rounded-full absolute right-5 top-5 flex justify-center items-center ">

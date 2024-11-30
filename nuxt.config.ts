@@ -35,6 +35,8 @@ export default defineNuxtConfig({
       lineRedirectUri: process.env.NUXT_LINE_REDIRECT_URI,
       facebookAppId: process.env.NUXT_FACEBOOK_APP_ID,
       facebookRedirectUri: process.env.NUXT_FACEBOOK_REDIRECT_URI,
+      nostraApiKey: process.env.NOSTRA_API_KEY,
+      nostraApiReferer: process.env.NOSTRA_API_REFERER,
     }
   }
 })

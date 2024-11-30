@@ -1,5 +1,20 @@
 <script setup>
+function createRipple(event) {
+    const button = event.currentTarget;
 
+    const ripple = document.createElement("span");
+    const rect = button.getBoundingClientRect();
+
+    ripple.style.left = `${event.clientX - rect.left}px`;
+    ripple.style.top = `${event.clientY - rect.top}px`;
+    ripple.className = "ripple";
+
+    button.appendChild(ripple);
+
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
+}
 </script>
 
 <template>
@@ -33,7 +48,8 @@
             </div>
 
             <div class="flex-1 flex gap-3 justify-end mt-2 sm:absolute sm:top-10 sm:right-[210px]">
-                <RouterLink to="/cart" class="w-[42px] h-[42px] bg-[#FF96843D] rounded-full flex justify-center items-center">
+                <RouterLink to="/cart" @click="createRipple"
+                    class="effect-btn w-[42px] h-[42px] bg-[#FF96843D] rounded-full flex justify-center items-center hover:-translate-y-1 transition-all duration-500 group">
                     <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M16.25 11.9167C16.8483 11.9167 17.3333 11.4317 17.3333 10.8334C17.3333 10.2351 16.8483 9.75008 16.25 9.75008C15.6517 9.75008 15.1667 10.2351 15.1667 10.8334C15.1667 11.4317 15.6517 11.9167 16.25 11.9167Z"
@@ -47,7 +63,8 @@
                     </svg>
                 </RouterLink>
 
-                <button class="w-[42px] h-[42px] bg-[#FF96843D] rounded-full flex justify-center items-center">
+                <RouterLink to="/like" @click="createRipple"
+                    class="effect-btn w-[42px] h-[42px] bg-[#FF96843D] rounded-full flex justify-center items-center hover:-translate-y-1 transition-all duration-500 group">
                     <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_192_4784)">
                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -60,7 +77,7 @@
                             </clipPath>
                         </defs>
                     </svg>
-                </button>
+                </RouterLink>
             </div>
         </div>
     </div>
@@ -69,5 +86,36 @@
 <style scoped>
 .font-prompt {
     font-family: 'Prompt', sans-serif;
+}
+
+.effect-btn {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.effect-btn:active {
+    transform: scale(0.95);
+    /* ย่อเล็กน้อยตอนกด */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.ripple {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 99, 71, 0.5);
+    /* สีของ Ripple */
+    border-radius: 50%;
+    pointer-events: none;
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
 }
 </style>
