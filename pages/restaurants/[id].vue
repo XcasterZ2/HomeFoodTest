@@ -66,23 +66,37 @@
             <div class="rounded-xl p-1">
               <h2 class="text-[20px] font-semibold sm:mt-5">เมนูแนะนำ</h2>
               <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <div v-for="menu in menus" :key="menu.id" class="shadow-md mb-5 p-4 rounded-2xl cursor-pointer" @click="navigateToMenu(menu.id)" >
+                <div v-for="menu in menus" :key="menu.id" class="shadow-md mb-5 p-4 rounded-2xl cursor-pointer"
+                  @click="navigateToMenu(menu.id)">
                   <div v-if="menu.image && JSON.parse(menu.image).length > 0">
                     <img :src="JSON.parse(menu.image)[0]" alt="logo-Menu"
-                      class="rounded-xl sm:w-full sm:h-44 w-36 h-30">
+                      class="rounded-xl sm:w-full sm:h-44 w-36 h-[110px]">
                   </div>
                   <div v-else>
                     <img src="/public/restuarant/menu.png" alt="default-Menu"
                       class="rounded-xl sm:w-full sm:h-44 w-36 h-30">
                   </div>
+
+
+
                   <div class="mt-2">{{ menu.name }}</div>
                   <div
                     class="bg-[#FF9684] mt-2 w-[65px] bg-opacity-30 h-[20px] flex rounded-full justify-center items-center">
                     <Fire />
                     <h2 class="text-[12px] text-[#FF6347]">ขายดี</h2>
                   </div>
-                  <div class="flex justify-end mt-2">
-                    <h2 class="text-[#FF6347] font-bold">฿{{ menu.price }}</h2>
+
+                  <div class="flex justify-between mt-2">
+                    <!-- Like Button -->
+                    <button class="mt-2 border-[1px] rounded-full p-1 w-16 flex items-center justify-center"
+                      @click.stop="toggleMenuLike(menu.id)">
+                      <Heart :filled="isMenuLiked(menu.id)" class="w-6 h-6" />
+                      <span class="ml-1 text-sm">{{ menu.likeCount || 0 }}</span>
+                    </button>
+
+                    <div class="mt-3">
+                      <h2 class="text-[#FF6347] font-bold text-[20px]">฿{{ menu.price }}</h2>
+                    </div>
                   </div>
                 </div>
 
@@ -113,6 +127,10 @@ import { useRoute } from 'vue-router';
 import Star from '~/components/user/icons/Star.vue';
 import coupon from '~/components/user/icons/coupon.vue';
 import Transport from '~/components/user/icons/restaurant/setting/Transport.vue';
+import Heart from '~/components/user/icons/Heart.vue';
+import Swal from 'sweetalert2'
+
+import { useAuthStore } from '#build/imports';
 
 const route = useRoute();
 const id = route.params.id;
@@ -122,8 +140,68 @@ const isLoading = ref(false)
 const menus = ref([])
 const router = useRouter()
 
+const likedMenus = ref(new Set())
+
+const toggleMenuLike = async (menuId) => {
+  try {
+    const userId = getUserId()
+
+    if (likedMenus.value.has(menuId)) {
+      // Unlike
+      await $fetch(`/api/menulike?userId=${userId}&menuId=${menuId}`, {
+        method: 'DELETE'
+      })
+      likedMenus.value.delete(menuId)
+
+      // อัพเดตจำนวนไลค์
+      const menuIndex = menus.value.findIndex(menu => menu.id === menuId)
+      if (menuIndex !== -1) {
+        menus.value[menuIndex].likeCount = Math.max(0, (menus.value[menuIndex].likeCount || 1) - 1)
+      }
+    } else {
+      // ไลค์
+      await $fetch('/api/menulike', {
+        method: 'POST',
+        body: {
+          userId,
+          menuId
+        }
+      })
+      likedMenus.value.add(menuId)
+
+      // อัพเดตจำนวนไลค์
+      const menuIndex = menus.value.findIndex(menu => menu.id === menuId)
+      if (menuIndex !== -1) {
+        menus.value[menuIndex].likeCount = (menus.value[menuIndex].likeCount || 0) + 1
+      }
+    }
+  } catch (error) {
+    console.error('Error toggling menu like:', error)
+  }
+}
+
+// ตรวจสอบว่าชอบเมนูหรือไม่
+const isMenuLiked = (menuId) => {
+  return likedMenus.value.has(menuId)
+}
+
+// เรียกแสดง เมนูที่ชอบ
+const fetchInitialLikedMenus = async () => {
+  const authStore = useAuthStore()
+  try {
+    const userId = authStore.user.id
+    const likedMenusResponse = await $fetch(`/api/menulike?userId=${userId}`)
+
+    likedMenusResponse.forEach(like => {
+      likedMenus.value.add(like.menuId)
+    })
+  } catch (error) {
+    console.error('Error fetching initial liked menus:', error)
+  }
+}
+
 const navigateToMenu = (id) => {
-    router.push(`/menu/detail/${id}`);
+  router.push(`/menu/detail/${id}`);
 };
 
 const fetchRestaurant = async () => {
@@ -166,12 +244,31 @@ const fetchMenu = async () => {
     const data = await response.json()
     menus.value = data
 
+    await fetchInitialLikedMenus()
+
     console.log('Fetched menu data:', data)
   } catch (err) {
     console.error('Error fetching menu:', err)
   } finally {
     isLoading.value = true
   }
+}
+
+function getUserId() {
+  const authStore = useAuthStore()
+  if (!authStore.user || !authStore.user.id) {
+    Swal.fire({
+      title: 'คุณไม่ได้เข้าสู่ระบบ!',
+      text: 'กรุณาเข้าสู่ระบบก่อนดำเนินการต่อ',
+      icon: 'warning',
+      confirmButtonText: 'ตกลง',
+      customClass: {
+        container: 'font-prompt',
+      }
+    })
+    return null
+  }
+  return authStore.user.id
 }
 
 onMounted(async () => {

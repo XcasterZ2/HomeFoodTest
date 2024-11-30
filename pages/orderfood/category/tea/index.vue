@@ -13,11 +13,15 @@
       <h2 class="text-3xl mx-16 font-bold">ชา-ชานม</h2>
     </div>
   </div>
-
-  <div class="p-5 font-prompt">
+  <div v-if="!isLoading" class="flex justify-center items-center w-full">
+    <span class="loading loading-spinner loading-xl text-orange-500"></span>
+    <h2 class="mt-2 mx-2 text-base font-semibold">Loading...</h2>
+  </div>
+  <div v-else class="p-5 font-prompt">
     <div class="grid sm:grid-cols-5 grid-cols-2 gap-4">
       <div v-for="menu in menus" :key="menu.name" class=" shadow-md mb-5 p-4 rounded-2xl">
-        <img :src="JSON.parse(menu.image) || `/restuarant/menu.png`" alt="logo-Menu" class=" rounded-xl sm:w-44 sm:h-40 w-32 h-28">
+        <img :src="JSON.parse(menu.image) || `/restuarant/menu.png`" alt="logo-Menu"
+          class=" rounded-xl sm:w-44 sm:h-40 w-32 h-28">
         <div class="mt-2">{{ menu.name }}</div>
 
         <div class="bg-[#FF9684] mt-2 w-[65px]  bg-opacity-30 h-[20px] flex rounded-full justify-center items-center">
@@ -35,26 +39,27 @@
 
 <script setup>
 
+const isLoading = ref(false)
 const menus = ref([])
 const fetchMenu = async () => {
   try {
     const response = await fetch('/api/menu', {
       method: 'GET',
-    });
-    if (!response.ok) throw new Error('แสดงข้อมูลเมนูไม่สำเร็จ');
-    const data = await response.json();
-    menus.value = data.filter(menu => menu.category === 'ชา-ชานม');
+    })
+    if (!response.ok) throw new Error('แสดงข้อมูลเมนูไม่สำเร็จ')
+    const data = await response.json()
+    menus.value = data.filter(menu => menu.category === 'ชา-ชานม')
+
+    isLoading.value = true
   } catch (err) {
     console.error('แสดงข้อมูลเมนูไม่สำเร็จ:', err);
   }
 };
 
-onMounted( async() => {
+onMounted(async () => {
   await fetchMenu()
-  console.log('menu : ' , menus.value)
+  console.log('menu : ', menus.value)
 })
 </script>
 
-<style>
-
-</style>
+<style></style>
