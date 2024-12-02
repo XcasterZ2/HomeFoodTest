@@ -52,36 +52,13 @@
                                                 <p class="text-base ">ข้อมูลร้านค้า</p>
                                             </RouterLink>
                                         </li>
-                                    </ul>
-                                </li>
-                            </ul>
-
-                            <ul class="menu bg-base-100 rounded-box w-70 mt-2 border-2 -mx-0 border-accent">
-                                <li>
-                                    <h2 class="menu-title font-light text-zinc-500 text-center text-base">
-                                        ข้อมูลภายในคลินิค</h2>
-                                    <ul>
                                         <li>
-                                            <RouterLink to="/admin" class="">
-                                                <p class="text-base ">ข้อมูลผู้ป่วย</p>
+                                            <RouterLink to="/admin/menu" class="">
+                                                <p class="text-base ">ข้อมูลเมนู</p>
                                             </RouterLink>
                                         </li>
                                     </ul>
                                 </li>
-                            </ul>
-
-                            <ul class="menu bg-base-100 rounded-box w-70 mt-2 mb-2 border-2 -mx-0 border-accent">
-                                <li>
-                                    <h2 class="menu-title font-light text-zinc-500 text-center text-base">ตรวจรักษา</h2>
-                                    <ul>
-                                        <li>
-                                            <RouterLink to="/admin">
-                                                <p class="sm:text-base text-[15px]">ข้อมูลการตรวจ</p>
-                                            </RouterLink>
-                                        </li>
-                                    </ul>
-                                </li>
-
                             </ul>
 
                         </div>
@@ -149,6 +126,11 @@
                                 <li>
                                     <RouterLink to="/admin/restaurants" class="">
                                         <p class="text-base ">ข้อมูลร้านค้า</p>
+                                    </RouterLink>
+                                </li>
+                                <li>
+                                    <RouterLink to="/admin/menu" class="">
+                                        <p class="text-base ">ข้อมูลเมนู</p>
                                     </RouterLink>
                                 </li>
                             </ul>
