@@ -63,6 +63,11 @@ export const useAuthStore = defineStore('auth', () => {
       localStorage.removeItem('user');
       localStorage.removeItem('token');
       localStorage.removeItem('restaurantId');
+      localStorage.removeItem('cartItems');
+      localStorage.removeItem('cartTotal');
+
+      localStorage.removeItem('cartId');
+      localStorage.removeItem('resId');
     }
 
     router.push('/');

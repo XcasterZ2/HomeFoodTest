@@ -1,13 +1,27 @@
 <script setup>
+import { useAuthStore } from '#build/imports';
 import userLayoutsNoNav from '~/layouts/userLayoutsNoNav.vue';
 import Search from '~/components/user/Search.vue';
 import { RouterLink } from 'vue-router';
 import { ref, computed } from 'vue';
 
+const authStore = useAuthStore()
+const currentImageIndex = ref({});
+
+const getFirstImage = (imageString) => {
+    try {
+        const images = JSON.parse(imageString); // แปลง string เป็น array
+        return images[0]; // ดึงแค่รูปแรกออกมาใช้
+    } catch (error) {
+        console.error('Error parsing image JSON:', error);
+        return ''; // คืนค่าเปล่าในกรณีผิดพลาด
+    }
+};
+
+
 const categories = [
     'ทั้งหมด',
     'ซื้ออาหาร',
-    'ซื้อของ',
     'ยกเลิก',
 ];
 const selectedCategory = ref('ทั้งหมด')
@@ -22,6 +36,8 @@ const images = [
     'https://s3-alpha-sig.figma.com/img/7745/e67f/aaa231e1fb67707d07040f3c29a761b6?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VAIekpWa45Hk5LvWTCeaE0y3ic8bjXGsL~tX9TuAgDmF1LTKHCgrIJ915BpanfwcYEoh9MxbaE3azrUgdr63YRtSxidLNOFaTHCBVBBwamPYpd8zT0mfg8LWkwssavf0gmj2OE2fMoQWYp2FSHVVkUuYa5MO~ptGHPxNGvDHcG9cTEv-yviqvpnXwEtMAzhharoousD7zoDQOvEOHGFtEyaJ-ljYOMG7iWGqhF1BeXvzZwJeoEkwJ3PFtwPkVnJ5AXYW~lcFHtdL0r5eIybEcVoDqqrB6K1Uk2B9V0oWiWj~WMwIWIdKK24y9-rw10kTdFkj5HbqR2AOmu5X30shWg__'
 ];
 
+const order = ref([])
+
 const orders = [
     { value: "ซื้ออาหาร", number: '0023900', price: '198.50' },
     { value: "ซื้อของ", number: '0023512', price: '258' },
@@ -29,12 +45,44 @@ const orders = [
     { value: "ซื้ออาหาร", number: '0023450', price: '186' },
 ]
 
+const fetchOrder = async () => {
+    try {
+        const userId = authStore.user.id
+        const response = await fetch(`/api/orders?userId=${userId}`, {
+            method: 'GET',
+        });
+        if (!response.ok) {
+            throw new Error('Failed to fetch Menu');
+        }
+        const data = await response.json();
+        order.value = data.body
+
+    } catch (err) {
+        console.error('แสดงข้อมูลผู้ใช้ไม่สำเร็จ:', err);
+
+    }
+};
+
 const filteredOrders = computed(() => {
     if (selectedCategory.value === 'ทั้งหมด') {
         return orders;
     }
     return orders.filter(order => order.value === selectedCategory.value);
 });
+
+onMounted(async () => {
+    await fetchOrder()
+    console.log('data : ', order.value)
+    order.forEach((orders) => {
+        orders.orderItems.forEach((item) => {
+            if (item.menu.image && JSON.parse(item.menu.image).length > 0) {
+                startImageRotation(item);
+            }
+        });
+    });
+})
+
+
 </script>
 
 <template>
@@ -78,40 +126,49 @@ const filteredOrders = computed(() => {
                 </div>
             </div>
 
-            <div class="p-5 font-prompt sm:max-w-3xl gap-4 mx-auto sm:grid sm:grid-cols-2">
-                <div v-for="order in filteredOrders" :key="order.number"
-                    class="w-full flex rounded-2xl h-[120px] shadow-md mt-4">
-                    <div class="p-2 flex gap-1">
-                        <img :src="images[0]" alt="" class="rounded-md">
+            <div class="p-5 font-prompt sm:max-w-3xl gap-4 mx-auto sm:grid sm:grid-cols-3">
+                <div v-for="orders in order" :key="orders.id"
+                    class="w-full flex flex-col rounded-2xl h-full shadow-md mt-4 p-2">
+
+                    <div class="flex justify-center w-full gap-2">
+                        <div v-for="item in orders.orderItems" :key="item.id" class="item">
+                            <!-- แสดงรูปภาพเดียว -->
+                            <div v-if="item.menu.image && JSON.parse(item.menu.image).length > 0">
+                                <img :src="getFirstImage(item.menu.image)" alt="menu image"
+                                    class=" w-[150px] h-[110px] rounded-xl" />
+                            </div>
+                            <div v-else>
+                                <img src="/public/restuarant/menu.png" alt="default-Menu"
+                                    class="rounded-xl sm:w-full sm:h-44 w-36 h-30">
+                            </div>
+                        </div>
                     </div>
-                    <div class="mt-2">
-                        <div class="flex">
-                            <p class="text-[14px]">รหัสคำสั่งซื้อ : </p>
-                            <p class="ml-3 text-[14px]">SP {{ order.number }}</p>
+
+                    <div class=" flex p-2 mt-3">
+                        <p class="text-[14px]">รหัสคำสั่งซื้อ : </p>
+                        <p class=" font-semibold ml-3 text-[14px]">SP {{ order.number || '182731623' }}</p>
+                    </div>
+
+                    <div class="flex justify-between mt-2">
+                        <p class="text-[#FF6347] font-semibold text-lg p-2">ราคา : ฿{{ orders.totalPrice }}</p>
+                        <div class="rounded-full border-[1px] justify-center items-center flex w-16 h-9">
+                            <p class="text-sm text-[#FF6347]">ซื้ออาหาร</p>
                         </div>
-                        <div class="mt-2 flex justify-between w-[200px] sm:w-[230px]">
-                            <div class="mt-2">
-                                <p class="text-[#FF6347] font-semibold text-xl">฿{{ order.price }}</p>
-                            </div>
-                            <div class="rounded-full border-[1px] justify-center items-center flex w-16">
-                                <p class="text-sm" :class="{
-                                    'text-[#FF6347]': order.value === 'ซื้ออาหาร',
-                                    'text-[#13C296]': order.value === 'ซื้อของ'
-                                }">
-                                    {{ order.value }}
-                                </p>
-                            </div>
+                    </div>
+
+                    <!-- <div class="mt-3 bg-zinc-100 h-12 rounded-full flex justify-center items-center">
+                        <div class="rating">
+                            <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
+                            <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]"
+                                checked="checked" />
+                            <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
+                            <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
+                            <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
                         </div>
-                        <div class="mt-2">
-                            <div class="rating">
-                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
-                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]"
-                                    checked="checked" />
-                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
-                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
-                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
-                            </div>
-                        </div>
+                    </div> -->
+
+                    <div class="mt-3 bg-zinc-100 h-12 rounded-full flex justify-center items-center">
+                        <p class="text-sm text-red-500">{{ orders.status === 'pending' ? 'รอไรเดอร์รับงาน' : order.status }}</p>
                     </div>
                 </div>
             </div>

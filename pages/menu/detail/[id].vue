@@ -11,7 +11,7 @@
       </RouterLink>
     </transition>
 
-    <RouterLink to="/" class=" absolute top-5 left-5 sm:top-9 sm:left-[29%]">
+    <RouterLink :to="`/restaurants/${restaurantId}`" class=" absolute top-5 left-5 sm:top-9 sm:left-[29%]">
       <div class="bg-white rounded-full w-10 h-10 flex justify-center items-center">
         <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd"
@@ -20,14 +20,14 @@
         </svg>
       </div>
     </RouterLink>
+
     <div class="font-prompt">
       <div v-if="menus.body" v-for="menu in [menus.body]" :key="menu.id">
         <div v-if="menu.image && JSON.parse(menu.image).length > 0">
-          <img :src="JSON.parse(menu.image)[0]" alt="logo-Menu"
-            class=" rounded-t-xl sm:w-full sm:mt-5 sm:h-44 w-36 h-30">
+          <img :src="JSON.parse(menu.image)[0]" alt="logo-Menu" class="w-full bg-cover h-[220px]">
         </div>
         <div v-else>
-          <img src="/public/restuarant/menu.png" alt="default-Menu" class="sm:mt-5 sm:w-full sm:h-44 w-36 h-30">
+          <img src="/public/restuarant/menu.png" alt="default-Menu" class="">
         </div>
 
         <div class=" absolute top-[25%] right-5 sm:right-[28%] sm:top-[16%]">
@@ -219,6 +219,7 @@ const showMeatOptions = ref(false);
 const quantity = ref(1);
 const authStore = useAuthStore()
 const cartItems = ref([])
+const restaurantId = ref(0)
 
 const cartLength = ref(0)
 const likedMenus = ref(new Set())
@@ -352,7 +353,7 @@ const fetchMenu = async () => {
     }
     const data = await response.json();
     menus.value = data
-
+    restaurantId.value = data.body.restaurantId
     await fetchInitialLikedMenus()
 
   } catch (err) {
@@ -361,7 +362,7 @@ const fetchMenu = async () => {
 };
 
 const fetchCartItems = async () => {
-  const userId = authStore.user.id; // Ensure user ID is available
+  const userId = authStore.user.id;
   try {
     const response = await fetch(`/api/cart?userId=${userId}`, {
       method: 'GET',
@@ -381,7 +382,6 @@ const fetchCartItems = async () => {
 onMounted(async () => {
   await fetchMenu()
   await fetchCartItems()
-  console.log('cart : ', cartItems.value.length)
 })
 </script>
 

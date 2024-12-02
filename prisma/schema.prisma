@@ -28,6 +28,7 @@ model User {
   reviews      Review[]
   cartItems    CartItem[]
   menuLikes MenuLike[]
+  orders   Order[]
 }
 
 model restaurant {
@@ -48,6 +49,7 @@ model restaurant {
   email           String?
   User            User    @relation(fields: [ownerId], references: [id])
   menus           Menu[]
+  order           Order[]
   averageRating   Float?
 }
 
@@ -84,6 +86,7 @@ model Menu {
   menuLikes MenuLike[]
   likeCount Int @default(0)
   @@index([restaurantId])
+  orderitems      OrderItem[]
 }
 
 model CartItem {
@@ -111,4 +114,29 @@ model MenuLike {
   @@unique([userId, menuId])
   @@index([userId])
   @@index([menuId])
+}
+
+model Order {
+  id            Int         @id @default(autoincrement())
+  userId        Int
+  restaurantId  Int
+  totalPrice    Float
+  status        String       @default("pending")
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  deliveryAddress String?
+  paymentMethod String?
+  user          User         @relation(fields: [userId], references: [id])
+  restaurant    restaurant   @relation(fields: [restaurantId], references: [restaurant_Id])
+  orderItems    OrderItem[]
+}
+
+model OrderItem {
+  id        Int      @id @default(autoincrement())
+  orderId   Int
+  menuId    Int
+  quantity  Int?       @default(1)
+  price     Float?
+  menu      Menu      @relation(fields: [menuId], references: [id])
+  order     Order     @relation(fields: [orderId], references: [id])
 }
