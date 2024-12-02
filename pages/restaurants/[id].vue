@@ -88,14 +88,14 @@
 
                   <div class="flex justify-between mt-2">
                     <!-- Like Button -->
-                    <button class="mt-2 border-[1px] rounded-full p-1 w-16 flex items-center justify-center"
+                    <button class="mt-2 border-[1px] rounded-full p-1 sm:w-16 w-12 flex items-center justify-center"
                       @click.stop="toggleMenuLike(menu.id)">
-                      <Heart :filled="isMenuLiked(menu.id)" class="w-6 h-6" />
+                      <Heart :filled="isMenuLiked(menu.id)" class="sm:w-6 sm:h-6 w-4 h-4" />
                       <span class="ml-1 text-sm">{{ menu.likeCount || 0 }}</span>
                     </button>
 
                     <div class="mt-3">
-                      <h2 class="text-[#FF6347] font-bold text-[20px]">฿{{ menu.price }}</h2>
+                      <h2 class="text-[#FF6347] font-bold sm:text-[20px] text-[18px]">฿{{ menu.price }}</h2>
                     </div>
                   </div>
                 </div>
