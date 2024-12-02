@@ -32,6 +32,20 @@
             </div>
           </div>
         </div>
+
+        <div class="card bg-[#515262] w-full h-44 shadow-xl transform-transition bg-opacity-65">
+          <h2 class="card-title text-white font-light text-2xl pl-5 pt-5">เมนูทั้งหมด</h2>
+          <div class="flex mt-8">
+            <div class="flex-1 ml-5 mt-8">
+              <p class="text-white text-4xl mt-2">
+                {{ menus.length }}  เมนู
+              </p>
+            </div>
+            <div class="flex-1 flex justify-end mr-5">
+              <img src="https://img2.pic.in.th/pic/job_10485121.png" alt="logo_user">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </adminLayouts>
@@ -42,6 +56,22 @@ import adminLayouts from '~/layouts/adminLayouts.vue';
 
 const useres = ref([])
 const restaurants = ref([])
+const menus = ref([])
+
+const fetchMenu = async () => {
+    try {
+        const response = await fetch('/api/menu', {
+            method: 'GET',
+        });
+        if (!response.ok) {
+            throw new Error('Failed to fetch courses');
+        }
+        const data = await response.json();
+        menus.value = data
+    } catch (err) {
+        console.error('Error fetching courses:', err);
+    }
+};
 
 const fetchUser = async () => {
   try {
@@ -77,7 +107,8 @@ definePageMeta({
 onMounted(async () => {
   await fetchUser()
   await fetchRestaurant()
-  console.log('restaurant  : ' , restaurants.value)
+  await fetchMenu()
+  console.log('restaurant  : ' , menus.value)
 })
 </script>
 
