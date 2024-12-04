@@ -4,7 +4,7 @@
             <span class="loading loading-spinner loading-xl text-orange-500"></span>
             <h2 class="mt-2 mx-2 text-base">Loading...</h2>
         </div>
-        <div v-else class="container mx-auto p-4 bg-base-100 rounded-lg font-prompt">
+        <div v-else class=" mx-auto p-4 bg-base-100 rounded-lg font-prompt">
             <div class="flex justify-center items-center bg-[#FF8128] w-full h-20 shadow-md rounded-full bg-opacity-50">
                 <h2 class="sm:text-5xl text-3xl font-bold text-[#fefeff] text-stroke tracking-wide">จัดการร้านค้า
                 </h2>
@@ -35,27 +35,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(restaurant, index) in restaurants" :key="restaurant.id">
+                        <tr v-for="(restaurant, index) in paginatedRestaurant" :key="restaurant.id">
                             <td>
                                 <p class="text-center">{{ restaurant.restaurant_Id }}</p>
                             </td>
                             <td>
-                                <div class="flex justify-center">
-                                    <img src="/restuarant/9c80947e0408d3d81f78f309e848d61e.png" alt="restaurant"
-                                        class="w-24 h-24 rounded-md">
+                                <div class="flex justify-center w-[100px]">
+                                    <div v-if="restaurant.restaurantImage">
+                                        <img :src="restaurant.restaurantImage" alt="pic-restuarant"
+                                            class=" object-cover rounded-2xl w-[100px] h-[100px] sm:w-[250px] sm:h-[200px]">
+                                    </div>
+                                    <div v-else>
+                                        <img src="/public/restuarant/9c80947e0408d3d81f78f309e848d61e.png"
+                                            alt="pic-restuarant"
+                                            class="sm:w-[160px] sm:h-[140px] w-[100px] h-[100px] object-cover rounded-2xl">
+                                    </div>
                                 </div>
                             </td>
                             <td>
-                                <p class="text-center">{{ restaurant.name }}</p>
+                                <p class="text-center text-nowrap">{{ restaurant.name }}</p>
                             </td>
                             <td>
-                                <p class="text-center">{{ restaurant.ownerFullname }}</p>
+                                <p class="text-center text-nowrap">{{ restaurant.ownerFullname }}</p>
                             </td>
                             <td>
-                                <p class="text-center">{{ restaurant.phoneNumber }}</p>
+                                <p class="text-center text-nowrap">{{ restaurant.phoneNumber }}</p>
                             </td>
                             <td>
-                                <p class="text-center">{{ restaurant.location }}</p>
+                                <p class="text-center text-nowrap">{{ restaurant.location }}</p>
                             </td>
                             <td>
                                 <div class="flex gap-2 justify-center">
@@ -70,6 +77,19 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="join mt-4 flex justify-center">
+                    <button @click="changePage(currentPage - 1)" class="join-item btn" :disabled="currentPage === 1">
+                        ก่อนหน้า
+                    </button>
+                    <button v-for="page in totalPages" :key="page" @click="changePage(page)"
+                        :class="['join-item btn', { 'btn-active': page === currentPage }]">
+                        {{ page }}
+                    </button>
+                    <button @click="changePage(currentPage + 1)" class="join-item btn"
+                        :disabled="currentPage === totalPages">
+                        ถัดไป
+                    </button>
+                </div>
             </div>
         </div>
     </adminLayouts>
@@ -83,6 +103,21 @@ const isLoading = ref(true);
 const restaurants = ref([])
 const router = useRouter()
 
+const currentPage = ref(1);
+const itemsPerPage = ref(4);
+
+const paginatedRestaurant = computed(() => {
+    const start = (currentPage.value - 1) * itemsPerPage.value;
+    const end = start + itemsPerPage.value;
+    return restaurants.value.slice(start, end);
+});
+
+const totalPages = computed(() => Math.ceil(restaurants.value.length / itemsPerPage.value));
+
+const changePage = (page) => {
+    currentPage.value = page;
+};
+
 const fetchRestaurant = async () => {
     isLoading.value = true;
     try {
@@ -90,12 +125,12 @@ const fetchRestaurant = async () => {
             method: 'GET',
         });
         if (!response.ok) {
-            throw new Error('Failed to fetch courses');
+            throw new Error('เกิดข้อผิดพลาดโหลดข้อมูลร้านอาหาร');
         }
         const data = await response.json();
         restaurants.value = data
     } catch (err) {
-        console.error('Error fetching courses:', err);
+        console.error('เกิดข้อผิดพลาดโหลดข้อมูลร้านอาหาร:', err);
     } finally {
         isLoading.value = false;
     }

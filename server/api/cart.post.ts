@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
     const existingCartItem = await prisma.cartItem.findUnique({
       where: {
         userId_menuId: {
-          userId,
+          userId: parseInt(userId),
           menuId,
         },
       },
@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
       await prisma.cartItem.update({
         where: {
           userId_menuId: {
-            userId,
+            userId: parseInt(userId),
             menuId,
           },
         },
@@ -36,7 +36,7 @@ export default defineEventHandler(async (event) => {
     } else {
       await prisma.cartItem.create({
         data: {
-          userId,
+          userId: parseInt(userId),
           menuId,
           quantity,
         },

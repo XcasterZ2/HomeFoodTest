@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
-  const query = getQuery(event); // รับ query parameters
+  const query = getQuery(event);
   const { userId } = query;
 
   if (!userId) {
@@ -11,23 +11,33 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
+    const userIdInt = parseInt(userId, 10);
+
+    if (isNaN(userIdInt)) {
+      return { statusCode: 400, body: { error: 'User ID must be a valid number' } };
+    }
+
     // ดึงข้อมูล Order พร้อมความสัมพันธ์
     const orders = await prisma.order.findMany({
       where: {
-        userId: parseInt(userId),
+        userId: userIdInt,
       },
       include: {
         orderItems: {
           include: {
-            menu: true, // รวมข้อมูลเมนูใน orderItems
+            menu: true,
           },
         },
-        restaurant: true, // รวมข้อมูลร้านอาหาร
+        restaurant: true,
       },
       orderBy: {
-        createdAt: 'desc', // เรียงตามเวลาที่สร้าง (ล่าสุดก่อน)
+        createdAt: 'desc',
       },
     });
+
+    if (orders.length === 0) {
+      return { statusCode: 200, body: { message: 'ไม่มีออเดอร์' } };
+    }
 
     return { statusCode: 200, body: orders };
   } catch (error) {

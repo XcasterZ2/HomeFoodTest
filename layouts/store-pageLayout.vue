@@ -2,7 +2,8 @@
 </script>
 
 <template>
-    <div class="relative mx-auto flex flex-col justify-center items-center w-[375px] h-full font-prompt overflow-hidden" >
+    <div
+        class="relative mx-auto flex flex-col justify-center items-center w-[375px] h-full font-prompt overflow-hidden">
         <slot />
     </div>
 
@@ -11,7 +12,7 @@
 
 <style scoped>
 .font-prompt {
-  font-family: 'Prompt', sans-serif;
+    font-family: 'Prompt', sans-serif;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -23,4 +24,3 @@
     scrollbar-width: none;
 }
 </style>
-

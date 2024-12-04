@@ -52,13 +52,13 @@ const fetchOrder = async () => {
             method: 'GET',
         });
         if (!response.ok) {
-            throw new Error('Failed to fetch Menu');
+            throw new Error('แสดงข้อมูลออเดอร์ไม่สำเร็จ');
         }
         const data = await response.json();
         order.value = data.body
 
     } catch (err) {
-        console.error('แสดงข้อมูลผู้ใช้ไม่สำเร็จ:', err);
+        console.error('แสดงข้อมูลออเดอร์ไม่สำเร็จ:', err);
 
     }
 };
@@ -81,7 +81,6 @@ onMounted(async () => {
         });
     });
 })
-
 
 </script>
 
@@ -126,51 +125,49 @@ onMounted(async () => {
                 </div>
             </div>
 
-            <div class="p-5 font-prompt sm:max-w-3xl gap-4 mx-auto sm:grid sm:grid-cols-3">
-                <div v-for="orders in order" :key="orders.id"
-                    class="w-full flex flex-col rounded-2xl h-full shadow-md mt-4 p-2">
+            <div class="p-5 font-prompt sm:max-w-3xl gap-4 mx-auto">
+                <template v-if="order.length > 0">
+                    <div v-for="orders in order" :key="orders.id"
+                        class="w-full flex flex-col rounded-2xl h-full shadow-md mt-4 p-2">
 
-                    <div class="flex justify-center w-full gap-2">
-                        <div v-for="item in orders.orderItems" :key="item.id" class="item">
-                            <!-- แสดงรูปภาพเดียว -->
-                            <div v-if="item.menu.image && JSON.parse(item.menu.image).length > 0">
-                                <img :src="getFirstImage(item.menu.image)" alt="menu image"
-                                    class=" w-[150px] h-[110px] rounded-xl" />
+                        <div class="flex justify-center w-full gap-2">
+                            <div v-for="item in orders.orderItems" :key="item.id" class="item">
+                                <!-- แสดงรูปภาพเดียว -->
+                                <div v-if="item.menu.image && JSON.parse(item.menu.image).length > 0">
+                                    <img :src="getFirstImage(item.menu.image)" alt="menu image"
+                                        class="w-[150px] h-[110px] rounded-xl" />
+                                </div>
+                                <div v-else>
+                                    <img src="/public/restuarant/menu.png" alt="default-Menu"
+                                        class="rounded-xl sm:w-full sm:h-44 w-36 h-30">
+                                </div>
                             </div>
-                            <div v-else>
-                                <img src="/public/restuarant/menu.png" alt="default-Menu"
-                                    class="rounded-xl sm:w-full sm:h-44 w-36 h-30">
+                        </div>
+
+                        <div class="flex p-2 mt-3">
+                            <p class="text-[14px]">รหัสคำสั่งซื้อ : </p>
+                            <p class="font-semibold ml-3 text-[14px]">SP {{ orders.number || '182731623' }}</p>
+                        </div>
+
+                        <div class="flex justify-between mt-2">
+                            <p class="text-[#FF6347] font-semibold text-lg p-2">ราคา : ฿{{ orders.totalPrice }}</p>
+                            <div class="rounded-full border-[1px] justify-center items-center flex w-16 h-9">
+                                <p class="text-sm text-[#FF6347]">ซื้ออาหาร</p>
                             </div>
                         </div>
-                    </div>
 
-                    <div class=" flex p-2 mt-3">
-                        <p class="text-[14px]">รหัสคำสั่งซื้อ : </p>
-                        <p class=" font-semibold ml-3 text-[14px]">SP {{ order.number || '182731623' }}</p>
-                    </div>
-
-                    <div class="flex justify-between mt-2">
-                        <p class="text-[#FF6347] font-semibold text-lg p-2">ราคา : ฿{{ orders.totalPrice }}</p>
-                        <div class="rounded-full border-[1px] justify-center items-center flex w-16 h-9">
-                            <p class="text-sm text-[#FF6347]">ซื้ออาหาร</p>
+                        <div class="mt-3 bg-zinc-100 h-12 rounded-full flex justify-center items-center">
+                            <p class="text-sm text-red-500">{{ orders.status === 'pending' ? 'รอไรเดอร์รับงาน' :
+                                orders.status }}</p>
                         </div>
                     </div>
+                </template>
 
-                    <!-- <div class="mt-3 bg-zinc-100 h-12 rounded-full flex justify-center items-center">
-                        <div class="rating">
-                            <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
-                            <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]"
-                                checked="checked" />
-                            <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
-                            <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
-                            <input type="radio" name="rating-2" class="mask mask-star-2 bg-[#FFC700]" />
-                        </div>
-                    </div> -->
-
-                    <div class="mt-3 bg-zinc-100 h-12 rounded-full flex justify-center items-center">
-                        <p class="text-sm text-red-500">{{ orders.status === 'pending' ? 'รอไรเดอร์รับงาน' : order.status }}</p>
+                <template v-else>
+                    <div class="text-center text-gray-500 mt-10">
+                        <p>ไม่มีข้อมูล</p>
                     </div>
-                </div>
+                </template>
             </div>
         </div>
     </userLayoutsNoNav>

@@ -9,47 +9,30 @@
         <h2 class="sm:text-5xl text-3xl font-bold text-[#fefeff] text-stroke tracking-wide">จัดการผู้ใช้บริการ</h2>
       </div>
       <div class="overflow-x-auto mt-5">
-
         <table class="table">
           <thead>
             <tr>
-              <th>
-                <p class="text-center">ลำดับ</p>
-              </th>
-              <th>
-                <p class="text-center">อีเมล</p>
-              </th>
-              <th>
-                <p class="text-center">ชื่อเต็ม</p>
-              </th>
-              <th>
-                <p class="text-center">เบอร์โทรศัพท์</p>
-              </th>
-              <th>
-                <p class="text-center">Role</p>
-              </th>
+              <th><p class="text-center">ลำดับ</p></th>
+              <th><p class="text-center">อีเมล</p></th>
+              <th><p class="text-center">ชื่อเต็ม</p></th>
+              <th><p class="text-center">เบอร์โทรศัพท์</p></th>
+              <th><p class="text-center">Role</p></th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(user, index) in useres" :key="user.id">
-              <td>
-                <p class="text-center">{{ user.id }}</p>
-              </td>
+            <tr v-for="(user, index) in paginatedUsers" :key="user.id">
+              <td><p class="text-center">{{ user.id }}</p></td>
               <td>
                 <p v-if="user.email" class="text-center">{{ user.email }}</p>
                 <p v-else class="text-center text-red-500">ยังไม่ได้กรอกอีเมล</p>
               </td>
-              <td>
-                <p class="text-center">{{ user.fullname }}</p>
-              </td>
+              <td><p class="text-center">{{ user.fullname }}</p></td>
               <td>
                 <p v-if="user.phoneNumber" class="text-center">{{ user.phoneNumber }}</p>
                 <p v-else class="text-center text-red-500">ยังไม่ได้ยืนยันเบอร์โทรศัพท์</p>
               </td>
-              <td>
-                <p class="text-center">{{ user.role }}</p>
-              </td>
+              <td><p class="text-center">{{ user.role }}</p></td>
               <td>
                 <div class="flex gap-2 justify-center">
                   <button class="btn" @click="deleteUser(user.email)">
@@ -63,6 +46,30 @@
             </tr>
           </tbody>
         </table>
+        <div class="join mt-4 flex justify-center">
+          <button
+            @click="changePage(currentPage - 1)"
+            class="join-item btn"
+            :disabled="currentPage === 1"
+          >
+            ก่อนหน้า
+          </button>
+          <button
+            v-for="page in totalPages"
+            :key="page"
+            @click="changePage(page)"
+            :class="['join-item btn', { 'btn-active': page === currentPage }]"
+          >
+            {{ page }}
+          </button>
+          <button
+            @click="changePage(currentPage + 1)"
+            class="join-item btn"
+            :disabled="currentPage === totalPages"
+          >
+            ถัดไป
+          </button>
+        </div>
       </div>
     </div>
   </adminLayouts>
@@ -79,6 +86,20 @@ const loading = ref(true);
 const useres = ref([])
 
 const router = useRouter()
+const currentPage = ref(1);
+const itemsPerPage = ref(6);
+
+const paginatedUsers = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage.value;
+  const end = start + itemsPerPage.value;
+  return useres.value.slice(start, end);
+});
+
+const totalPages = computed(() => Math.ceil(useres.value.length / itemsPerPage.value));
+
+const changePage = (page) => {
+  currentPage.value = page;
+};
 
 const fetchUser = async () => {
   try {
@@ -150,6 +171,7 @@ onMounted(async () => {
   await fetchUser()
   console.log('user: ', useres.value)
 })
+
 </script>
 
 <style scoped>

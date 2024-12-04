@@ -76,33 +76,39 @@ export default defineEventHandler(async (event) => {
         }
     }
     if (method === 'PUT') {
-        // PUT: อัปเดตข้อมูลร้าน
-        const body = await readBody(event);
-        const { restaurantId, name, location, phoneNumber, restaurantImage, paymentMethod, license } = body;
+        const body = await readBody(event)
+        const { restaurantId, name, location, phoneNumber, restaurantImage, paymentMetod } = body
+    
         if (!restaurantId || !name || !location) {
             throw createError({
                 statusCode: 400,
                 statusMessage: 'Missing required fields: restaurantId, name, or location.',
-            });
+            })
         }
+    
         try {
+            const updatedData = {
+                name,
+                location,
+                phoneNumber,
+                paymentMetod,
+            }
+    
+            if (restaurantImage) {
+                updatedData.restaurantImage = restaurantImage // Update image URL
+            }
+    
             const updatedRestaurant = await prisma.restaurant.update({
                 where: { restaurant_Id: Number(restaurantId) },
-                data: {
-                    name,
-                    location,
-                    phoneNumber,
-                    restaurantImage,
-                    paymentMetod: paymentMethod,
-                    License: license,
-                },
-            });
-            return updatedRestaurant;
+                data: updatedData,
+            })
+    
+            return updatedRestaurant
         } catch (error) {
             throw createError({
                 statusCode: 500,
                 statusMessage: 'Error updating restaurant.',
-            });
+            })
         }
     }
     if (method === 'DELETE') {

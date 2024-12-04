@@ -74,7 +74,7 @@
                   </div>
                   <div v-else>
                     <img src="/public/restuarant/menu.png" alt="default-Menu"
-                      class="rounded-xl sm:w-full sm:h-44 w-36 h-30">
+                      class="rounded-xl sm:w-full sm:h-44 w-36 h-[110px]">
                   </div>
 
 

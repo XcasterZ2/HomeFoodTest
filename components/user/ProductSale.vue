@@ -11,7 +11,7 @@ const products = [
 
 <template>
 
-    <div class="grid sm:grid-cols-5 grid-cols-2 gap-4 p-4 mt-1 font-prompt">
+    <div class="grid sm:grid-cols-3 lg:grid-cols-5 md:gap-y-3 grid-cols-2 gap-2 p-4 mt-1 font-prompt">
 
         <div v-for="product in products" :key="product"
             class="sm:w-[220px] sm:h-[270px] w-[160px] h-[210px] bg-white rounded-lg shadow-lg overflow-hidden relative">

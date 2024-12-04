@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --host 0.0.0.0 --port 40000",
     "build": "nuxt build && prisma generate",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -21,7 +21,9 @@
     "@vuepic/vue-datepicker": "^10.0.0",
     "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "core-js": "^3.39.0",
+    "formidable": "^3.5.2",
     "google-auth-library": "^9.15.0",
     "intl-tel-input": "^24.7.0",
     "jquery": "^3.7.1",
@@ -40,6 +42,7 @@
     "vue-script2": "^2.1.0"
   },
   "devDependencies": {
+    "@types/formidable": "^3.4.5",
     "@types/multer": "^1.4.12",
     "@types/uuid": "^10.0.0",
     "daisyui": "^4.12.14",

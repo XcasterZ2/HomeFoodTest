@@ -25,7 +25,7 @@ async function createMenuLike(event) {
     const existingLike = await prisma.menuLike.findUnique({
       where: {
         userId_menuId: {
-          userId,
+          userId: parseInt(userId),
           menuId
         }
       }
@@ -41,7 +41,7 @@ async function createMenuLike(event) {
     // Create the menu like
     const menuLike = await prisma.menuLike.create({
       data: {
-        userId,
+        userId: parseInt(userId),
         menuId
       }
     })
