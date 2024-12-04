@@ -35,19 +35,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(menu, index) in menus" :key="menu.id">
+                        <tr v-for="(menu, index) in paginatedMenu" :key="menu.id">
                             <td>
                                 <p class="text-center">{{ menu.id }}</p>
                             </td>
                             <td>
-                                <div class="flex justify-center w-full">
+                                <div class="flex justify-center w-[100px]">
                                     <div v-if="menu.image && JSON.parse(menu.image).length > 0">
                                         <img :src="JSON.parse(menu.image)[0]" alt="logo-Menu"
-                                            class="rounded-xl sm:w-[100px] sm:h-[100px] w-24 h-[60px]">
+                                            class="rounded-xl sm:w-[100px] sm:h-[100px] w-[100px] h-[100px]">
                                     </div>
                                     <div v-else>
                                         <img src="/public/restuarant/menu.png" alt="default-Menu"
-                                            class="rounded-xl sm:w-[100px] sm:h-[100px] w-36 h-30">
+                                            class="rounded-xl sm:w-[100px] sm:h-[100px] w-[100px] h-[100px]">
                                     </div>
                                 </div>
                             </td>
@@ -55,13 +55,15 @@
                                 <p class=" whitespace-nowrap text-center  sm:text-sm text-[12px]">{{ menu.name }}</p>
                             </td>
                             <td>
-                                <p class=" whitespace-nowrap text-center  sm:text-sm text-[12px]">{{ menu.restaurant.name }}</p>
+                                <p class=" whitespace-nowrap text-center  sm:text-sm text-[12px]">{{
+                                    menu.restaurant.name }}</p>
                             </td>
                             <td>
                                 <p class=" whitespace-nowrap text-center  sm:text-sm text-[12px]">{{ menu.price }}</p>
                             </td>
                             <td>
-                                <p class=" whitespace-nowrap text-center  sm:text-sm text-[12px]">{{ menu.category }}</p>
+                                <p class=" whitespace-nowrap text-center  sm:text-sm text-[12px]">{{ menu.category }}
+                                </p>
                             </td>
                             <td>
                                 <div class="flex gap-2 justify-center">
@@ -76,6 +78,19 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="join mt-4 flex justify-center">
+                    <button @click="changePage(currentPage - 1)" class="join-item btn" :disabled="currentPage === 1">
+                        ก่อนหน้า
+                    </button>
+                    <button v-for="page in totalPages" :key="page" @click="changePage(page)"
+                        :class="['join-item btn', { 'btn-active': page === currentPage }]">
+                        {{ page }}
+                    </button>
+                    <button @click="changePage(currentPage + 1)" class="join-item btn"
+                        :disabled="currentPage === totalPages">
+                        ถัดไป
+                    </button>
+                </div>
             </div>
         </div>
     </adminLayouts>
@@ -93,6 +108,21 @@ const isLoading = ref(true);
 
 const menus = ref([])
 const router = useRouter()
+
+const currentPage = ref(1);
+const itemsPerPage = ref(4);
+
+const paginatedMenu = computed(() => {
+    const start = (currentPage.value - 1) * itemsPerPage.value;
+    const end = start + itemsPerPage.value;
+    return menus.value.slice(start, end);
+});
+
+const totalPages = computed(() => Math.ceil(menus.value.length / itemsPerPage.value));
+
+const changePage = (page) => {
+    currentPage.value = page;
+};
 
 const fetchMenu = async () => {
     isLoading.value = true;

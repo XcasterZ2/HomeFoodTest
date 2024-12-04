@@ -18,10 +18,10 @@
     <div class="grid sm:grid-cols-4 grid-cols-2 gap-4">
       <div v-for="menu in menus" :key="menu.name" class="shadow-md mb-5 p-4 rounded-2xl">
         <div v-if="menu.image && JSON.parse(menu.image).length > 0">
-          <img :src="JSON.parse(menu.image)[0]" alt="logo-Menu" class="rounded-xl sm:w-full sm:h-44 w-36 h-30">
+          <img :src="JSON.parse(menu.image)[0]" alt="logo-Menu" class="rounded-xl sm:w-full sm:h-44 w-36 h-[110px]">
         </div>
         <div v-else>
-          <img src="/public/restuarant/menu.png" alt="default-Menu" class="rounded-xl sm:w-full sm:h-44 w-36 h-30">
+          <img src="/public/restuarant/menu.png" alt="default-Menu" class="rounded-xl sm:w-full sm:h-44 w-36 h-[110px]">
         </div>
 
         <div class="mt-2">{{ menu.name }}</div>

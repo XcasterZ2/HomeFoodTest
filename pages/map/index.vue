@@ -1,4 +1,4 @@
-// components/NostraMap.vue
+
 <template>
   <div>
     <div id="map" ref="mapContainer" class="w-[700px] h-[500px]"></div>

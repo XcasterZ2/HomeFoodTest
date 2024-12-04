@@ -44,7 +44,11 @@ export const useAuthStore = defineStore('auth', () => {
 
     if (userData.user.role === 'admin') {
       router.push('/admin');
-    } else {
+    }
+    if (userData.user.role === 'rider') {
+      router.push('/rider');
+    }
+    else {
       router.push('/');
     }
   };

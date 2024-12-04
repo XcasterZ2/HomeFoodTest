@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
     // สร้าง Order ในฐานข้อมูล
     const newOrder = await prisma.order.create({
       data: {
-        userId,
+        userId: parseInt(userId),
         restaurantId,
         totalPrice,
         deliveryAddress,
@@ -36,7 +36,7 @@ export default defineEventHandler(async (event) => {
     // ลบ CartItem ที่เกี่ยวข้องกับ userId
     await prisma.cartItem.deleteMany({
       where: {
-        userId: userId, // ลบ CartItem ของผู้ใช้ที่ทำคำสั่งซื้อ
+        userId: parseInt(userId), // ลบ CartItem ของผู้ใช้ที่ทำคำสั่งซื้อ
       },
     });
 

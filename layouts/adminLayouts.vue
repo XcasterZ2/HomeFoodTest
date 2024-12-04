@@ -43,7 +43,7 @@
                                         ข้อมูลภายในเว็บ</h2>
                                     <ul>
                                         <li>
-                                            <RouterLink to="/admin" class="">
+                                            <RouterLink to="/admin/users" class="">
                                                 <p class="text-base ">ข้อมูลยูสเซอร์</p>
                                             </RouterLink>
                                         </li>
@@ -66,8 +66,8 @@
                 </div>
 
                 <div class="flex items-center space-x-4 ">
-                    <RouterLink to="/" class="btn btn-secondary btn-sm">
-                        <p class="text-white font-light mt-1">ไปหน้ายูสเซอร์</p>
+                    <RouterLink to="/" class=" bg-[#FF6B6B] p-2 rounded-lg hover:bg-[#ffa4a4] duration-300">
+                        <p class="text-white font-light mt-1 text-sm">ไปหน้ายูสเซอร์</p>
                     </RouterLink>
                     <div class="dropdown dropdown-end">
                         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar online">
@@ -92,16 +92,20 @@
         <div class="flex h-full mt-2">
             <!-- Sidebar / Aside -->
             <aside class="w-72 bg-slate-500 rounded-xl h-full hidden sm:block mx-4">
-                <div class="w-full h-26 bg-slate-600 rounded-t-xl flex justify-center items-center p-4">
-                    <div class="flex-col justify-center items-center">
-                        <div class="flex justify-center items-center avatar">
-                            <div class=" ring-accent ring-offset-base-100 w-24 rounded-full ring ring-offset-2">
-                                <img
-                                    src="https://img5.pic.in.th/file/secure-sv1/software-engineerc1438b6fade78e82.png" />
+                <div class="w-full h-26 bg-slate-600 rounded-t-xl flex justify-center items-center">
+                    <div class="w-full p-3 mt-3">
+                        <div class="flex justify-center items-center">
+                            <div class="flex-col justify-center items-center">
+                                <div class=" avatar">
+                                    <div class=" ring-accent ring-offset-base-100 w-24 rounded-full ring ring-offset-2">
+                                        <img
+                                            src="https://img5.pic.in.th/file/secure-sv1/software-engineerc1438b6fade78e82.png" />
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <h1 class="mt-2 text-base-200">Role : {{ authStore.user.role }}</h1>
+                                </div>
                             </div>
-                        </div>
-                        <div class="flex">
-                            <h1 class="mt-2 text-base-200">Role : {{ authStore.user.role }}</h1>
                         </div>
                     </div>
                     <div class="divider p-2"></div>
@@ -110,8 +114,19 @@
 
                 <div class="pr-2 pl-2">
                     <RouterLink to="/admin"
-                        class="flex items-center mt-3 p-2 bg-base-100 rounded-xl hover:bg-gray-100 transition-colors duration-200">
-                        <p class="text-base text-zinc-600 ml-2">Dashboard </p>
+                        class="flex items-center mt-3 p-3 bg-base-100 rounded-xl hover:bg-gray-100 transition-colors duration-200">
+                        <div class="flex justify-center w-full  ">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#FF6347" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
+                            </svg>
+
+                            <p class="text-xl ml-2 text-[#FF6347] font-semibold">DASHBOARD </p>
+                        </div>
+
                     </RouterLink>
 
                     <ul class="menu bg-base-100 rounded-box w-70 mt-2 mb-3">
@@ -120,16 +135,19 @@
                             <ul>
                                 <li>
                                     <RouterLink to="/admin/users" class="">
+                                        <UserAdmin />
                                         <p class="text-base ">ข้อมูลยูสเซอร์</p>
                                     </RouterLink>
                                 </li>
                                 <li>
                                     <RouterLink to="/admin/restaurants" class="">
+                                        <StoreAdmin />
                                         <p class="text-base ">ข้อมูลร้านค้า</p>
                                     </RouterLink>
                                 </li>
                                 <li>
                                     <RouterLink to="/admin/menu" class="">
+                                        <MenuAdmin />
                                         <p class="text-base ">ข้อมูลเมนู</p>
                                     </RouterLink>
                                 </li>
@@ -175,6 +193,9 @@
 
 <script setup>
 import { useAuthStore } from '~/stores/auth'
+import UserAdmin from '~/components/admin/icons/UserAdmin.vue';
+import StoreAdmin from '~/components/admin/icons/StoreAdmin.vue';
+import MenuAdmin from '~/components/admin/icons/MenuAdmin.vue';
 
 const authStore = useAuthStore()
 const mobileNavOpen = ref(false);

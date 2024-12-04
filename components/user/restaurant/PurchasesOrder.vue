@@ -22,9 +22,13 @@
               <h2 class="sm:text-xl font-semibold text-[white]">ออเดอร์ใหม่</h2>
             </div>
 
-            <div class="flex justify-center mt-2">
-              <p class="sm:text-5xl text-3xl text-white font-medium">2</p>
+            <div v-if="!isLoading" class="flex justify-center mt-2">
+              <span class="loading loading-spinner loading-xl text-orange-200"></span>
             </div>
+            <div v-else class="flex justify-center mt-2">
+              <p class="sm:text-5xl text-3xl text-white font-medium">{{ orders.length }}</p>
+            </div>
+
           </div>
         </div>
       </div>
@@ -88,6 +92,27 @@ import Shopping from '../icons/restaurant/Shopping.vue';
 import School from '../icons/restaurant/School.vue';
 
 const currentDate = ref('');
+const orders = ref([])
+const isLoading = ref(false)
+
+const fetchOrder = async () => {
+  const restaurantId = parseInt(localStorage.getItem('restaurantId'))
+  try {
+    const response = await fetch(`/api/restaurants/order?restaurantId=${restaurantId}`, {
+      method: 'GET',
+    });
+    if (!response.ok) {
+      throw new Error('แสดงข้อมูลออเดอร์ไม่สำเร็จ');
+    }
+    const data = await response.json();
+    orders.value = data.body
+    isLoading.value = true
+  } catch (err) {
+    console.error('แสดงข้อมูลออเดอร์ไม่สำเร็จ:', err);
+
+  }
+};
+
 const updateDate = () => {
   const now = new Date();
   const day = String(now.getDate()).padStart(2, '0');
@@ -96,8 +121,10 @@ const updateDate = () => {
   currentDate.value = `${day}/${month}/${year}`;
 };
 
-onMounted(() => {
+onMounted(async () => {
+  await fetchOrder()
   updateDate();
+  console.log('dataaaa : ', orders.value)
 });
 </script>
 

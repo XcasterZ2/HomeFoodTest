@@ -47,7 +47,7 @@ function createRipple(event) {
                 </div>
             </div>
 
-            <div class="flex-1 flex gap-3 justify-end mt-2 sm:absolute sm:top-10 sm:right-[210px]">
+            <div class="flex-1 flex gap-3 justify-end mt-2 sm:absolute sm:top-10 sm:right-4 xl:right-[14%] lg:right-[5%]">
                 <RouterLink to="/cart" @click="createRipple"
                     class="effect-btn w-[42px] h-[42px] bg-[#FF96843D] rounded-full flex justify-center items-center hover:-translate-y-1 transition-all duration-500 group">
                     <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
