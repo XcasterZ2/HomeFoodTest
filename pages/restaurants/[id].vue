@@ -5,7 +5,7 @@
       <h2 class="mt-2 mx-2 text-base font-semibold">Loading...</h2>
     </div>
     <div v-else>
-      <div class="p-4 flex font-prompt mx-auto max-w-7xl mt-6">
+      <div class="p-4 flex font-prompt mx-auto sm:max-w-5xl max-w-7xl mt-6">
         <RouterLink to="/"
           class="relative z-10 flex-2 w-[42px] h-[42px] bg-white shadow-md rounded-full flex justify-center items-center">
           <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -16,8 +16,11 @@
         </RouterLink>
       </div>
       <div class="sm:max-w-5xl sm:mx-auto rounded-2xl">
-        <div class=" absolute sm:left-[20.2%] -top-5 sm:max-w-5xl">
-          <img src="/public/restuarant/Burger.png" alt="Burger" class=" rounded-b-lg sm:w-[990px] sm:h-[400px]">
+        <div v-if="backgroundImage" class="absolute sm:left-[20.2%] -top-5 sm:max-w-5xl">
+          <img :src="backgroundImage" alt="backgroundImage" class="rounded-b-lg sm:w-[990px] sm:h-[400px]">
+        </div>
+        <div v-else class="absolute sm:left-[20.2%] -top-5 sm:max-w-5xl">
+          <img src="/public/restuarant/Burger.png" alt="backgroundImage" class="rounded-b-lg sm:w-[990px] sm:h-[400px]">
         </div>
 
         <div class=" relative flex flex-col justify-center sm:mt-10 mt-[90px] font-prompt">
@@ -140,6 +143,8 @@ const isLoading = ref(false)
 const menus = ref([])
 const router = useRouter()
 
+const backgroundImage = ref('')
+
 const likedMenus = ref(new Set())
 
 const toggleMenuLike = async (menuId) => {
@@ -220,6 +225,7 @@ const fetchRestaurant = async () => {
 
     if (restaurants.value.length > 0) {
       restaurantsId.value = restaurants.value[0].restaurant_Id  // Assign the first matching restaurant's id
+      backgroundImage.value = restaurants.value[0].backgroundimage;
     }
   } catch (err) {
     console.error('Error fetching courses:', err);

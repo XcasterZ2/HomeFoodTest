@@ -97,7 +97,7 @@ onMounted(async () => {
                     </svg>
                 </RouterLink>
 
-                <div class="flex-1 mt-3">
+                <div class="flex-1 mt-3 flex justify-center">
                     <h2 class="text-2xl mx-20 font-semibold">การสั่งซื้อ</h2>
                 </div>
             </div>

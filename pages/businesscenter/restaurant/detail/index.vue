@@ -97,7 +97,7 @@ onMounted(async () => {
 <template>
   <div class="sm:max-w-5xl sm:mx-auto">
     <userLayoutsNoNav v-if="!isModalOpen">
-      <div class="p-4 flex font-prompt mx-auto max-w-7xl mt-6">
+      <div class="p-4 flex font-prompt mx-auto sm:max-w-3xl max-w-7xl mt-6">
         <RouterLink to="/businesscenter"
           class="flex-2 w-[42px] h-[42px] bg-white shadow-md rounded-full flex justify-center items-center">
           <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -107,7 +107,7 @@ onMounted(async () => {
           </svg>
         </RouterLink>
 
-        <div class="flex-1 mt-2">
+        <div class="flex-1 mt-2 flex justify-center">
           <h2 class="sm:text-[30px] text-[20px] mx-14 font-bold">ร้านค้าของคุณ</h2>
         </div>
 
@@ -121,15 +121,11 @@ onMounted(async () => {
         <div class=" w-full flex sm:justify-center">
 
           <div class="flex gap-7 p-2">
-            <div class="avatar">
-              <div class="w-24 rounded-full">
-                <div v-if="restaurant.restaurantImage">
-                  <img :src="restaurant.restaurantImage" />
-                </div>
-                <div v-else>
-                  <img src="/public/regisRestairant.png" />
-                </div>
-              </div>
+            <div v-if="restaurant.restaurantImage">
+              <img :src="restaurant.restaurantImage" class=" rounded-full w-24 h-24" />
+            </div>
+            <div v-else>
+              <img src="/public/regisRestairant.png" class=" rounded-full w-24 h-24"/>
             </div>
 
             <div class="w-[125px] flex items-center">
@@ -215,7 +211,8 @@ onMounted(async () => {
         </div>
       </div>
     </userLayoutsNoNav>
-    <div v-if="isModalOpen" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center sm:items-center items-end font-prompt"
+    <div v-if="isModalOpen"
+      class="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center sm:items-center items-end font-prompt"
       @click.self="closeModal">
       <div
         class="bg-white rounded-2xl sm:h-[80%] h-[80%] w-full max-w-md p-6 relative transform overflow-x-hidden transition-all duration-300 ease-in-out"
