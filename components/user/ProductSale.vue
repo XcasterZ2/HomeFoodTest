@@ -11,7 +11,7 @@ const products = [
 
 <template>
 
-    <div class="grid sm:grid-cols-5 grid-cols-2 gap-4 p-4 mt-1 font-prompt">
+    <div class="grid font-prompt">
 
         <div v-for="product in products" :key="product"
             class="sm:w-[220px] sm:h-[270px] w-[160px] h-[210px] bg-white rounded-lg shadow-lg overflow-hidden relative">
@@ -60,5 +60,31 @@ const products = [
 <style scoped>
 .font-prompt {
     font-family: 'Prompt', sans-serif;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 16px;
+    padding: 16px;
+    justify-items: center;
+}
+
+@media screen and (max-width:1340px) {
+    .grid {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    .grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 </style>

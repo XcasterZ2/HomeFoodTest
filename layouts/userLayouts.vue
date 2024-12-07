@@ -1,12 +1,12 @@
 <template>
-  <div class="mx-auto max-w-7xl mt-5 pb-24">
-    <div class="mx-auto">
+  <div class="mx-auto max-w-7xl pt-5 pb-24 flex flex-col gap-3">
+    <div class="w-full">
       <Navbar />
     </div>
 
     <slot />
 
-    <Menu class="fixed bottom-5 left-3 right-0 z-50 sm:hidden" />
+    <Menu class="fixed bottom-5 w-full flex z-50  sm:hidden" />
     <MenuDesktop class="hidden sm:block fixed bottom-[40%] left-0 z-50" />
   </div>
 </template>

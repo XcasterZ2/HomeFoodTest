@@ -18,13 +18,20 @@ import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
         </svg>
 
     </div> -->
-    <div class="">
-        <input type="text" class="bg-[#1F2A370D] sm:w-[540px] h-[56px] w-[350px] rounded-lg border-2 pl-10 pr-10"
-            placeholder="">
+    <div class="bg-[#1F2A370D] w-[90%] max-w-[900px] h-[56px] rounded-lg border-2 px-[10px] flex justify-between items-center font-prompt">
+        <div class="flex">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M10.5 1.75C5.66751 1.75 1.75 5.66751 1.75 10.5C1.75 15.3325 5.66751 19.25 10.5 19.25C15.3325 19.25 19.25 15.3325 19.25 10.5C19.25 5.66751 15.3325 1.75 10.5 1.75ZM0.25 10.5C0.25 4.83908 4.83908 0.25 10.5 0.25C16.1609 0.25 20.75 4.83908 20.75 10.5C20.75 13.0605 19.8111 15.4017 18.2589 17.1982L21.5303 20.4697C21.8232 20.7626 21.8232 21.2374 21.5303 21.5303C21.2374 21.8232 20.7626 21.8232 20.4697 21.5303L17.1982 18.2589C15.4017 19.8111 13.0605 20.75 10.5 20.75C4.83908 20.75 0.25 16.1609 0.25 10.5Z"
+                    fill="#BABDC1" />
+            </svg>
 
-        <MagnifyingGlassIcon class="w-6 h-6 text-gray-500 -my-10 mx-3" />
+        </div>
 
-        <div class="flex justify-end sm:mx-5 mx-8 mt-4">
+        <input type="text" placeholder="" class="w-[80%] outline-none bg-transparent">
+
+
+        <div class="flex">
             <svg class="w-6 h-6 text-gray-500  cursor-pointer" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd"
