@@ -22,7 +22,7 @@
       <div v-for="menu in menus" :key="menu.name" class=" shadow-md mb-5 p-4 rounded-2xl">
         <img :src="JSON.parse(menu.image) || `/restuarant/menu.png`" alt="logo-Menu"
           class=" rounded-xl sm:w-44 sm:h-40 w-32 h-28">
-        <div class="mt-2">{{ menu.name }}</div>
+        <div class="mt-2 text-[14px] sm:text-[16px]">{{ menu.name }}</div>
 
         <div class="bg-[#FF9684] mt-2 w-[65px]  bg-opacity-30 h-[20px] flex rounded-full justify-center items-center">
           <Fire />

@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-3xl mx-auto p-5 pb-24">
+  <div class="max-w-xl mx-auto p-5 pb-24">
     <div class="p-4 flex font-prompt mx-auto max-w-7xl mt-6">
       <RouterLink to="/"
         class="flex-2 w-[42px] h-[42px] bg-white shadow-md rounded-full flex justify-center items-center">
@@ -11,60 +11,66 @@
       </RouterLink>
 
       <div class="flex-1 mt-2">
-        <h2 class="text-xl mx-16 font-bold">ตะกร้าของฉัน</h2>
+        <h2 class="text-2xl mx-10 font-bold">ตะกร้าของฉัน</h2>
       </div>
     </div>
     <div class="p-3 font-prompt">
       <div v-if="cartItems.length > 0">
-        <div v-for="item in cartItems" :key="item.id" class="mt-4 rounded-xl p-2 shadow-lg">
-          <!-- Images Menu-->
-          <div class="flex gap-3">
-            <div v-if="item.menu.image && JSON.parse(item.menu.image).length > 0">
-              <img :src="JSON.parse(item.menu.image)[0]" alt="logo-Menu"
-                class="rounded-xl sm:w-full sm:h-44 w-[120px] h-full">
-            </div>
-            <div v-else>
-              <img src="/public/restuarant/menu.png" alt="default-Menu" class="rounded-xl sm:w-full sm:h-44 w-36 h-30">
-            </div>
+        <div v-if="isLoading" class="p-3 font-medium text-gray-500">
+          กำลังโหลดข้อมูล...
+        </div>
+        <div v-else>
+          <div v-for="item in cartItems" :key="item.id" class="mt-4 rounded-xl p-2 shadow-lg">
+            <!-- Images Menu-->
+            <div class="flex gap-3">
+              <div v-if="item.menu.image && JSON.parse(item.menu.image).length > 0">
+                <img :src="JSON.parse(item.menu.image)[0]" alt="logo-Menu"
+                  class="rounded-xl sm:w-full sm:h-44 w-[120px] h-full">
+              </div>
+              <div v-else>
+                <img src="/public/restuarant/menu.png" alt="default-Menu"
+                  class="rounded-xl sm:w-full sm:h-44 w-36 h-30">
+              </div>
 
-            <div class="w-[80%]">
-              <div class="flex justify-between">
-                <div>
-                  <p>{{ item.menu.name }}</p>
-                </div>
+              <div class="w-[80%]">
+                <div class="flex justify-between">
+                  <div>
+                    <p>{{ item.menu.name }}</p>
+                  </div>
 
-                <div>
-                  <div class="flex gap-2">
-                    <editPage />
-                    <div class=" cursor-pointer" @click="removeFromCart(item.id)">
-                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M13.5 4.5L4.5 13.5" stroke="#BABDC1" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                        <path d="M4.5 4.5L13.5 13.5" stroke="#BABDC1" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg>
+                  <div>
+                    <div class="flex gap-2">
+                      <editPage />
+                      <div class=" cursor-pointer" @click="removeFromCart(item.id)">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M13.5 4.5L4.5 13.5" stroke="#BABDC1" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                          <path d="M4.5 4.5L13.5 13.5" stroke="#BABDC1" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-              </div>
-              <div class="mt-2">
-                <p class="font-semibold text-[#FF6347]">฿{{ item.menu.price }}</p>
-              </div>
-              <div class="flex gap-3 mt-2">
-                <button @click="updateQuantity(item.id, item.quantity - 1)"
-                  class="w-8 h-8 border rounded-full">-</button>
-                <span class="mt-1 text-lg font-medium">{{ item.quantity }}</span>
-                <button @click="updateQuantity(item.id, item.quantity + 1)"
-                  class="w-8 h-8 border rounded-full">+</button>
+                </div>
+                <div class="mt-2">
+                  <p class="font-semibold text-[#FF6347]">฿{{ item.menu.price }}</p>
+                </div>
+                <div class="flex gap-3 mt-2">
+                  <button @click="updateQuantity(item.id, item.quantity - 1)"
+                    class="w-8 h-8 border rounded-full">-</button>
+                  <span class="mt-1 text-lg font-medium">{{ item.quantity }}</span>
+                  <button @click="updateQuantity(item.id, item.quantity + 1)"
+                    class="w-8 h-8 border rounded-full">+</button>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div v-if="asd" class="border-[1px] w-full mt-2">
-          </div>
+            <div v-if="asd" class="border-[1px] w-full mt-2">
+            </div>
 
-          <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2">
+            </div>
           </div>
         </div>
       </div>
@@ -114,19 +120,20 @@
       </div>
     </div>
 
-    <div class="font-prompt fixed bottom-5 left-3 right-0 z-50 sm:hidden">
+    <div class="font-prompt fixed bottom-5 left-3 right-0 z-50 sm:max-w-3xl sm:mx-auto">
       <div class="flex h-16 w-full shadow-lg rounded-full p-2 bg-white">
         <div class="flex-1 rounded-full flex justify-center items-center">
-          <div>
+          <div class="sm:flex sm:gap-3">
+            <p class="sm:mt-1 hidden sm:block">ราคารวม</p>
             <p class="text-2xl font-medium ">฿{{ total }}</p>
           </div>
         </div>
 
-        <div @click="addToCart"
+        <div @click="proceedToCheckout"
           class="flex-1 bg-[#FF6347] rounded-full hover:-translate-y-1 transition-all duration-500 group cursor-pointer">
           <div class="flex justify-center items-center mt-3">
             <Shopping />
-            <p class="text-white font-medium">เพิ่มลงตะกร้า</p>
+            <p class="text-white font-medium">ชำระเงิน </p>
           </div>
         </div>
       </div>
@@ -148,9 +155,12 @@ const cartItems = ref([]);
 const total = ref(0);
 const authStore = useAuthStore()
 
+const isLoading = ref(false);
+
 
 const fetchCartItems = async () => {
-  const userId = authStore.user.id; // Ensure user ID is available
+  const userId = authStore.user.id;
+  isLoading.value = true; // เริ่มการโหลด
   try {
     const response = await fetch(`/api/cart?userId=${userId}`, {
       method: 'GET',
@@ -161,9 +171,11 @@ const fetchCartItems = async () => {
 
     const data = await response.json();
     cartItems.value = data.cartItems;
-    calculateTotal()
+    calculateTotal();
   } catch (error) {
     console.error('Error fetching cart items:', error);
+  } finally {
+    isLoading.value = false; // สิ้นสุดการโหลด
   }
 };
 
@@ -179,7 +191,7 @@ const updateQuantity = async (cartItemId, newQuantity) => {
   if (newQuantity < 1) return;
 
   try {
-    const response = await fetch('/api/cart/update', {
+    const response = await fetch('/api/carts/update', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -214,11 +226,21 @@ const removeFromCart = async (cartItemId) => {
     console.error('Error removing cart item:', error);
   }
 };
+const proceedToCheckout = () => {
+  const router = useRouter()
+
+  const restaurantIds = cartItems.value.map(item => item.menu.restaurantId);
+
+  localStorage.setItem('resId', restaurantIds[0]);
+  localStorage.setItem('cartItems', JSON.stringify(cartItems.value));
+  localStorage.setItem('cartTotal', total.value.toString());
+
+  router.push('/cart/check');
+};
 
 onMounted(async () => {
   await fetchCartItems()
-  console.log('id : ', authStore.user.id)
-
-  console.log('cart : ', cartItems.value)
+  const cartItemIds = cartItems.value.map(item => item.id);
+  console.log('cart : ', cartItemIds)
 })
 </script>

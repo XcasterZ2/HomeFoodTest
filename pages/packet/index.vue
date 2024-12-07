@@ -6,7 +6,7 @@ import userLayoutsNoNav from '~/layouts/userLayoutsNoNav.vue';
 
 <template>
     <userLayoutsNoNav>
-        <div class="pr-4 pl-10 pt-4 flex font-prompt mx-auto max-w-7xl mt-6">
+        <div class="p-4 flex font-prompt mx-auto max-w-7xl mt-6">
             <RouterLink to="/"
                 class="flex-2 w-[42px] h-[42px] bg-white shadow-md rounded-full flex justify-center items-center">
                 <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,10 +17,10 @@ import userLayoutsNoNav from '~/layouts/userLayoutsNoNav.vue';
             </RouterLink>
 
             <div class="flex-1 mt-2 flex justify-center">
-                <h2 class="text-3xl mx-16 font-bold">แพ็กเกจ</h2>
+                <h2 class="text-3xl font-bold">แพ็กเกจ</h2>
             </div>
         </div>
-        <Packet/>
+        <Packet />
     </userLayoutsNoNav>
 
 </template>

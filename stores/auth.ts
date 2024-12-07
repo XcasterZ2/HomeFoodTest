@@ -44,7 +44,11 @@ export const useAuthStore = defineStore('auth', () => {
 
     if (userData.user.role === 'admin') {
       router.push('/admin');
-    } else {
+    }
+    if (userData.user.role === 'rider') {
+      router.push('/rider');
+    }
+    else {
       router.push('/');
     }
   };
@@ -63,6 +67,11 @@ export const useAuthStore = defineStore('auth', () => {
       localStorage.removeItem('user');
       localStorage.removeItem('token');
       localStorage.removeItem('restaurantId');
+      localStorage.removeItem('cartItems');
+      localStorage.removeItem('cartTotal');
+
+      localStorage.removeItem('cartId');
+      localStorage.removeItem('resId');
     }
 
     router.push('/');

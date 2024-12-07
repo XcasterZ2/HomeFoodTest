@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-cols-3 gap-2">
-    <div class="flex">
-      <div
+    <div class="flex justify-center">
+      <RouterLink to="/businesscenter/restaurant/menu"
         class="sm:w-[200px] sm:h-[150px] w-full h-[100px] rounded-2xl hover:-translate-y-1 transition-all duration-500 group cursor-pointer"
         :style="{ background: 'linear-gradient(to bottom, #FFEFED, #FF826C)' }">
         <div class="flex flex-col gap-2 h-full w-full">
@@ -17,7 +17,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </RouterLink>
     </div>
 
     <div class="flex justify-center">

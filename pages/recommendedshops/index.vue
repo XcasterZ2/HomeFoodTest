@@ -1,6 +1,6 @@
 <template>
   <userLayoutsNoNav>
-    <div class="p-4 flex font-prompt mx-auto max-w-7xl mt-6">
+    <div class="p-4 flex font-prompt mx-auto sm:max-w-4xl max-w-7xl mt-6">
       <RouterLink to="/"
         class="flex-2 w-[42px] h-[42px] bg-white shadow-md rounded-full flex justify-center items-center">
         <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -10,16 +10,19 @@
         </svg>
       </RouterLink>
 
-      <div class="flex-1 mt-3">
-        <h2 class="text-xl mx-16 font-bold">รวมร้านแนะนำ</h2>
+      <div class="flex-1 mt-2 flex justify-center">
+        <h2 class="text-xl sm:text-3xl mx-16 font-bold">รวมร้านแนะนำ</h2>
       </div>
     </div>
 
-    <div class="flex justify-center">
+    <div class="flex justify-center mt-5">
       <Search />
     </div>
 
-    <RecommendedShops />
+    <div class=" mt-5">
+      <RecommendedShops />
+    </div>
+
   </userLayoutsNoNav>
 </template>
 

@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
     }
 
     const otpResponse = await response.json();
-    console.log('otpResponsendOtp : ' , otpResponse)
+    // console.log('otpResponsendOtp : ' , otpResponse)
 
     if (otpResponse.code === "000" && otpResponse.result.status === "OK.") {
       return {

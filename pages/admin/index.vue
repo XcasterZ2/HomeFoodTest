@@ -9,9 +9,15 @@
           <h2 class="card-title text-white font-light text-3xl pl-5 pt-5">สมัครชิกทั้งหมด</h2>
           <div class="flex mt-8">
             <div class="flex ml-5 w-full mt-8">
-              <p class="text-white text-4xl mt-1">
-                {{ useres.length }} คน
-              </p>
+              <div v-if="useres.length" class="flex gap-3">
+                <p class="text-white text-4xl mt-2">
+                  {{ useres.length }}
+                </p>
+                <p class="text-white text-4xl mt-2">คน</p>
+              </div>
+              <div v-else>
+                <span class="loading loading-spinner text-white"></span>
+              </div>
             </div>
             <div class="absolute bottom-3 right-1 justify-end mr-5">
               <img src="https://img2.pic.in.th/pic/users_391194.png" alt="logo_user" class="w-[75px]">
@@ -23,9 +29,15 @@
           <h2 class="card-title text-white font-light text-3xl pl-5 pt-5">ร้านอาหารทั้งหมด</h2>
           <div class="flex mt-8">
             <div class="flex-1 ml-5 mt-8">
-              <p class="text-white text-4xl mt-2" :class="{ 'text-xl': loadingReservations }">
-                {{ restaurants.length }} ร้าน
-              </p>
+              <div v-if="restaurants.length" class="flex gap-3">
+                <p class="text-white text-4xl mt-2">
+                  {{ restaurants.length }}
+                </p>
+                <p class="text-white text-4xl mt-2">ร้าน</p>
+              </div>
+              <div v-else>
+                <span class="loading loading-spinner text-white"></span>
+              </div>
             </div>
             <div class="flex-1 flex justify-end mr-5">
               <img src="https://img2.pic.in.th/pic/qc_8790314-1.png" alt="logo_user">
@@ -37,9 +49,15 @@
           <h2 class="card-title text-white font-light text-2xl pl-5 pt-5">เมนูทั้งหมด</h2>
           <div class="flex mt-8">
             <div class="flex-1 ml-5 mt-8">
-              <p class="text-white text-4xl mt-2">
-                {{ menus.length }}  เมนู
-              </p>
+              <div v-if="menus.length" class="flex gap-3">
+                <p class="text-white text-4xl mt-2">
+                  {{ menus.length }}
+                </p>
+                <p class="text-white text-4xl mt-2">เมนู</p>
+              </div>
+              <div v-else>
+                <span class="loading loading-spinner text-white"></span>
+              </div>
             </div>
             <div class="flex-1 flex justify-end mr-5">
               <img src="https://img2.pic.in.th/pic/job_10485121.png" alt="logo_user">
@@ -59,18 +77,18 @@ const restaurants = ref([])
 const menus = ref([])
 
 const fetchMenu = async () => {
-    try {
-        const response = await fetch('/api/menu', {
-            method: 'GET',
-        });
-        if (!response.ok) {
-            throw new Error('Failed to fetch courses');
-        }
-        const data = await response.json();
-        menus.value = data
-    } catch (err) {
-        console.error('Error fetching courses:', err);
+  try {
+    const response = await fetch('/api/menu', {
+      method: 'GET',
+    });
+    if (!response.ok) {
+      throw new Error('Failed to fetch courses');
     }
+    const data = await response.json();
+    menus.value = data
+  } catch (err) {
+    console.error('Error fetching courses:', err);
+  }
 };
 
 const fetchUser = async () => {
@@ -86,18 +104,18 @@ const fetchUser = async () => {
 };
 
 const fetchRestaurant = async () => {
-    try {
-        const response = await fetch('/api/restaurant', {
-            method: 'GET',
-        });
-        if (!response.ok) {
-            throw new Error('Failed to fetch courses');
-        }
-        const data = await response.json();
-        restaurants.value = data
-    } catch (err) {
-        console.error('Error fetching courses:', err);
+  try {
+    const response = await fetch('/api/restaurant', {
+      method: 'GET',
+    });
+    if (!response.ok) {
+      throw new Error('Failed to fetch courses');
     }
+    const data = await response.json();
+    restaurants.value = data
+  } catch (err) {
+    console.error('Error fetching courses:', err);
+  }
 };
 
 definePageMeta({
@@ -108,7 +126,7 @@ onMounted(async () => {
   await fetchUser()
   await fetchRestaurant()
   await fetchMenu()
-  console.log('restaurant  : ' , menus.value)
+  console.log('restaurant  : ', menus.value)
 })
 </script>
 

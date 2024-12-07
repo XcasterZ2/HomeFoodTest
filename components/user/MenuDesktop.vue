@@ -10,8 +10,7 @@
         ? 'bg-[linear-gradient(121.94deg,_#FF6347_0%,_#FF826C_100%)] -translate-y-1'
         : 'hover:bg-[linear-gradient(121.94deg,_#FF6347_0%,_#FF826C_100%)] hover:-translate-y-1'
     ]">
-      <svg v-if="route.path !== '/'" class="w-6 h-6" viewBox="0 0 25 24" fill="none"
-        xmlns="http://www.w3.org/2000/svg">
+      <svg v-if="route.path !== '/'" class="w-6 h-6" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M9.79999 17.25C9.38577 17.25 9.04999 17.5858 9.04999 18C9.04999 18.4142 9.38577 18.75 9.79999 18.75H15.8C16.2142 18.75 16.55 18.4142 16.55 18C16.55 17.5858 16.2142 17.25 15.8 17.25H9.79999Z"
           fill="#BABDC1" />
@@ -57,7 +56,8 @@
         ? 'bg-[linear-gradient(121.94deg,_#FF6347_0%,_#FF826C_100%)] -translate-y-1'
         : 'hover:bg-[linear-gradient(121.94deg,_#FF6347_0%,_#FF826C_100%)] hover:-translate-y-1'
     ]">
-      <svg v-if="route.path !== '/businesscard'" class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg v-if="route.path !== '/businesscard'" class="w-6 h-6" viewBox="0 0 24 24" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
         <path
           d="M19 12C19 12.5523 18.5523 13 18 13C17.4477 13 17 12.5523 17 12C17 11.4477 17.4477 11 18 11C18.5523 11 19 11.4477 19 12Z"
           fill="#BABDC1" />
@@ -66,7 +66,8 @@
           fill="#BABDC1" />
       </svg>
 
-      <svg v-if="route.path === '/businesscard'" class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg v-if="route.path === '/businesscard'" class="w-6 h-6" viewBox="0 0 24 24" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd"
           d="M21.6009 8.00353C21.5442 7.99996 21.4825 7.99998 21.4186 8L21.4026 8.00001H18.8941C16.8264 8.00001 15.0572 9.62757 15.0572 11.75C15.0572 13.8724 16.8264 15.5 18.8941 15.5H21.4026L21.4186 15.5C21.4825 15.5 21.5442 15.5001 21.6009 15.4965C22.4408 15.4434 23.1835 14.7862 23.246 13.8682C23.2501 13.808 23.25 13.7431 23.25 13.683L23.25 13.6667V9.83334L23.25 9.81702C23.25 9.75688 23.2501 9.69199 23.246 9.6318C23.1835 8.71381 22.4408 8.05657 21.6009 8.00353ZM18.6717 12.75C19.204 12.75 19.6355 12.3023 19.6355 11.75C19.6355 11.1977 19.204 10.75 18.6717 10.75C18.1394 10.75 17.7078 11.1977 17.7078 11.75C17.7078 12.3023 18.1394 12.75 18.6717 12.75Z"
           fill="white" />
@@ -77,15 +78,21 @@
     </RouterLink>
 
 
-    <button
-      class="mt-3 w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center hover:bg-[linear-gradient(121.94deg,_#FF6347_0%,_#FF826C_100%)] transition-all duration-300 group hover:-translate-y-1">
-      <svg class="w-6 h-6 group-hover:hidden" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <RouterLink to="/notification" :class="[
+      'mt-3 w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center transition-all duration-300 group',
+      route.path === '/notification'
+        ? 'bg-[linear-gradient(121.94deg,_#FF6347_0%,_#FF826C_100%)] -translate-y-1'
+        : 'hover:bg-[linear-gradient(121.94deg,_#FF6347_0%,_#FF826C_100%)] hover:-translate-y-1'
+    ]">
+      <svg v-if="route.path !== '/notification'" class="w-6 h-6" viewBox="0 0 25 24" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd"
           d="M12.6 1.25C8.31984 1.25 4.85005 4.71979 4.85005 9V9.7041C4.85005 10.401 4.64376 11.0824 4.25717 11.6622L3.10857 13.3851C1.77547 15.3848 2.79318 18.1028 5.11177 18.7351C5.86739 18.9412 6.62938 19.1155 7.39579 19.2581L7.39768 19.2632C8.16668 21.3151 10.222 22.75 12.6 22.75C14.978 22.75 17.0333 21.3151 17.8023 19.2632L17.8042 19.2581C18.5706 19.1155 19.3327 18.9412 20.0883 18.7351C22.4069 18.1028 23.4246 15.3848 22.0915 13.3851L20.9429 11.6622C20.5563 11.0824 20.35 10.401 20.35 9.7041V9C20.35 4.71979 16.8803 1.25 12.6 1.25ZM15.9765 19.537C13.7335 19.805 11.4664 19.8049 9.2235 19.5369C9.93445 20.5585 11.171 21.25 12.6 21.25C14.0289 21.25 15.2655 20.5585 15.9765 19.537ZM6.35005 9C6.35005 5.54822 9.14827 2.75 12.6 2.75C16.0518 2.75 18.85 5.54822 18.85 9V9.7041C18.85 10.6972 19.144 11.668 19.6948 12.4943L20.8434 14.2172C21.6086 15.3649 21.0245 16.925 19.6936 17.288C15.0494 18.5546 10.1507 18.5546 5.50645 17.288C4.17562 16.925 3.59147 15.3649 4.35665 14.2172L5.50525 12.4943C6.0561 11.668 6.35005 10.6972 6.35005 9.7041V9Z"
           fill="#BABDC1" />
       </svg>
 
-      <svg class="w-6 h-6 hidden group-hover:block" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg v-if="route.path === '/notification'" class="w-6 h-6" viewBox="0 0 25 24"
+        fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M8.95177 20.2418C9.79285 21.311 11.1142 22 12.6 22C14.0858 22 15.4071 21.311 16.2482 20.2418C13.8264 20.57 11.3735 20.57 8.95177 20.2418Z"
           fill="white" />
@@ -93,7 +100,7 @@
           d="M19.3491 9V9.7041C19.3491 10.5491 19.5903 11.3752 20.0422 12.0782L21.1496 13.8012C22.1612 15.3749 21.3889 17.5139 19.6296 18.0116C15.0272 19.3134 10.1727 19.3134 5.57034 18.0116C3.81102 17.5139 3.0388 15.3749 4.05033 13.8012L5.15777 12.0782C5.60969 11.3752 5.85085 10.5491 5.85085 9.7041V9C5.85085 5.13401 8.87253 2 12.6 2C16.3274 2 19.3491 5.13401 19.3491 9Z"
           fill="white" />
       </svg>
-    </button>
+    </RouterLink>
 
     <div v-if="authStore.isAuthenticated"
       class="mt-3 w-[50px] h-[50px] rounded-full bg-white overflow-hidden hover:-translate-y-1 transition-all duration-300 group">
@@ -122,6 +129,7 @@
 
 <script setup>
 import { useAuthStore } from '#build/imports';
+import { RouterLink } from 'vue-router';
 const authStore = useAuthStore()
 
 const route = useRoute()

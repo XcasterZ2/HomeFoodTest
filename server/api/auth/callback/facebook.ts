@@ -73,8 +73,6 @@ export default defineEventHandler(async (event) => {
           }
         });
 
-        console.log('Existing user:', existingUser);
-
         if (existingUser) {
           const authData = {
             user: {

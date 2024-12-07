@@ -52,20 +52,24 @@ onMounted(async () => {
         <div class="flex justify-center mt-5">
             <Search />
         </div>
-        <div v-if="isLoading" class="text-center mt-5 font-prompt">
+        <div v-if="isLoading" class="text-center mt-10 font-prompt">
             <span class="loading loading-spinner loading-xl text-orange-500"></span>
             <h2 class="mt-2 mx-2 text-base font-semibold">Loading...</h2>
         </div>
         <div
             class="sm:max-w-3xl sm:mx-auto sm:mt-7 w-full grid sm:grid-cols-3 grid-cols-2 gap-y-3 gap-3 mt-5 p-4 font-prompt">
-            <RouterLink v-for="restaurant in restaurants" :key="restaurant.id"
-                to="/businesscenter/restaurant/detail"
-                class="bg-white w-full h-[215px] rounded-2xl shadow-md"
+            <RouterLink v-for="restaurant in restaurants" :key="restaurant.id" to="/businesscenter/restaurant/detail"
+                class="bg-white w-full h-[215px] sm:h-[260px] rounded-2xl shadow-md"
                 @click="setRestaurantId(restaurant.restaurant_Id)">
                 <div class="flex flex-col h-full p-2">
                     <div class="flex justify-center items-start">
-                        <img src="/restuarant/9c80947e0408d3d81f78f309e848d61e.png" alt="pic-restuarant"
-                            class="h-[100px] object-cover rounded-2xl">
+                        <div v-if="restaurant.restaurantImage">
+                            <img :src="restaurant.restaurantImage" alt="pic-restuarant"
+                                class="h-[100px] object-cover rounded-2xl sm:h-[140px] sm:w-[200px]">
+                        </div>
+                        <div v-else>
+                            <img src="/public/restuarant/9c80947e0408d3d81f78f309e848d61e.png" alt="pic-restuarant" class="h-[100px] sm:h-[140px] sm:w-[200px] object-cover rounded-2xl">
+                        </div>
                     </div>
                     <div class="mt-2">
                         <p class="font-medium">{{ restaurant.name }}</p>

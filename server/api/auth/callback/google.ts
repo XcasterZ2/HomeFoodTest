@@ -83,9 +83,6 @@ export default defineEventHandler(async (event) => {
           }
         });
 
-        console.log('Existing user:', existingUser);
-        console.log('ID type:', typeof existingUser?.id);
-
         if (existingUser) {
           // สร้าง auth data สำหรับ existing user
           const authData = {

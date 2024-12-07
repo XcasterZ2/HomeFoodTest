@@ -5,7 +5,7 @@
       <h2 class="mt-2 mx-2 text-base font-semibold">Loading...</h2>
     </div>
     <div v-else>
-      <div class="p-4 flex font-prompt mx-auto max-w-7xl mt-6">
+      <div class="p-4 flex font-prompt mx-auto sm:max-w-5xl max-w-7xl mt-6">
         <RouterLink to="/"
           class="relative z-10 flex-2 w-[42px] h-[42px] bg-white shadow-md rounded-full flex justify-center items-center">
           <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -16,8 +16,11 @@
         </RouterLink>
       </div>
       <div class="sm:max-w-5xl sm:mx-auto rounded-2xl">
-        <div class=" absolute sm:left-[20.2%] -top-5 sm:max-w-5xl">
-          <img src="/public/restuarant/Burger.png" alt="Burger" class=" rounded-b-lg sm:w-[990px] sm:h-[400px]">
+        <div v-if="backgroundImage" class="absolute sm:left-[20.2%] -top-5 sm:max-w-5xl">
+          <img :src="backgroundImage" alt="backgroundImage" class="rounded-b-lg sm:w-[990px] sm:h-[400px]">
+        </div>
+        <div v-else class="absolute sm:left-[20.2%] -top-5 sm:max-w-5xl">
+          <img src="/public/restuarant/Burger.png" alt="backgroundImage" class="rounded-b-lg sm:w-[990px] sm:h-[400px]">
         </div>
 
         <div class=" relative flex flex-col justify-center sm:mt-10 mt-[90px] font-prompt">
@@ -74,7 +77,7 @@
                   </div>
                   <div v-else>
                     <img src="/public/restuarant/menu.png" alt="default-Menu"
-                      class="rounded-xl sm:w-full sm:h-44 w-36 h-30">
+                      class="rounded-xl sm:w-full sm:h-44 w-36 h-[110px]">
                   </div>
 
 
@@ -88,14 +91,14 @@
 
                   <div class="flex justify-between mt-2">
                     <!-- Like Button -->
-                    <button class="mt-2 border-[1px] rounded-full p-1 w-16 flex items-center justify-center"
+                    <button class="mt-2 border-[1px] rounded-full p-1 sm:w-16 w-12 flex items-center justify-center"
                       @click.stop="toggleMenuLike(menu.id)">
-                      <Heart :filled="isMenuLiked(menu.id)" class="w-6 h-6" />
+                      <Heart :filled="isMenuLiked(menu.id)" class="sm:w-6 sm:h-6 w-4 h-4" />
                       <span class="ml-1 text-sm">{{ menu.likeCount || 0 }}</span>
                     </button>
 
                     <div class="mt-3">
-                      <h2 class="text-[#FF6347] font-bold text-[20px]">฿{{ menu.price }}</h2>
+                      <h2 class="text-[#FF6347] font-bold sm:text-[20px] text-[18px]">฿{{ menu.price }}</h2>
                     </div>
                   </div>
                 </div>
@@ -139,6 +142,8 @@ const restaurantsId = ref(null)
 const isLoading = ref(false)
 const menus = ref([])
 const router = useRouter()
+
+const backgroundImage = ref('')
 
 const likedMenus = ref(new Set())
 
@@ -220,6 +225,7 @@ const fetchRestaurant = async () => {
 
     if (restaurants.value.length > 0) {
       restaurantsId.value = restaurants.value[0].restaurant_Id  // Assign the first matching restaurant's id
+      backgroundImage.value = restaurants.value[0].backgroundimage;
     }
   } catch (err) {
     console.error('Error fetching courses:', err);

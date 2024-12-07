@@ -58,12 +58,20 @@ onMounted(async () => {
                 </svg>
             </div>
             <div class="w-full h-full overflow-hidden rounded-lg p-2">
-                <img :src="shop.src || '/user/shops/shop3.png'" :alt="shop.name"
-                    class="sm:w-[210px] sm:h-[160px] w-[140px] h-[110px] object-cover rounded-md">
+                <!-- <img :src="shop.src || '/user/shops/shop3.png'" :alt="shop.name"
+                    class="sm:w-[210px] sm:h-[160px] w-[140px] h-[110px] object-cover rounded-md"> -->
+                <div v-if="shop.restaurantImage">
+                    <img :src="shop.restaurantImage" alt="pic-restuarant"
+                        class=" object-cover rounded-2xl sm:w-[210px] sm:h-[160px] w-[140px] h-[110px]">
+                </div>
+                <div v-else>
+                    <img src="/public/restuarant/9c80947e0408d3d81f78f309e848d61e.png" alt="pic-restuarant"
+                        class="sm:w-[210px] sm:h-[160px] w-[140px] h-[110px] object-cover rounded-2xl">
+                </div>
 
                 <div class="mt-2">
                     <div>
-                        <h2 class=" text-[14px] font-light">{{ shop.name }}</h2>
+                        <h2 class="sm:text-[16px] text-[14px] font-light">{{ shop.name }}</h2>
                     </div>
                     <div class="flex mt-2">
                         <div class="mt-1">
