@@ -18,15 +18,14 @@ function createRipple(event) {
 </script>
 
 <template>
-    <div class="mx-auto font-prompt">
-        <div class="bg-white max-w-6xl p-4 flex">
-
+    <div class="font-prompt w-full">
+        <div class="bg-white w-full p-4 flex justify-between items-center">
             <div class="flex-1">
                 <div>
                     <h1>จัดส่งไปที่</h1>
                 </div>
 
-                <div class="font-bold text-[#989DA3] flex mt-2 cursor-pointer hover:bg-gray-200 rounded-full w-52">
+                <div class="font-bold text-[#989DA3] flex cursor-pointer hover:bg-gray-200 rounded-full w-52">
                     <div class="">
                         <h1 class="text-[16px]">เลือกตำแหน่งของคุณ</h1>
                     </div>
@@ -47,7 +46,7 @@ function createRipple(event) {
                 </div>
             </div>
 
-            <div class="flex-1 flex gap-3 justify-end mt-2 sm:absolute sm:top-10 sm:right-4 xl:right-[14%] lg:right-[5%]">
+            <div class="flex-1 flex gap-3 justify-end ">
                 <RouterLink to="/cart" @click="createRipple"
                     class="effect-btn w-[42px] h-[42px] bg-[#FF96843D] rounded-full flex justify-center items-center hover:-translate-y-1 transition-all duration-500 group">
                     <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -4,12 +4,12 @@
       <Promotion v-if="isDesktop" />
       <PromotionSlide v-else />
     </div>
-    <div class="mt-5 flex justify-center">
+    <div class="flex justify-center h-fit mt-5 mb-5">
       <Search />
     </div>
 
     <div class="flex justify-center">
-      <div class="grid grid-cols-3 gap-5 p-3 mt-5 font-prompt">
+      <div class="grid grid-cols-3 gap-5 p-3 font-prompt">
         <RouterLink to="/orderfood"
           class="sm:w-36 sm:h-36 w-24 h-24 rounded-lg bg-gradient-to-b from-[#FFEFED] to-[#FF826C] relative overflow-hidden">
           <div class="absolute inset-0 rounded-lg border-[2px] border-[#FF96843D]"
@@ -58,7 +58,7 @@
       </div>
     </div>
 
-    <div class="flex mt-5 font-prompt">
+    <div class="flex  font-prompt">
       <div class="flex-1 flex p-4">
         <div>
           <svg class="sm:w-[48px] sm:h-[48px]" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -76,7 +76,7 @@
         </div>
       </div>
 
-      <div class="p-3 flex-1 flex font-prompt justify-end mt-1 sm:mt-2">
+      <div class="p-3 flex-1 flex font-prompt justify-end items-center">
         <RouterLink to="/recommendedshops" class="font-bold sm:mt-0 sm:text-xl text-[14px] text-[#FF6347]">ดูทั้งหมด
         </RouterLink>
         <svg class="sm:w-[28px] sm:h-[28px] w-[18px] h-[18px] text-[#FF6347]" xmlns="http://www.w3.org/2000/svg"
@@ -150,12 +150,12 @@ const checked = ref(false);
 const likes = ref(0);
 
 const handleLikeClick = () => {
-    if (checked.value) {
-        likes.value--;
-    } else {
-        likes.value++;
-    }
-    checked.value = !checked.value;
+  if (checked.value) {
+    likes.value--;
+  } else {
+    likes.value++;
+  }
+  checked.value = !checked.value;
 };
 
 
@@ -192,4 +192,6 @@ onUnmounted(() => {
 .font-prompt {
   font-family: 'Prompt', sans-serif;
 }
+
+
 </style>

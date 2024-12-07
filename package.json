@@ -9,6 +9,8 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.703.0",
+    "@aws-sdk/lib-storage": "^3.703.0",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/vue-fontawesome": "^3.0.8",
@@ -19,7 +21,8 @@
     "@prisma/client": "^5.22.0",
     "@vercel/postgres": "^0.10.0",
     "@vuepic/vue-datepicker": "^10.0.0",
-    "axios": "^1.7.7",
+    "aws-sdk": "^2.1692.0",
+    "axios": "^1.7.8",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "core-js": "^3.39.0",

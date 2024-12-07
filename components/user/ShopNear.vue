@@ -53,11 +53,12 @@ const setActiveSection = (section) => {
             <div v-for="shop in shopnear" :key="shop.name">
                 <div class="w-full  sm:h-[140px] h-[70px] mt-2 flex">
                     <div>
-                        <img :src="shop.src" :alt="shop.name" class="sm:w-[134px] sm:h-[134px] w-[60px] h-[60px] object-cover rounded-md">
+                        <img :src="shop.src" :alt="shop.name"
+                            class="sm:w-[134px] sm:h-[134px] w-[60px] h-[60px] object-cover rounded-md">
                     </div>
 
                     <div class="flex w-full">
-                        <div class="mx-4 flex flex-col">
+                        <div class="mx-4 flex flex-col w-[50%]">
                             <div>
                                 <h2 class="text-base sm:text-xl">{{ shop.name }}</h2>
                             </div>
@@ -74,8 +75,9 @@ const setActiveSection = (section) => {
                             </div>
                         </div>
 
-                        <div class="flex-1 flex item w-full justify-center sm:justify-end  sm:mx-10">
-                            <div class="sm:w-[100px] sm:h-8 w-[66px] h-6 rounded-2xl bg-red-200 flex justify-center items-center mt-3">
+                        <div class="flex item w-[50%] justify-end px-2">
+                            <div
+                                class="sm:w-[100px] sm:h-8 w-[66px] h-6 rounded-2xl bg-red-200 flex justify-center items-center mt-3">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <rect x="13.3333" y="10.8333" width="5" height="5" rx="2.5" stroke="#FF826C"
@@ -111,5 +113,4 @@ const setActiveSection = (section) => {
     </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

@@ -40,12 +40,13 @@ export default defineNuxtConfig({
       facebookRedirectUri: process.env.NUXT_FACEBOOK_REDIRECT_URI,
       nostraApiKey: process.env.NOSTRA_API_KEY,
       nostraApiReferer: process.env.NOSTRA_API_REFERER,
-      b2ApplicationKeyId: process.env.B2_APPLICATION_KEY_ID,
+      b2AccountId: process.env.B2_ACCOUNT_ID,
       b2ApplicationKey: process.env.B2_APPLICATION_KEY,
       b2BucketId: process.env.B2_BUCKET_ID,
-
+      b2Endpoint: process.env.B2_ENDPOINT,
     }
-  }
+  },
+  
 })
 
 

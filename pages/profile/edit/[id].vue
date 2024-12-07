@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 flex font-prompt mx-auto max-w-7xl mt-6">
+  <div class="p-4 flex font-prompt mx-auto sm:max-w-xl max-w-7xl mt-6">
     <RouterLink to="/profile"
       class="flex-2 w-[42px] h-[42px] bg-white shadow-md rounded-full flex justify-center items-center">
       <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -9,7 +9,7 @@
       </svg>
     </RouterLink>
 
-    <div class="flex-1 mt-2">
+    <div class="flex-1 mt-2 flex justify-center">
       <h2 class="text-[22px] mx-16 font-bold">โปรไฟล์ของคุณ</h2>
     </div>
   </div>
