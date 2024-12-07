@@ -26,7 +26,12 @@
               <span class="loading loading-spinner loading-xl text-orange-200"></span>
             </div>
             <div v-else class="flex justify-center mt-2">
-              <p class="sm:text-5xl text-3xl text-white font-medium">{{ orders.length }}</p>
+              <div v-if="orders.length">
+                <p class="sm:text-5xl text-3xl text-white font-medium">{{ orders.length }}</p>
+              </div>
+              <div v-else>
+                <p class="font-light text-white">ยังไม่มีออเดอร์</p>
+              </div>
             </div>
 
           </div>

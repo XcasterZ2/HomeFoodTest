@@ -9,8 +9,8 @@
       </svg>
     </RouterLink>
 
-    <div class="flex-1 mt-2">
-      <h2 class="text-3xl mx-16 font-bold">สั่งสินค้า</h2>
+    <div class="flex-1 mt-2 flex justify-center">
+      <h2 class="text-3xl font-bold">สั่งสินค้า</h2>
     </div>
   </div>
 

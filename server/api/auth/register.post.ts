@@ -42,7 +42,7 @@ export default defineEventHandler(async (event) => {
     }
 
     const otpResponse = await response.json();
-    console.log('otpResVadi : ' , otpResponse)
+    // console.log('otpResVadi : ' , otpResponse)
 
     if (otpResponse.code === "000" && otpResponse.result.status === true) {
       const newUser = await prisma.user.create({

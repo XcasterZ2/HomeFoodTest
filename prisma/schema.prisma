@@ -35,6 +35,7 @@ model restaurant {
   restaurant_Id   Int     @id @default(autoincrement())
   name            String
   restaurantImage String?
+  backgroundimage String?
   phoneNumber     String?
   ownerFullname   String?
   location        String?

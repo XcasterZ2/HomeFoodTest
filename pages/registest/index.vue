@@ -84,8 +84,10 @@
         </button>
 
       </div>
+
     </div>
   </div>
+
   <!-- <div class="p-4">
     สมัคร
   </div>
@@ -113,6 +115,7 @@ import Facebook from '~/components/user/icons/Facebook.vue'
 import Google from '~/components/user/icons/Google.vue'
 import Email from '~/components/user/icons/Email.vue'
 import User from '~/components/user/icons/User.vue'
+
 
 const email = ref('');
 const phoneNumber = ref('');

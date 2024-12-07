@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-xl mx-auto mt-5 font-prompt">
+  <div class="sm:max-w-3xl max-w-xl mx-auto mt-5 font-prompt">
     <div class="flex p-3">
       <RouterLink to="/businesscenter/restaurant/detail"
         class="flex-2 w-[42px] h-[42px] mt-2 bg-white shadow-md rounded-full flex justify-center items-center">
@@ -9,12 +9,16 @@
             fill="#0D1217" />
         </svg>
       </RouterLink>
-      <div class="flex-1 mt-3">
-        <h2 class="text-[26px] mx-5 font-bold">เปลี่ยนรูปภาพร้านอาหาร</h2>
+      <div class="flex-1 sm:flex sm:justify-center mt-3">
+        <h2 class="text-[26px] mx-5 font-bold">แก้ไขข้อมูลร้านอาหาร</h2>
       </div>
     </div>
 
-    <div class="flex mt-5">
+    <div class="mt-5">
+      <p class="text-[20px] mx-5 font-bold">เปลี่ยนรูปภาพร้านอาหาร</p>
+    </div>
+
+    <div class="flex mt-5 sm:mt-10">
       <div class="flex-1">
         <p class="text-center font-semibold text-[#FF6347]">รูปเดิม</p>
         <div v-if="restaurantImage" class="p-3 flex justify-center">
@@ -42,8 +46,10 @@
         </div>
       </div>
     </div>
+
     <div class="flex-col mt-5 sm:w-full w-[80%] mx-auto">
-      <input type="file" @change="handleFileUpload" accept="image/*" class="file-input file-input-bordered w-full" />
+      <input type="file" @change="handleFileUpload" accept="image/*"
+        class="file-input file-input-bordered w-full sm:w-[98%] sm:mx-3" />
       <div class="flex justify-end">
         <div class="flex gap-3">
           <div class="mt-8">
@@ -56,6 +62,48 @@
       </div>
       <div v-if="errorMessage" class="text-red-500">
         {{ errorMessage }}
+      </div>
+    </div>
+
+    <div>
+      <p class="text-[20px] mx-5 font-bold">เปลี่ยนปกร้านอาหาร</p>
+    </div>
+
+    <div class="flex mt-5 sm:mt-10">
+      <div class="flex-1">
+        <p class="text-center font-semibold text-[#FF6347]">ปกเดิม</p>
+        <div v-if="restaurantBackgroundImage" class="p-3 flex justify-center">
+          <img :src="restaurantBackgroundImage" alt="Old Background" class="w-[150px] h-[150px] rounded-lg shadow-md">
+        </div>
+        <div v-else class="p-3 flex justify-center">
+          <div class="w-auto sm:h-[150px] h-[80px] rounded-lg shadow-md">
+            <div class="flex justify-center items-center p-3">
+              <p class="mt-3 sm:text-base text-[8px]">ยังไม่มีภาพปก</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-1">
+        <p class="text-center font-semibold text-[#FF6347]">ปกใหม่</p>
+        <div v-if="newImagePreviewBackground" class="p-3 flex justify-center">
+          <img :src="newImagePreviewBackground" alt="New Background" class="w-[150px] h-[150px] rounded-lg shadow-md">
+        </div>
+        <div v-else class="p-3 flex justify-center">
+          <div class="w-auto sm:h-[150px] h-[80px] rounded-lg shadow-md">
+            <div class="flex justify-center items-center p-3">
+              <p class="mt-3 sm:text-base text-[8px]">ยังไม่มีภาพปกใหม่ที่เลือก</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="mt-3">
+      <input type="file" @change="handleFileUploadBackground" accept="image/jpeg,image/png,image/webp"
+        class="file-input file-input-bordered w-full sm:w-[98%] sm:mx-3" />
+      <div class="flex justify-end mt-5">
+        <button @click="uploadBackgroundImage" class="btn">อัปโหลดภาพพื้นหลัง</button>
       </div>
     </div>
 
@@ -112,11 +160,18 @@ const email = ref('')
 const phoneNumber = ref('')
 const location = ref('')
 const restaurantImage = ref('')
+const restaurantBackgroundImage = ref('');
 
 const newImagePreview = ref(null)
+const newImagePreviewBackground = ref(null)
 
 const selectedFile = ref(null)
+const selectedFileBackground = ref(null)
+
 const errorMessage = ref('')
+const errorMessageBackground = ref('')
+
+
 const restaurantId = ref(null)
 
 const restaurants = ref([])
@@ -139,7 +194,7 @@ const fetchRestaurant = async () => {
     phoneNumber.value = restaurants.value[0].phoneNumber
     location.value = restaurants.value[0].location
     restaurantImage.value = restaurants.value[0].restaurantImage
-
+    restaurantBackgroundImage.value = restaurants.value[0].backgroundimage;
   } catch (err) {
     console.error('Error fetching courses:', err);
   }
@@ -219,6 +274,27 @@ const handleFileUpload = (event) => {
   }
 }
 
+const handleFileUploadBackground = (event) => {
+  const file = event.target.files[0]
+  console.log('file : ', file)
+  if (file) {
+    if (file.size > 5 * 1024 * 1024) {
+      errorMessageBackground.value = 'File size should be less than 5MB'
+      return
+    }
+
+    const validTypes = ['image/jpeg', 'image/png', 'image/gif']
+    if (!validTypes.includes(file.type)) {
+      errorMessageBackground.value = 'Invalid file type. Please upload an image.'
+      return
+    }
+
+    selectedFileBackground.value = file
+    newImagePreviewBackground.value = URL.createObjectURL(file)
+    errorMessageBackground.value = ''
+  }
+}
+
 const uploadImage = async () => {
   if (!selectedFile.value) {
     errorMessage.value = 'Please select a file first'
@@ -258,6 +334,44 @@ const uploadImage = async () => {
     await fetchRestaurant()
   } catch (error) {
     errorMessage.value = error.message || 'Failed to upload image'
+    Swal.fire({
+      icon: 'error',
+      title: 'เกิดข้อผิดพลาด',
+      text: error.message,
+      customClass: {
+        container: 'font-prompt',
+      }
+    })
+  }
+}
+
+const uploadBackgroundImage = async () => {
+  if (!selectedFileBackground.value) {
+    alert('กรุณาเลือกรูปภาพก่อน')
+    return
+  }
+
+  const formData = new FormData()
+  formData.append('file', selectedFileBackground.value)
+  formData.append('restaurantId', restaurantId.value)
+
+  try {
+    const response = await $fetch('/api/restaurants/upload-backgroundimage', {
+      method: 'POST',
+      body: formData
+    })
+    console.log('data : ', response)
+    Swal.fire({
+      icon: 'success',
+      title: 'บันทึกสำเร็จ',
+      showConfirmButton: false,
+      timer: 1500,
+      customClass: {
+        container: 'font-prompt',
+      }
+    })
+  } catch (error) {
+    console.log('error', erorr)
     Swal.fire({
       icon: 'error',
       title: 'เกิดข้อผิดพลาด',

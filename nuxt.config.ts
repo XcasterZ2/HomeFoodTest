@@ -11,23 +11,26 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@pinia/nuxt',
   ],
-  plugins: ['~/plugins/fontawesome.js' , 
+  plugins: ['~/plugins/fontawesome.js',
     '~/plugins/datepicker.js',
-  '~/plugins/facebook-sdk.js',],
+    '~/plugins/facebook-sdk.js',],
   googleFonts: {
     families: {
       Sarabun: [400, 700],
-      Inter: [400, 700], 
-      Kanit: [400, 700], 
-      Prompt: [400,500,600, 700], 
+      Inter: [400, 700],
+      Kanit: [400, 700],
+      Prompt: [400, 500, 600, 700],
     },
     display: 'swap',
-  },runtimeConfig: {
+  }, runtimeConfig: {
     googleClientId: process.env.NUXT_GOOGLE_CLIENT_ID,
     googleClientSecret: process.env.NUXT_GOOGLE_CLIENT_SECRET,
     googleRedirectUri: process.env.NUXT_GOOGLE_REDIRECT_URI,
     lineClientSecret: process.env.NUXT_LINE_CLIENT_SECRET,
     facebookClientSecret: process.env.NUXT_FACEBOOK_CLIENT_SECRET,
+    awsRegion: process.env.AWS_REGION,
+    awsEndpointUrl: process.env.AWS_ENDPOINT_URL,
+    b2BucketName: process.env.B2_BUCKET_NAME,
     public: {
       googleClientId: process.env.NUXT_GOOGLE_CLIENT_ID,
       googleRedirectUri: process.env.NUXT_GOOGLE_REDIRECT_URI,
@@ -37,6 +40,10 @@ export default defineNuxtConfig({
       facebookRedirectUri: process.env.NUXT_FACEBOOK_REDIRECT_URI,
       nostraApiKey: process.env.NOSTRA_API_KEY,
       nostraApiReferer: process.env.NOSTRA_API_REFERER,
+      b2ApplicationKeyId: process.env.B2_APPLICATION_KEY_ID,
+      b2ApplicationKey: process.env.B2_APPLICATION_KEY,
+      b2BucketId: process.env.B2_BUCKET_ID,
+
     }
   }
 })
