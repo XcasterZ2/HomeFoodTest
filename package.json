@@ -6,7 +6,8 @@
     "build": "nuxt build && prisma generate",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "start": "nuxt start"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.703.0",
